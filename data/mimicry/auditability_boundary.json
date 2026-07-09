@@ -1,0 +1,29 @@
+{
+ "map1_cm4ai": {
+  "confidence_axis": "ipTM (Score)",
+  "ships_native_null": true,
+  "n_candidates": 1666,
+  "n_decoys": 1788,
+  "candidate_score_median": 0.256,
+  "decoy_score_median": 0.242,
+  "auditable": true,
+  "headline": "22% of high-confidence edges fail conformal FDR at q=0.10"
+ },
+ "map2_hostpathogen": {
+  "source": "Zenodo 15588019 (Krogan et al. bioRxiv 2025.06.04.657796)",
+  "confidence_axis": "pDockQ (CPU from ranked-0 model; ipTM not deposited)",
+  "ships_native_null": false,
+  "n_pairs": 6542,
+  "pdockq_median": 0.739,
+  "pdockq_iqr": [
+   0.723,
+   0.742
+  ],
+  "frac_ge_0.5": 0.931,
+  "frac_lt_0.23": 0.039,
+  "pctile75_99_span": 0.0,
+  "auditable": false,
+  "reason": "positives-only, pre-thresholded on confidence; no exchangeable null; pDockQ saturated (no ranking information left in released set)"
+ },
+ "finding": "Auditability is a property of the data RELEASE, not the map. A distribution-free conformal FDR audit requires an exchangeable null (a matched negative/decoy set run through the same pipeline). CM4AI ships 1,788 native random-pair decoys and is fully auditable; the host-pathogen deposit is positives-only with a saturated confidence axis and cannot be audited post-hoc without GPU-scale decoy folding. Implication: AI-interactome releases should ship their negative controls to enable independent error-rate audit."
+}
