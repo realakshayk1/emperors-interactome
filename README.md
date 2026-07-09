@@ -1,8 +1,6 @@
 # The Emperor's Interactome
 
-**A distribution-free falsification audit of a celebrated AI protein interactome, refereed by held-out biology.**
-
-Built for the *Built with Claude: Life Sciences* hackathon (Research Track, Gladstone Institutes partner). Submission due **July 13, 2026, 9:00 PM ET**.
+**A distribution-free falsification audit of an AI-predicted protein interactome, refereed by held-out biology.**
 
 ---
 
@@ -25,22 +23,6 @@ support** (41% vs 17% co-essential, permutation *p* = 0.016). We then **nominate
 member** of the leukemia-associated MLL1-WDR5 complex (CORUM 5386) with a certified risk of 0.007,
 independently corroborated by DepMap co-essentiality, by an internal CORUM annotation the pipeline
 never used, and by an **independent Boltz-2 structure prediction** of the KANSL3–KANSL1 interface.
-
-## The one-paragraph thesis
-
-Raw AF-Multimer confidence is miscalibrated and the field's FDRs are prevalence-fragile. This
-project applies distribution-free conformal FDR control to a published interactome, certifies which
-complexes survive honest error control, validates the certified set against held-out DepMap
-co-essentiality, and nominates a missing member of a cancer-relevant complex with a certified error
-rate and an independently predicted structure.
-
-## Why it wins (judging: Demo 30 / Impact 25 / Claude Use 25 / Depth 20)
-
-- **Demo**: a contrarian, visual story — "the emperor's high-confidence complexes, honestly re-scored" — ending on a live nomination.
-- **Impact**: a trust layer for AI interactomics + a cancer target nomination.
-- **Claude Use**: Claude Science orchestrates literature (PubMed/bioRxiv), pulls structures (PDB/UniProt), slices DepMap, runs the pipeline, dispatches the GPU structure prediction to Modal, and writes the interpretation with provenance.
-- **Depth**: conformal FDR + a held-out-purity validation design is real statistical rigor.
-- **Gladstone Award**: uses Gladstone/Krogan data and executes the "predict a missing component" prompt verbatim.
 
 ## Start here (read order)
 
@@ -363,12 +345,6 @@ make structure   # report the nominee's Boltz-2 interface (remote GPU step; see 
 
 The CPU pipeline is fully local and deterministic (`SEED = 42`); the structure step runs remotely on
 a GPU (Modal, A100-80GB) and its outputs are committed so the repo is complete without re-running it.
-
-## Deliverables (hackathon)
-
-- 3-minute demo video (notebook + recorded narration) — see DEMO.md
-- Open-source repo (this repo, MIT) with a runnable notebook
-- 100–200 word written summary — reports/summary.md
 
 ## Config at a glance
 
