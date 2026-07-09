@@ -1,0 +1,10 @@
+level_q,method,split,n_certified_mean,heldout_fdr_upper_bound,n_certified_fullpool,depmap_frac_coess
+0.05,plain_conformal,node_disjoint,14.2,0.2895,78,0.3846
+0.05,weighted_conformal_WCS,node_disjoint,0.0,0.0,0,0.0
+0.1,plain_conformal,node_disjoint,21.7,0.3191,132,0.4144
+0.1,weighted_conformal_WCS,node_disjoint,1.6,0.3222,0,0.0
+0.2,plain_conformal,node_disjoint,27.2,0.3668,177,0.34
+0.2,weighted_conformal_WCS,node_disjoint,15.5,0.319,0,0.0
+,KS_calneg_vs_wild,,0.1335,1.4275156834502661e-09,,
+,prevalence_calibration,,0.0966,,,
+,baseline_frac_coess_all_wild,,0.1482,,,

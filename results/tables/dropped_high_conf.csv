@@ -1,0 +1,84 @@
+gene_a,gene_b,cluster,score,iptm_mean,conf_pvalue,n_shared_corum,corum_complexes,dropped_at_q
+GIT2,PAK3,C5365,0.382,0.342,0.040884,0,no shared complex; GIT2∈ARHGEF7-GIT2-PAK1 complex,"0.05,0.1,0.2"
+FBLN5,KPTN,C5354,0.384,0.376,0.039779,0,no shared complex; FBLN5∈ELN-FBLN5-FBN1 complex ; KPTN∈KICSTOR complex,"0.05,0.1,0.2"
+TXLNA,TXLNG,C5381,0.388,0.392,0.037569,0,no shared complex; TXLNA∈TNF-alpha/NF-kappa B signaling complex 10,"0.05,0.1,0.2"
+SPIN4,TOPORS,C5330,0.388,0.392,0.037569,0,none,"0.05,0.1,0.2"
+PIH1D1,RPAP3,C5346,0.392,0.4,0.036464,1,R2TP complex (CORUM 8735),"0.05,0.1,0.2"
+PLEKHO1,UBE2H,C5318,0.394,0.414,0.035359,0,none,"0.05,0.1,0.2"
+TAF4,TAF8,C5350,0.396,0.428,0.034254,0,no shared complex; TAF4∈DA complex|DAB complex|MLL1-WDR5 complex|TAF4-TAF12 subcomplex of TFIID complex|,"0.05,0.1,0.2"
+NUDC,RASSF3,C5321,0.404,0.42,0.032044,0,no shared complex; NUDC∈DCTN1-DYNC1I1-NUDC-PLK1 complex,"0.05,0.1,0.2"
+LSG1,TTC39B,C5282,0.416,0.358,0.027624,0,none,"0.05,0.1,0.2"
+DDAH2,PLEKHO1,C5318,0.418,0.372,0.023204,0,none,"0.05,0.1,0.2"
+GLIPR1L2,YPEL5,C5304,0.418,0.432,0.023204,0,"no shared complex; YPEL5∈CTLH complex, submodule of the IFT/lebercilin complex|GID/CTLH ubiquitin E3 liga","0.05,0.1,0.2"
+MLF1,ZBTB20,C5295,0.42,0.352,0.022099,0,none,"0.05,0.1,0.2"
+GABPB1,WDHD1,C5311,0.426,0.43,0.020994,0,no shared complex; WDHD1∈DDX11-Ctf18-RFC complex,"0.05,0.1"
+ZNF446,SCAND1,C5322,0.434,0.438,0.01768,0,none,"0.05,0.1"
+DIS3,EXOSC5,C5410,0.462,0.386,0.016575,2,Exosome (CORUM 788); Exosome (CORUM 789),"0.05,0.1"
+FBXW11,MYO10,C5321,0.456,0.466,0.016575,0,"no shared complex; FBXW11∈TNFalpha-NFkappa B signaling complex 5|Ubiquitin E3 ligase (FBXW11, SKP1, CUL1)|","0.05,0.1"
+KDM3A,RNF220,C5326,0.444,0.394,0.016575,0,no shared complex; KDM3A∈AR-KDM3A complex|ESR1-KDM3A-TNK2 complex,"0.05,0.1"
+KANSL3,MCRS1,C5345,0.446,0.442,0.016575,1,NSL complex (CORUM 7221),"0.05,0.1"
+KPNA6,TAF7L,C5337,0.446,0.44,0.016575,0,no shared complex; KPNA6∈CSE1L-KPNA6-RAN complex|KPNA6-KPNB1 complex,"0.05,0.1"
+TOMM22,WSB1,C5416,0.448,0.34,0.016575,0,"no shared complex; TOMM22∈HSD3B2-TIMM23-TIMM50-TOMM22 complex|TOM complex (TOMM5, TOMM6, TOMM7, TOMM20, TO ; WSB1∈Ubiquitin E3 ligase (WSB1, TCEB1, TCEB2, CUL5, RBX1)","0.05,0.1"
+ID2,TCF3,C5364,0.448,0.48,0.016575,0,no shared complex; TCF3∈INO80 chromatin remodeling complex|Rb-tal-1-E2A-Lmo2-Ldb1 complex,"0.05,0.1"
+DNAJB6,MLF1,C5295,0.452,0.442,0.016575,0,none,"0.05,0.1"
+DDX23,TXNL4A,C5285,0.442,0.456,0.016575,1,"Spliceosome, pre-B complex (CORUM 8370)","0.05,0.1"
+DIXDC1,HAUS1,C5307,0.44,0.438,0.016575,0,no shared complex; DIXDC1∈AXIN1-DIXDC1-MAP3K4 complex ; HAUS1∈HAUS augmin-like complex,"0.05,0.1"
+CNNM1,CNNM3,C5388,0.436,0.476,0.016575,0,none,"0.05,0.1"
+BRD7,KPNA5,C5337,0.464,0.504,0.016575,0,no shared complex; BRD7∈BRD7-BAF60A-MEP50 complex|BRD7-CBP-SWI–SNF complex|BRD7-EZH2-SUZ12 complex|BRD7-,"0.05,0.1"
+MLF1,SMTN,C5295,0.466,0.456,0.016575,0,none,"0.05,0.1"
+EPRS1,TARS3,C5290,0.454,0.424,0.016575,0,no shared complex; EPRS1∈GAIT complex|Multisynthetase complex,"0.05,0.1"
+FLII,HOMER2,C5374,0.472,0.392,0.01326,0,none,"0.05,0.1"
+FBRSL1,PCGF5,C5297,0.474,0.512,0.01326,2,PRC1.5a complex (CORUM 8387); PRC1.5c (CORUM 8388),"0.05,0.1"
+STX16,VAMP4,C5292,0.472,0.492,0.01326,2,"SNARE complex (STX16, VAMP3, VAMP4) (CORUM 875); SNARE complex (STX6, STX16, VAMP4, VTI1a, VTI1b) (CORUM 877)","0.05,0.1"
+AUTS2,PCGF5,C5297,0.48,0.488,0.012155,2,PRC1.5a complex (CORUM 8387); PRC1.5c (CORUM 8388),"0.05,0.1"
+PAF1,TCEANC2,C5315,0.48,0.506,0.012155,0,no shared complex; PAF1∈Paf complex,"0.05,0.1"
+LSM4,WDR77,C5284,0.48,0.394,0.012155,0,"no shared complex; LSM4∈LSm1-7 complex|LSm2-8 complex|Spliceosome, B complex|Spliceosome, E complex|Spli ; WDR77∈AR-CLNS1A-PRMT5-WDR77 complex|BRD7-BAF60A-MEP50 complex|CHTOP-ERH-PRMT1-PRMT5-WD","0.05,0.1"
+CHMP1B,VTA1,C5391,0.492,0.494,0.00884,0,no shared complex; CHMP1B∈CAPN7-CHMP1B-IST1 complex|ESCRT-III complex,"0.05,0.1"
+TMUB1,TRPM4,C5283,0.494,0.428,0.007735,0,no shared complex; TMUB1∈AMFR-ERLIN2-TMUB1 complex,0.05
+AP2A1,AP2A2,C5308,0.5,0.43,0.007735,0,no shared complex; AP2A1∈AP2-PICALM adaptor complex|RalBP1-CCNB1-AP2A-NUMB-EPN1 complex|Stargazin-AP-2-AP,0.05
+KANSL1,KANSL3,C5345,0.508,0.536,0.00663,1,NSL complex (CORUM 7221),0.05
+CENPO,ITGB3BP,C5291,0.506,0.52,0.00663,2,CENP-A NAC-CAD complex (CORUM 1179); CENP-H-I complex (CORUM 7394),0.05
+STX12,VTI1B,C5292,0.504,0.492,0.00663,0,"no shared complex; STX12∈ABCA1-FLOT1-STX12 complex|SNARE complex (HGS, SNAP25, STX13)|SNARE complex (SNAP ; VTI1B∈SNARE complex (STX6, STX16, VAMP4, VTI1a, VTI1b)",0.05
+TAF6,TAF8,C5350,0.508,0.502,0.00663,0,no shared complex; TAF6∈ALL-1 supercomplex|DA complex|DAB complex|MLL1-WDR5 complex|MOF complex|TFIID co,0.05
+HSPA4,HSPH1,C5281,0.518,0.494,0.00663,0,no shared complex; HSPA4∈DNAJB1-HSPA4-HSPA8 complex|HCF-1 complex|HSP70-BAG5-PARK2 complex|Kinase maturat ; HSPH1∈DNAJB14-HSPA1-HSPH8-SGTA complex,0.05
+BLOC1S3,SNAPIN,C5306,0.51,0.43,0.00663,3,AP3-BLOC1 complex (CORUM 652); BLOC-1 (biogenesis of lysosome-related organelles complex 1) (CORUM 23); BLOC1-BLOC2 complex (CORUM 654),0.05
+CSTF3,FIP1L1,C5390,0.54,0.556,0.00663,0,no shared complex; CSTF3∈BARD1-BRCA1-CSTF complex|Cleavage stimulation factor|Polyadenylation complex (CS ; FIP1L1∈AHCYL1-CPSF complex|AHCYL1-FIP1L1-PAPOLA complex|Cleavage and polyadenylation fa,0.05
+KPNA5,TAF7L,C5337,0.534,0.442,0.00663,0,none,0.05
+SRP54,SRP68,C5301,0.528,0.414,0.00663,0,none,0.05
+THOC1,THOC5,C5397,0.52,0.54,0.00663,3,THO complex (CORUM 774); TREX complex (CORUM 770); hTREX84 complex (CORUM 6160),0.05
+CENPI,CENPO,C5291,0.52,0.536,0.00663,2,CEN complex (CORUM 929); CENP-H-I complex (CORUM 7394),0.05
+PITPNM1,PITPNM3,C5282,0.528,0.514,0.00663,0,no shared complex; PITPNM1∈PITPNM1-PTK2B complex ; PITPNM3∈PITPNM3-PTK2B complex,0.05
+HCFC2,PHF20,C5345,0.522,0.52,0.00663,0,no shared complex; HCFC2∈MLL2 complex|Set1A complex|Set1B complex ; PHF20∈MLL1-WDR5 complex|NSL complex,0.05
+HGH1,PUM1,C5402,0.526,0.56,0.00663,0,none,0.05
+IRF9,STAT2,C5415,0.544,0.53,0.005525,1,ISGF3 complex (CORUM 8537),0.05
+RPAP3,RUVBL2,C5346,0.546,0.578,0.005525,1,R2TP complex (CORUM 8735),0.05
+KANSL1,MCRS1,C5345,0.57,0.574,0.005525,2,MLL1-WDR5 complex (CORUM 5386); NSL complex (CORUM 7221),0.05
+HSPBP1,STIP1,C5281,0.554,0.572,0.005525,0,no shared complex; HSPBP1∈HSPA8-HSPBP1-STUB1 complex ; STIP1∈HDAC8-STIP1 complex|HSP70-HSP90AB1-STIP1 complex|HSP90AA1-HSP70-STIP1 complex|HS,0.05
+AP1B1,AP2A1,C5308,0.558,0.558,0.005525,0,no shared complex; AP1B1∈AP1 adaptor complex|AP1B1-AP1G2-AP1M1-AP1S1 complex|Gamma-BAR-AP1 complex ; AP2A1∈AP2-PICALM adaptor complex|RalBP1-CCNB1-AP2A-NUMB-EPN1 complex|Stargazin-AP-2-AP,0.05
+HCFC2,KANSL3,C5345,0.558,0.578,0.005525,0,no shared complex; HCFC2∈MLL2 complex|Set1A complex|Set1B complex ; KANSL3∈NSL complex,0.05
+IFT70A,IFT81,C5300,0.558,0.468,0.005525,0,no shared complex; IFT81∈Intraflagellar transport complex B core complex,0.05
+IRF9,STAT1,C5415,0.566,0.548,0.005525,1,ISGF3 complex (CORUM 8537),0.05
+EIF3CL,EIF3D,C5314,0.544,0.554,0.005525,0,"no shared complex; EIF3D∈eIF3 complex (EIF3S6, EIF3S5, EIF3S4, EIF3S3, EIF3S6IP, EIF3S2, EIF3S9, EIF3S12,",0.05
+MAEA,WDR26,C5304,0.566,0.59,0.005525,4,"CTLH complex (CORUM 8273); CTLH complex, submodule of the IFT/lebercilin complex (CORUM 8015); GID/CTLH ubiquitin E3 ligase complex (CORUM 8405); GID/CTLH ubiquitin E3 ligase complex (CORUM 8406)",0.05
+TCEANC2,ZNF638,C5315,0.548,0.556,0.005525,0,none,0.05
+PPARGC1B,SPIN4,C5330,0.55,0.586,0.005525,0,none,0.05
+GPN1,URI1,C5296,0.566,0.596,0.005525,0,no shared complex; GPN1∈GPN1-GPN3 complex ; URI1∈URI complex (Unconventional prefoldin RPB5 Interactor),0.05
+SEPTIN4,SEPTIN8,C5309,0.562,0.562,0.005525,0,none,0.05
+GTF2E1,GTF2E2,C5370,0.598,0.612,0.00442,3,BRCA1-RNA polymerase II complex (CORUM 2825); RNA polymerase II holoenzyme complex (CORUM 103); TFIIE complex (CORUM 152),0.05
+ANXA2,BCL2L12,C5325,0.59,0.482,0.00442,0,no shared complex; ANXA2∈ABCB1-ANXA2-RACK1-SRC complex|ANXA2-MMP2-WFDC2 complex|ANXA2-PCSK9 complex,0.05
+MRPL15,MRPL48,C5319,0.582,0.576,0.00442,2,"39S ribosomal subunit, mitochondrial (CORUM 324); 55S ribosome, mitochondrial (CORUM 320)",0.05
+STRIP1,STRN,C5349,0.586,0.594,0.00442,1,STRIPAK complex (CORUM 8171),0.05
+CLNS1A,LSM4,C5284,0.582,0.542,0.00442,0,"no shared complex; CLNS1A∈20S methylosome and RG-containing Sm protein complex|20S methylosome-SmD complex ; LSM4∈LSm1-7 complex|LSm2-8 complex|Spliceosome, B complex|Spliceosome, E complex|Spli",0.05
+BRD7,KPNA6,C5337,0.582,0.54,0.00442,0,no shared complex; BRD7∈BRD7-BAF60A-MEP50 complex|BRD7-CBP-SWI–SNF complex|BRD7-EZH2-SUZ12 complex|BRD7- ; KPNA6∈CSE1L-KPNA6-RAN complex|KPNA6-KPNB1 complex,0.05
+TAF5,TAF8,C5350,0.588,0.552,0.00442,0,no shared complex; TAF5∈DA complex|DAB complex|TFIID complex|TFIID complex|TFIID complex|TFIID complex|T,0.05
+AP1B1,AP2A2,C5308,0.572,0.576,0.00442,0,no shared complex; AP1B1∈AP1 adaptor complex|AP1B1-AP1G2-AP1M1-AP1S1 complex|Gamma-BAR-AP1 complex,0.05
+STRIP1,STRN3,C5349,0.578,0.6,0.00442,1,STRIPAK complex (CORUM 8171),0.05
+STAT1,STAT2,C5415,0.576,0.606,0.00442,1,ISGF3 complex (CORUM 8537),0.05
+TAF3,TAF5,C5350,0.602,0.61,0.003315,2,DA complex (CORUM 492); DAB complex (CORUM 493),0.05
+STX7,VTI1B,C5292,0.602,0.614,0.003315,0,"no shared complex; STX7∈Class C VPS complex (STX7, VPS11, VPS18) ; VTI1B∈SNARE complex (STX6, STX16, VAMP4, VTI1a, VTI1b)",0.05
+STRIP1,STRN4,C5349,0.604,0.506,0.003315,1,STRIPAK complex (CORUM 8171),0.05
+LSM1,WDR77,C5284,0.604,0.452,0.003315,0,no shared complex; LSM1∈LSm1-7 complex ; WDR77∈AR-CLNS1A-PRMT5-WDR77 complex|BRD7-BAF60A-MEP50 complex|CHTOP-ERH-PRMT1-PRMT5-WD,0.05
+SEPTIN6,SEPTIN8,C5309,0.6,0.596,0.003315,0,none,0.05
+CDK9,PAF1,C5315,0.61,0.554,0.003315,0,no shared complex; CDK9∈7SK RNP complex|AFF4 super elongation complex (SEC)|BRD4 complex|BRD4-P-TEFb com ; PAF1∈Paf complex,0.05
+SEPTIN4,SEPTIN6,C5309,0.61,0.62,0.003315,0,none,0.05
+DPYSL2,DPYSL4,C5393,0.608,0.58,0.003315,0,none,0.05

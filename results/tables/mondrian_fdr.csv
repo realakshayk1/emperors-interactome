@@ -1,0 +1,10 @@
+scheme,stratum,n,n_certified,heldout_fdr,heldout_fdr_lo,heldout_fdr_hi,pooled_fdr,q,recalibratable,n_depmap_scored
+complex_size,Csmall,650,57,0.1205,0.0,0.4398,0.1978,0.1,False,49
+complex_size,Cmed,656,56,0.0845,0.0,0.4482,0.1978,0.1,False,43
+complex_size,Clarge,360,19,0.6534,0.1829,1.0,0.1978,0.1,False,19
+score_tertile_pooled,Slow,560,0,,,,0.1978,0.1,True,0
+score_tertile_mondrian,Slow,560,0,,,,0.1978,0.1,True,0
+score_tertile_pooled,Smid,555,0,,,,0.1978,0.1,True,0
+score_tertile_mondrian,Smid,555,0,,,,0.1978,0.1,True,0
+score_tertile_pooled,Shigh,551,132,0.1978,0.0,0.3991,0.1978,0.1,True,111
+score_tertile_mondrian,Shigh,551,78,0.2644,0.0,0.5394,0.1978,0.1,True,65

@@ -1,0 +1,82 @@
+{
+  "task": "Stratified (Mondrian) conformal \u2014 structured overconfidence",
+  "q": 0.1,
+  "pooled_overall_heldout_fdr": 0.1978,
+  "depmap_referee": {
+    "h1_corum_positives": 0.5029,
+    "h0_random_decoys": 0.0554,
+    "n_pos_scored": 171,
+    "n_neg_scored": 1101,
+    "estimator": "FDR=(h1-frac_coess)/(h1-h0), clipped[0,1]; 2000-boot 95% CI"
+  },
+  "strata_availability": {
+    "score_tertile": {
+      "available": true,
+      "recalibratable": true,
+      "note": "decoys carry score -> full Mondrian recalibration possible"
+    },
+    "cluster_size": {
+      "available": true,
+      "recalibratable": false,
+      "note": "paper cluster known for candidates; decoys have no cluster -> referee-only stratum"
+    },
+    "homodimer": {
+      "available": true,
+      "recalibratable": false,
+      "degenerate": true,
+      "note": "0/1666 homodimers -> single-level, cannot stratify"
+    },
+    "idr_fraction": {
+      "available": false,
+      "recalibratable": false,
+      "note": "per-protein sequences absent map-wide (only KANSL nominee has FASTA/MSA) -> SKIP"
+    },
+    "msa_depth_neff": {
+      "available": false,
+      "recalibratable": false,
+      "note": "MSAs absent map-wide (only nominee kansl*_msa.csv) -> SKIP"
+    },
+    "interface_size": {
+      "available": false,
+      "recalibratable": false,
+      "note": "no interface-PAE/pDockQ2 in Table5, no per-pair structures map-wide -> SKIP"
+    }
+  },
+  "complex_size_fdr": {
+    "Csmall": {
+      "n": 650,
+      "n_certified": 57,
+      "heldout_fdr": 0.1205,
+      "ci": [
+        0.0,
+        0.4398
+      ]
+    },
+    "Cmed": {
+      "n": 656,
+      "n_certified": 56,
+      "heldout_fdr": 0.0845,
+      "ci": [
+        0.0,
+        0.4482
+      ]
+    },
+    "Clarge": {
+      "n": 360,
+      "n_certified": 19,
+      "heldout_fdr": 0.6534,
+      "ci": [
+        0.1829,
+        1.0
+      ]
+    }
+  },
+  "score_tertile_recalibration": {
+    "Shigh_pooled_certified": 132,
+    "Shigh_mondrian_certified": 78,
+    "inflation_factor": 1.69,
+    "Shigh_pooled_heldout_fdr": 0.1978,
+    "Shigh_mondrian_heldout_fdr": 0.2644
+  },
+  "finding": "Pooled conformal is anti-conservative in the large-complex stratum (held-out FDR 0.65 vs target 0.10 and pooled-overall 0.20) and over-certifies the high-score tertile 1.7x relative to score-matched Mondrian recalibration."
+}

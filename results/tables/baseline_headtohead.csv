@@ -1,0 +1,5 @@
+rule,n_selected,frac_coess,mean_neglogp,n_scored_depmap,perm_p_vs_conformal
+conformal_BH_q0.10,132,0.4144,4.3598,111,
+benchmark_cutoff_score>=0.394,204,0.3179,3.1393,173,0.098
+published_high_conf,161,0.3676,3.8416,136,0.5089
+dropped_by_conformal(diagnostic),35,0.1667,1.4849,30,
