@@ -18,18 +18,20 @@ field's FDRs aren't distribution-free. Show the target map (CM4AI cell map (Scha
 CORUM. Narrate: "well above the diagonal — the scores claim more certainty than they earn." (ECE number on screen.)
 
 **0:55–1:30 — Frame 2: honest re-scoring.** Show `fdr_curve.png` + the certified-vs-dropped count at q=0.10.
-Narrate the headline (Branch A: "N of the 'high-confidence' complexes don't survive honest FDR control" /
-Branch B: "the certified core tightens to N with a guaranteed error rate"). Then `prevalence_shift.png`:
-"and unlike benchmark-estimated FDR, this guarantee holds when real interactions are rare."
+Narrate the headline: **"35 of the 161 'high-confidence' complexes — 22% — don't survive honest FDR
+control."** Then `prevalence_shift.png`: "and unlike benchmark-estimated FDR, this guarantee holds when real
+interactions are rare — the benchmark cutoff's error climbs to 90% as interactions get sparse; conformal stays near 10%."
 
 **1:30–2:05 — Frame 3: the referee agrees.** Show `heldout_enrichment.png`. Narrate: "the certified set is
-[2–3]× more enriched for DepMap co-essentiality — cancer-cell-line dependency data the structure model never
-saw. Honest error control isn't just conservative; it's more biologically real."
+**41% co-essential vs 17% for the dropped edges** (permutation p=0.016) — cancer-cell-line dependency data the
+structure model never saw. Honest error control isn't just conservative; it's more biologically real."
 
-**2:05–2:45 — Frame 4: the nomination.** Name the target cancer complex. Show the nominee lighting up on
-held-out co-essentiality, and (Stretch 1) its Boltz-2/AF3 predicted interface — `nominee_structure.png` — with
-a physical-validity check. Narrate: "so I nominate [PROTEIN] as a missing member of [COMPLEX], with a certified
-error rate and independent corroboration." (Optionally: one line of the Claude-Science literature rationale.)
+**2:05–2:45 — Frame 4: the nomination.** Target = leukemia-associated **MLL1-WDR5 complex (CORUM 5386)**. Show
+the nominee lighting up on held-out co-essentiality, and its Boltz-2 predicted interface — `nominee_structure.png`
+— with the physical-validity check. Narrate: "so I nominate **KANSL3** as a missing member of the MLL1-WDR5
+complex, certified risk 0.007, independently confirmed as an NSL-complex subunit held out of the pipeline and
+corroborated by a Boltz-2 interface." (Optional extension beat: the audit generalizes — 393 complexes get
+FDR-controlled missing-member nominations; and auditability itself is a property of the data release.)
 
 **2:45–3:00 — Close.** "One map, honestly audited: fewer false complexes, a cleaner core, and a corroborated
 new target — the reliability layer structural interactomics is missing." Card: repo link + "Built with Claude Science."
@@ -41,5 +43,8 @@ new target — the reliability layer structural interactomics is missing." Card:
 - Keep energy high in the first 25s; judges decide fast. Lead with the contrarian claim, not the methods.
 
 ## Assets checklist (all in results/figures/)
-- [ ] reliability_raw.png  - [ ] fdr_curve.png  - [ ] prevalence_shift.png
-- [ ] heldout_enrichment.png  - [ ] nominee_structure.png (Stretch 1)  - [ ] (opt) predictomes_robustness.png
+Core arc: [x] reliability_raw.png  [x] fdr_curve.png  [x] prevalence_shift.png
+[x] heldout_enrichment.png  [x] nominee_structure.png
+Extension (optional deeper-cut beats): [x] overconfidence_structured.png (Mondrian)
+[x] shift_diagnostic.png + wcs_vs_plain_fdr.png (honest negative)  [x] baseline_headtohead.png
+[x] auditability_boundary.png (ship-the-null)  [x] crossarch_pilot.png (Boltz-2 corroboration)

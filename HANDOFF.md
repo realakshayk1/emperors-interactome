@@ -1,8 +1,25 @@
 # HANDOFF — The Emperor's Interactome
 
-**Date:** 2026-07-08 · **Author:** planning session (pre-build) · **Deadline:** 2026-07-13 21:00 ET
+**Date:** 2026-07-08 (created, pre-build) · **Updated:** 2026-07-09 (build + extension complete) · **Deadline:** 2026-07-13 21:00 ET
 
-This doc transfers all context needed to start building in a fresh Claude Science session. Read it, then SPEC.md, then start Day 1 in TASKS.md.
+> **STATUS: BUILT AND EXTENDED.** The core audit and all five NEXT_DIRECTIONS extension phases are
+> complete, committed, and pushed to `github.com/realakshayk1/emperors-interactome` (main). `make
+> reproduce` runs the full CPU pipeline clean end-to-end (~2.5 min); 12 tests pass. The Day-1 gate,
+> branch lock, and every "open question" below were resolved during the build — see the resolution
+> notes inline and the full record in DECISIONS.md / LEARNINGS.md. The sections below are preserved as
+> the original pre-build handoff for provenance; read README.md first for the current state.
+
+**What was actually built (headline results, all verified against committed artifacts):**
+- Raw AF-M confidence miscalibrated (AUROC 0.70, ECE 0.18→0.02) → **Branch A locked**.
+- **35 of 161 (22%) high-confidence edges fail conformal FDR at q=0.10**; certified {0.05:78, 0.1:132, 0.2:177}.
+- Prevalence wedge: benchmark cutoff realized FDR → 0.90 as interactions rare; conformal stays near q.
+- Held-out DepMap: certified 41% vs dropped 17% co-essential (perm p=0.016).
+- Nominee **KANSL3 → MLL1-WDR5 (CORUM 5386)**, certified risk 0.007, Boltz-2 interface corroboration.
+- Extension: Mondrian (structured overconfidence), shift robustness (honest negative), baselines,
+  auditability boundary (2nd/3rd maps), cross-arch pilot (conditional GO), FDR-controlled nomination
+  sets (393 complexes / 810 nominations), boxed proposition, MLSB/bioRxiv draft, corrected-interactome release.
+
+This doc originally transferred context to *start* building. It is now a build record. Read README.md, then DECISIONS.md.
 
 ## Start here (your first move)
 0. **Read VERIFY.md and adopt its mandate: question every input in this folder and confirm it firsthand before building on it.** Nothing here is ground truth — it's a plan to verify, not to trust.

@@ -124,3 +124,37 @@ includes **$30 free Modal credit**).
   summary folded into `data/processed/nomination.json → physical_validity`.
 - **GPU-tier note:** the Modal plan gates GPUs ≥40 GB behind a payment method; 24 GB tiers
   (A10G/L4/T4) OOM on this dimer. A payment method was added to unlock A100-80GB.
+
+## 7. Second-map deposits (program extension — auditability boundary)
+
+Two further public AF-M deposits were fetched to test whether the audit generalizes; both proved
+un-auditable post-hoc (see METHODS §15). Provenance recorded for reproducibility:
+
+- **Krogan host–pathogen (Zenodo 15588019)**, doi:10.5281/zenodo.15588019, bioRxiv 2025.06.04.657796
+  (PMID 40661470). Files: AF-Multimer ranked-0 PDB models + FASTA + PyMOL sessions; NO tabulated
+  scores, NO PAE. Downloaded: `apms_hpidb_afmultimer_ranked0_models.tar.gz` (882,574,251 B; 6,542 host–
+  pathogen PPI models) and `benchmark_afmultimer_ranked0_models.tar.gz` (66,371,483 B; 452 known-complex
+  dimers, used to validate the pDockQ extractor). Access via `zenodo.org` (allowlist grant). pDockQ
+  scored on CPU → `data/mimicry/apms_pdockq.json` (median 0.739, 93.1%≥0.5, no low tail). Large archives
+  and the 4.1 GB extracted `models/` dir are gitignored; only the score JSONs are tracked.
+- **Predictomes human screen** (`predictomes-hsbps-dataset.s3.us-east-1.amazonaws.com`, allowlist grant).
+  File: `20251110_hs_predictome_pair_scores.csv.gz` (28,427,577 B). Columns: complex_name, uniprot_ids,
+  kirc_score, spoc_score, num_unique_contacts, string_db_score, string_db_physical_score,
+  biogrid_detect_count, intact_db_evidence_count, in_pdb. Exposes only SPOC (DepMap-contaminated →
+  firewall-forbidden) + a raw contact count; no raw pDockQ, no random-pair null; bucket ListBucket is
+  403. Not auditable under this design.
+
+## 8. Cross-architecture pilot inputs (program extension)
+
+12 pilot dimers (6 conformal-certified + 6 dropped high-conf, total length 216–569 aa) selected in
+`scripts/pick_pilot.py` → `data/structures/pilot_pairs.csv`; sequences fetched from UniProt
+(`scripts/prep_pilot_fasta.py`) → 12 Boltz FASTA in `data/structures/pilot/`. Folded on Boltz-2 v2.2.1
+(Modal A100-80GB, image `im-HUmTG4YGPRXCeHPD6lJUXV`, free ColabFold MSA server; job
+`35d3d47a-855c-4ddc-98c1-78c99948753b`, ~56 min, ~$0.20/fold). Confidence JSONs → `pilot_crossarch.csv`.
+This step needs a GPU (Modal) and is NOT part of `make reproduce`; the folded outputs are committed.
+
+## 9. Released resource
+
+`data/processed/corrected_interactome.csv` — the browsable audit output: all 1,666 candidate edges with
+AF-M Score, benchmark FDR, published high-conf flag, conformal p-value, per-q certified flags, and an
+honest verdict column (`certified` / `not_supported` at q=0.10). This is the primary reusable artifact.

@@ -1,5 +1,16 @@
 # VERIFY — question every input before you build on it
 
+> **RESOLUTION (2026-07-09):** every load-bearing assumption in the checklist below was confirmed
+> firsthand during the build (or corrected and flagged where the planner was wrong). Key resolutions:
+> CM4AI Table 5 confidence axis = **ipTM** (`Score`≈0.8·ipTM+0.2·pTM; NO pDockQ2/PAE) — Day-1 gate
+> passed; CORUM release **5.3** (not 5.0); native negatives = 1,788 random pairs shipped in Table 5;
+> held-out purity confirmed (CM4AI does not ingest DepMap; SPOC does → never audited); synthetic-null
+> unit test passes (empirical FDR ≤ q); exchangeability interrogated directly and found to FAIL under
+> the real calibration→wild shift (reported as an honest negative, not routed around — see METHODS §13).
+> **Attribution correction:** the primary map is the CM4AI cell map (Schaffer et al., *Nature* 2025;
+> Ideker senior author) — NOT Krogan-authored (Krogan co-leads the CM4AI consortium). The mandate below
+> was followed; this header records the outcome. Checkboxes left as-authored for provenance.
+
 **Standing mandate (read before Day 1, applies every session).** This whole folder was written from a
 planning/research session. Treat its factual claims as *hypotheses to confirm*, not ground truth. Datasets
 move, schemas differ, papers appear, and the planner may be wrong. Your job is to **independently verify
