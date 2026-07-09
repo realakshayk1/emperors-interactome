@@ -1,0 +1,36 @@
+# Data (immutable/raw + large intermediates) — track provenance in DATA.md, not the bytes
+data/raw/*
+data/interim/*
+!data/**/.gitkeep
+# Processed deliverables ARE tracked (small; the point of the repo) — but not raw bytes
+data/processed/*
+!data/processed/certified.parquet
+!data/processed/validation.json
+!data/processed/nomination.json
+!data/processed/calibration.json
+!data/processed/prevalence_shift.json
+!data/processed/audit_summary.json
+# Structure outputs (nominee interface) — tracked
+!data/structures/
+*.npy
+*.gz
+*.xlsx
+models/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# Figures — tracked (they're the deliverables, and small PNGs)
+# regenerate with `make figures`
+!results/figures/*.png
+
+# OS/editor
+.DS_Store
+.env
+handoff/
+*.egg-info/

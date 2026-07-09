@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emperor"
+version = "0.1.0"
+description = "The Emperor's Interactome — conformal FDR audit of an AI protein interactome"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+where = ["src"]

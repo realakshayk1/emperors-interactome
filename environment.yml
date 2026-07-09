@@ -1,0 +1,26 @@
+name: emperor
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - pyarrow
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - matplotlib
+  - biopython
+  - freesasa
+  - requests
+  - tqdm
+  - jupyterlab
+  - ruff
+  - pytest
+  - pip
+  - pip:
+      - openpyxl        # read Krogan Suppl. Table 5 (.xlsx)
+      - mygene          # optional: gene-symbol <-> UniProt fallback mapping
+# GPU-only, run in Colab/Modal for Stretch 1 (do NOT install locally):
+#   boltz  (pip install boltz[cuda])   — structure prediction of the nominated complex

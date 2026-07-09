@@ -1,0 +1,18 @@
+# pip fallback (see environment.yml for the conda env). Pin versions once installed.
+numpy
+pandas
+pyarrow
+scipy
+scikit-learn
+statsmodels
+matplotlib
+biopython
+freesasa
+requests
+tqdm
+jupyterlab
+ruff
+pytest
+openpyxl
+mygene
+# Stretch 1 only, GPU (Colab/Modal): boltz[cuda]
