@@ -130,8 +130,9 @@ includes **$30 free Modal credit**).
 Two further public AF-M deposits were fetched to test whether the audit generalizes; both proved
 un-auditable post-hoc (see METHODS §15). Provenance recorded for reproducibility:
 
-- **Krogan host–pathogen (Zenodo 15588019)**, doi:10.5281/zenodo.15588019, bioRxiv 2025.06.04.657796
-  (PMID 40661470). Files: AF-Multimer ranked-0 PDB models + FASTA + PyMOL sessions; NO tabulated
+- **Krogan host–pathogen (Zenodo 15588019)**, doi:10.5281/zenodo.15588019 (PMID 40661470; title
+  "AlphaFold models of host-pathogen interactions elucidate the prevalence and structure of molecular
+  mimicry"). Files: AF-Multimer ranked-0 PDB models + FASTA + PyMOL sessions; NO tabulated
   scores, NO PAE. Downloaded: `apms_hpidb_afmultimer_ranked0_models.tar.gz` (882,574,251 B; 6,542 host–
   pathogen PPI models) and `benchmark_afmultimer_ranked0_models.tar.gz` (66,371,483 B; 452 known-complex
   dimers, used to validate the pDockQ extractor). Access via `zenodo.org` (allowlist grant). pDockQ
