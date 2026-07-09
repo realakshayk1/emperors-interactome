@@ -256,6 +256,100 @@ verbatim here. Figures live in `results/figures/`.
 
 ---
 
+## 4b. Program extension — stratification, shift, baselines, second map, cross-architecture
+
+These results extend the core audit; full figures and prose are in `results/` and `reports/`.
+
+### Overconfidence is structured (Mondrian stratified conformal)
+Splitting the held-out FDR by complex size shows the pooled audit's overconfidence is **not uniform**:
+it holds in medium complexes (held-out FDR 0.08), is marginally above target in small ones (0.12, wide
+CI), and **breaks in large 9-member complexes (0.65, >3× the q=0.10 target)**.
+
+![Overconfidence is structured]({{artifact:98879a72-28fe-4bce-9818-04c2e4a8b3f4}})
+
+*How to read it.* **Left:** held-out FDR (fraction of certified edges lacking DepMap co-essentiality
+support, the referee) per complex-size stratum; dashed line = target q=0.10, dotted = pooled 0.20;
+error bars are bootstrap CIs. **Right:** edges certified at q=0.10 under pooled calibration (132) vs
+score-matched Mondrian calibration (78) — the 1.7× gap is the over-certification pooled conformal
+hides. *Measured in:* fraction (FDR), counts (edges).
+
+### The prevalence wedge — why a benchmark-estimated FDR cannot be trusted
+Applying the map's own benchmark-tuned cutoff (Score ≥ 0.394, calibrated to "FDR = 0.10" on a balanced
+set) to pools of decreasing true prevalence, the realized FDR climbs **0.08 → 0.90** as interactions
+become rare; conformal+BH stays near q, certifying nothing rather than exceeding it. The formal
+statement is boxed in `reports/proposition.md` (framing, not a theorem).
+
+### Covariate-shift robustness — an honest negative
+The calibration→wild-interactome shift is real and significant (KS = 0.134, p = 1.4×10⁻⁹). On
+node-disjoint (protein-disjoint) splits, **both plain and weighted (WCS) conformal exceed nominal q**
+where they certify, and WCS mainly collapses power without an FDR gain. **The finite-sample guarantee
+does not survive the real shift** — reported as a limitation, not hidden. The rigorous guarantee this
+work stands on is the synthetic-null exchangeability unit test; held-out CORUM/DepMap are corroboration.
+
+![Covariate shift diagnostic]({{artifact:e41b31b7-ef87-4777-a08f-650ff55ac308}})
+
+*How to read it.* **Left:** score density for calibration decoys (grey) vs wild candidates (blue) —
+the wild pool has a heavier high-score tail. **Right:** the two ECDFs; the red bar is the
+Kolmogorov–Smirnov statistic D = 0.134 (maximum vertical gap). *Measured in:* AF-Multimer confidence
+score (x), density / cumulative fraction (y).
+
+![WCS does not rescue the guarantee]({{artifact:891e1c8a-9807-4711-a3fe-d4ef93271d22}})
+
+*How to read it.* **Left:** held-out FDR upper bound vs BH level q for plain (blue) and weighted-WCS
+(red) conformal on node-disjoint wild splits; both sit above the dashed nominal-q line. **Right:** mean
+edges certified per split — WCS certifies far fewer (0/2/16 vs 14/22/27 at q=0.05/0.10/0.20), i.e. it
+trades away power without buying back FDR control. *Measured in:* fraction (FDR), counts (edges).
+
+### Baselines — conformal-BH is the efficient frontier
+At the same nominal FDR = 0.10, conformal-BH selects the **fewest** edges (132) yet delivers the
+**highest** held-out DepMap support (41% co-essential, mean −log₁₀ p = 4.36), beating the fixed cutoff
+(204 edges, 32%) and the published high-confidence flag (161, 37%).
+
+![Baseline head-to-head]({{artifact:72ff666b-4b1e-488d-9517-60aef348823d}})
+
+*How to read it.* **Left:** fraction of each method's selected edges that are DepMap co-essential
+(held-out referee), with n above each bar. **Right:** mean −log₁₀ GLS p-value (co-essentiality signal
+strength). Conformal-BH (blue) is highest on both despite the smallest selection. *Measured in:*
+fraction, counts, −log₁₀ p.
+
+### Second map — auditability is a property of the release
+Attempting to audit two further public deposits shows post-hoc auditability is **release-dependent**:
+the Krogan host–pathogen deposit (Zenodo 15588019) is positives-only with a saturated pDockQ axis
+(median 0.74, 93% ≥ 0.5, no native null), and Predictomes exposes only the DepMap-contaminated SPOC
+composite. Only CM4AI — which shipped 1,788 native decoys — is auditable. **Recommendation for the
+field: interactome releases must ship their negative controls.**
+
+![Auditability is a property of the data release]({{artifact:621cdcff-c237-4436-a0e3-3d2c80f1c508}})
+
+*How to read it.* **Left (CM4AI):** candidate scores (blue) overlaid with the shipped random-decoy null
+(grey) spanning the same range — the null that makes conformal calibration possible. **Right
+(host–pathogen):** the pDockQ distribution piles against the 0.74 ceiling with no low tail — a
+positives-only release with no null to calibrate against. *Measured in:* ipTM/Score and pDockQ
+(confidence axes), density.
+
+### Cross-architecture pilot — Boltz-2 corroborates the verdict (GO, with caveat)
+An architecturally independent predictor (Boltz-2) reproduces the conformal audit on 12 pilot dimers:
+certified edges get high Boltz-2 ipTM (mean 0.71), dropped edges low (0.46), certified > dropped
+Mann–Whitney p = 0.021; AF-M and Boltz-2 rankings agree (Spearman ρ = 0.80). Underpowered (n = 12),
+and because certification is near-separable from AF-M score on this map, this shows the drops are **not
+AF-M-specific artifacts** — not yet that disagreement adds signal *beyond* score. GO to develop as a
+nonconformity feature; funded scale-up is the path.
+
+![Cross-architecture pilot]({{artifact:6e7ef55e-4bdc-4c5f-a5ae-925ac5ba2f4b}})
+
+*How to read it.* **Left:** AF-Multimer Score (x) vs Boltz-2 ipTM (y), colored by conformal verdict
+(blue = certified, red = dropped); dashed = identity line. **Right:** Boltz-2 ipTM by verdict, points
++ group mean bar; TOMM22–WSB1 (a dropped edge) collapses to ipTM 0.09. *Measured in:* AF-M Score,
+Boltz-2 ipTM (both dimensionless confidence in [0,1]).
+
+### Nomination as FDR-controlled selection
+The single KANSL3 nomination generalizes: **393 complexes receive ≥1 certified missing-member
+nomination (810 total)**, all inheriting the conformal-BH FDR ≤ q = 0.10 guarantee (upper bound).
+Selection is purely conformal; DepMap co-essentiality only *ranks* within each set (purity firewall).
+See `data/processed/nomination_sets.json`.
+
+---
+
 ## 5. The nomination — KANSL3 → MLL1-WDR5 complex (CORUM 5386)
 
 **Claim.** KANSL3 is a **missing member** of the leukemia-associated MLL1-WDR5 complex.

@@ -82,3 +82,12 @@ Highest-value content for a fresh agent. Update as you build. Label dead-ends "D
 - **`make` is not preinstalled** in the conda env; `pip install`/conda `make`. Also: the editable
   install can be shadowed by a stray `.venv/emperor`; `pip install -e .` into the active env fixes
   `ModuleNotFoundError: emperor`. The demo notebook adds `src/` to `sys.path` so it runs regardless.
+
+## Program-extension findings (2026-07-09, Sessions 1–5)
+
+- **Auditability is release-dependent.** A distribution-free conformal audit needs an exchangeable null (matched decoys through the same pipeline) + a non-saturated score. Of 3 public AF-M deposits, only CM4AI ships decoys → auditable. Positives-only deposits (Krogan host-pathogen) and DepMap-contaminated composites (Predictomes/SPOC) cannot be audited post-hoc. Don't fabricate a null to force an audit — document the boundary instead; it's a stronger, honest result.
+- **pDockQ is CPU-recoverable, ipTM is not.** From a ranked-0 two-chain PDB you can compute pDockQ (Bryant 2022: Cβ–Cβ interface contacts × interface pLDDT from B-factors) with no GPU. ipTM needs the PAE matrix (GPU recompute if not deposited). Watch the contact definition: atom-level counting saturates the sigmoid (all →0.742); use Cβ–Cβ residue contacts.
+- **Certification and raw score can be near-separable.** On CM4AI, certified high-conf edges all score ≥0.5 and dropped all <0.5 — so a score-matched certified-vs-dropped test is impossible from the map alone. This confounds "does cross-arch disagreement add signal beyond score?" — needs a map where they aren't separable.
+- **WCS is not a free rescue.** Weighted conformal selection reweights for covariate shift but on a real, strong shift it mostly collapses power (certifies 0–2 edges) without restoring the FDR guarantee. Report the shift diagnosis honestly rather than claiming WCS fixes it.
+- **Budget arithmetic:** a Boltz-2 dimer fold with server MSA is ~$0.20 (only the fold is billed; MSA is free on api.colabfold.com). A $10 cap covers dozens of small folds — don't over-estimate GPU cost and skip a fundable pilot.
+- **`/tmp` is per-cell ephemeral in bash; the workspace persists.** Background downloads must target the workspace, not `/tmp`.

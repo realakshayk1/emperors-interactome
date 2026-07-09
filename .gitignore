@@ -10,7 +10,15 @@ data/processed/*
 !data/processed/calibration.json
 !data/processed/prevalence_shift.json
 !data/processed/audit_summary.json
-# Structure outputs (nominee interface) — tracked
+!data/processed/nomination_sets.json
+!data/processed/corrected_interactome.csv
+!data/processed/mondrian_summary.json
+!data/processed/wcs_results.json
+# Second-map: track the small score/boundary JSONs, NOT the multi-GB model archives
+data/mimicry/*
+!data/mimicry/apms_pdockq.json
+!data/mimicry/auditability_boundary.json
+# Structure outputs (nominee interface + pilot) — tracked
 !data/structures/
 *.npy
 *.gz

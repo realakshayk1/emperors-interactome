@@ -1,9 +1,9 @@
-.PHONY: reproduce data idmap interactome labels calibrate audit prevalence depmap validate nominate figures test lint clean
+.PHONY: reproduce data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets figures test lint clean mimicry structure
 
 # Run modules with src on the path — no editable install required (robust across envs).
 PY=PYTHONPATH=src python -m emperor
 
-reproduce: data idmap interactome labels calibrate audit prevalence depmap validate nominate figures ## full pipeline, raw -> figures + certified/validation/nomination
+reproduce: data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets figures ## full CPU pipeline, raw -> figures + certified/validation/nomination(+sets)
 
 data:      ## download raw datasets + provenance (small; DepMap sliced on use)
 	$(PY).download
@@ -32,11 +32,18 @@ depmap:    ## RAM-safe HTTP-range slice of the DepMap GLS matrix (held-out refer
 validate:  ## held-out DepMap co-essentiality enrichment (+ permutation p)
 	$(PY).validate
 
-nominate:  ## missing-member nomination for the target cancer complex
+nominate:  ## missing-member nomination for the target cancer complex (flagship worked example)
 	$(PY).nominate
+
+nominate_sets: ## FDR-controlled nomination SETS: per-complex certified missing members (<=q wrong)
+	$(PY).nominate_sets
 
 figures:   ## regenerate all figures in results/figures/
 	$(PY).plots
+
+# --- one-off / external-data steps (NOT in `reproduce`; documented in DATA.md) ---
+mimicry:   ## second-map: pDockQ on the Krogan host-pathogen deposit (needs Zenodo download)
+	$(PY).mimicry
 
 structure: ## report the nominee's Boltz-2 interface (remote GPU step; see src/emperor/structure.py)
 	$(PY).structure
