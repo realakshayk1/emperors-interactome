@@ -1,0 +1,246 @@
+{
+  "complex_id": "5386",
+  "complex_name": "MLL1-WDR5 complex",
+  "complex_pmid": "15960975",
+  "members": [
+    "ASH2L",
+    "BACC1",
+    "CHD8",
+    "E2F6",
+    "HCFC1",
+    "HSPA4",
+    "INO80C",
+    "KANSL1",
+    "KAT8",
+    "KMT2A",
+    "LAS1L",
+    "MCRS1",
+    "MGAM",
+    "PELP1",
+    "PHF20",
+    "PRPF31",
+    "RBBP5",
+    "RNF2",
+    "RUVBL1",
+    "SENP3",
+    "TAF1",
+    "TAF4",
+    "TAF6",
+    "TAF7",
+    "TAF9",
+    "TEX10",
+    "WDR5"
+  ],
+  "q": 0.1,
+  "nominee": {
+    "candidate": "KANSL3",
+    "partner_member": "KANSL1",
+    "conf_pvalue": 0.0066298342541436465,
+    "certified_risk": 0.0066298342541436465,
+    "score": 0.508,
+    "coess_signed": 3.0697827264934614,
+    "n_coess_members": 9,
+    "nom_score": 3.0494305758205766
+  },
+  "ranked": [
+    {
+      "candidate": "KANSL3",
+      "partner_member": "KANSL1",
+      "conf_pvalue": 0.0066298342541436465,
+      "certified_risk": 0.0066298342541436465,
+      "score": 0.508,
+      "coess_signed": 3.0697827264934614,
+      "n_coess_members": 9,
+      "nom_score": 3.0494305758205766
+    },
+    {
+      "candidate": "TAF5",
+      "partner_member": "TAF4",
+      "conf_pvalue": 0.0022099447513812156,
+      "certified_risk": 0.0022099447513812156,
+      "score": 0.632,
+      "coess_signed": 2.077108291706503,
+      "n_coess_members": 9,
+      "nom_score": 2.0725179971391956
+    },
+    {
+      "candidate": "TAF5",
+      "partner_member": "TAF6",
+      "conf_pvalue": 0.0022099447513812156,
+      "certified_risk": 0.0022099447513812156,
+      "score": 0.704,
+      "coess_signed": 2.077108291706503,
+      "n_coess_members": 9,
+      "nom_score": 2.0725179971391956
+    },
+    {
+      "candidate": "TAF8",
+      "partner_member": "TAF6",
+      "conf_pvalue": 0.0066298342541436465,
+      "certified_risk": 0.0066298342541436465,
+      "score": 0.508,
+      "coess_signed": 1.282032980429153,
+      "n_coess_members": 9,
+      "nom_score": 1.273533314260562
+    },
+    {
+      "candidate": "HSPH1",
+      "partner_member": "HSPA4",
+      "conf_pvalue": 0.0066298342541436465,
+      "certified_risk": 0.0066298342541436465,
+      "score": 0.518,
+      "coess_signed": 0.20586915310301818,
+      "n_coess_members": 9,
+      "nom_score": 0.20450427473990423
+    },
+    {
+      "candidate": "UBAP2",
+      "partner_member": "HSPA4",
+      "conf_pvalue": 0.0066298342541436465,
+      "certified_risk": 0.0066298342541436465,
+      "score": 0.508,
+      "coess_signed": 0.19849254368579536,
+      "n_coess_members": 9,
+      "nom_score": 0.19717657102047517
+    },
+    {
+      "candidate": "HCFC2",
+      "partner_member": "PHF20",
+      "conf_pvalue": 0.0066298342541436465,
+      "certified_risk": 0.0066298342541436465,
+      "score": 0.522,
+      "coess_signed": 0.13242362294248233,
+      "n_coess_members": 9,
+      "nom_score": 0.13154567627104047
+    }
+  ],
+  "coess_breakdown": [
+    {
+      "member": "KANSL1",
+      "gls_p": 2.2527618113084285e-20,
+      "sign": 1,
+      "strong_coess": true
+    },
+    {
+      "member": "MCRS1",
+      "gls_p": 1.2185092426045756e-06,
+      "sign": 1,
+      "strong_coess": true
+    },
+    {
+      "member": "PHF20",
+      "gls_p": 0.006362902096212742,
+      "sign": 1,
+      "strong_coess": true
+    },
+    {
+      "member": "TAF4",
+      "gls_p": 0.015375616337898334,
+      "sign": -1,
+      "strong_coess": false
+    },
+    {
+      "member": "HSPA4",
+      "gls_p": 0.11562224583553025,
+      "sign": 1,
+      "strong_coess": false
+    },
+    {
+      "member": "TAF7",
+      "gls_p": 0.3840380835176682,
+      "sign": 1,
+      "strong_coess": false
+    },
+    {
+      "member": "E2F6",
+      "gls_p": 0.3960194161001585,
+      "sign": 1,
+      "strong_coess": false
+    },
+    {
+      "member": "TAF6",
+      "gls_p": 0.903936453911474,
+      "sign": -1,
+      "strong_coess": false
+    },
+    {
+      "member": "RUVBL1",
+      "gls_p": 0.9384380783936156,
+      "sign": -1,
+      "strong_coess": false
+    }
+  ],
+  "independent_confirmation": [
+    {
+      "complex_id": "7221",
+      "complex_name": "NSL complex",
+      "pmid": "20018852",
+      "n_shared": 6,
+      "shared_members": [
+        "HCFC1",
+        "KANSL1",
+        "KAT8",
+        "MCRS1",
+        "PHF20",
+        "WDR5"
+      ]
+    }
+  ],
+  "interactome_edges": [
+    {
+      "gene_a": "HCFC2",
+      "gene_b": "KANSL3",
+      "score": 0.557999999999999,
+      "conf_pvalue": 0.0055248618784530384,
+      "certified@0.1": true,
+      "high_conf": true
+    },
+    {
+      "gene_a": "KANSL1",
+      "gene_b": "KANSL3",
+      "score": 0.508,
+      "conf_pvalue": 0.0066298342541436465,
+      "certified@0.1": true,
+      "high_conf": true
+    },
+    {
+      "gene_a": "KANSL3",
+      "gene_b": "MCRS1",
+      "score": 0.446,
+      "conf_pvalue": 0.016574585635359115,
+      "certified@0.1": false,
+      "high_conf": true
+    },
+    {
+      "gene_a": "KANSL3",
+      "gene_b": "PHF20",
+      "score": 0.258,
+      "conf_pvalue": 0.3867403314917127,
+      "certified@0.1": false,
+      "high_conf": false
+    }
+  ],
+  "rationale": "# Nomination rationale \u2014 KANSL3 \u2192 MLL1-WDR5 chromatin-modifying assembly (CORUM 5386)\n\n**Why it was flagged (pipeline-internal, DepMap-blind).** KANSL3 carries a conformally certified AlphaFold-Multimer edge to complex member KANSL1 (conformal risk p=0.0066 < q=0.10) plus a second certified edge to HCFC2 (p=0.0055), a paralog of the complex member HCFC1. These survive distribution-free FDR control, so they are not benchmark-prevalence artifacts.\n\n**Why it is biologically real (held-out referee + literature).** The independent DepMap co-essentiality referee \u2014 which never enters the structure score or the labels \u2014 places KANSL3 tightly with the NSL sub-module of this CORUM entry: KANSL1 (GLS p=2.3e-20), MCRS1 (p=1.2e-06) and PHF20 (p=6.4e-03), all positive-sign co-essential. KANSL1, KANSL2 and KANSL3 are the scaffolding subunits of the NSL (KAT8/MOF) histone-acetyltransferase complex (Dias et al., Genes Dev 2014, PMC4018492; Chatterjee et al., Mol Cell 2021, PMC8056186), whose canonical composition is KAT8, KANSL1/2/3, MCRS1, PHF20, WDR5, OGT and HCFC1 \u2014 precisely the proteins KANSL3 scores against here.\n\n**Why it appears as a 'missing' member of *this* complex.** WDR5 is a shared hub: its interactions with the MOF/NSL complex and with the MLL/COMPASS methyltransferase complex are mutually exclusive (Dias et al. 2014). CORUM 5386 ('MLL1-WDR5 complex') therefore captures WDR5 and several NSL proteins (HCFC1, KAT8, MCRS1, PHF20) but omits KANSL3. An AlphaFold-Multimer screen, scoring pairwise interfaces, naturally recovers the KANSL3\u2013KANSL1 (and KANSL3\u2013HCFC2) contacts and nominates KANSL3 as the missing scaffold.\n\n**Independent structural corroboration.** A Boltz-2 prediction \u2014 a model architecturally independent of the AlphaFold-Multimer that produced the audited edge \u2014 recovers a localized KANSL3\u2013KANSL1 interface (global ipTM 0.47; a compact, confidently-placed contact patch KANSL3[279\u2013448]\u2013KANSL1[624\u2013690], 90 inter-chain contacts, interface pLDDT 0.70/0.59, best-contact PAE 4.8 \u00c5). Global confidence is moderate, depressed by the large disordered regions of both proteins; the signal is a specific docked segment rather than a solved whole-complex fold. This is honest corroboration of the certified edge from a second structure model, not a claim of a high-confidence complex.\n\n**Independent confirmation (held out of the pipeline).** KANSL3 is an annotated member of the NSL complex in CORUM's own database (complex 7221, PMID 20018852) but is absent from the target entry 5386 \u2014 a database-internal positive control the audit did not use.\n\n**Cancer relevance (honest scope).** KANSL3 is NOT a Cancer Gene Census driver (COSMIC): this is an essentiality-based, not mutation-based, nomination. The NSL/KAT8 axis is a validated cancer dependency \u2014 the NSL complex is required for cell survival (Chatterjee et al. 2021), KAT8 is an active anticancer target (PMC12154333), and KANSL3-derived HCF1-competitor peptides are anti-proliferative across cancer cell lines (bioRxiv 2026.03.13.711608). The target complex is anchored by the leukemia oncoprotein KMT2A(MLL1) and by WDR5, both established drug targets in AML/MLL-rearranged leukemia.\n\n**Falsifiable prediction.** If KANSL3 is a true member of the WDR5-shared assembly, CRISPR knockout of KANSL3 should phenocopy KANSL1/MCRS1/PHF20 loss in the same DepMap lines, and a KANSL3\u2013KANSL1 interface should co-purify in WDR5/KAT8 pulldowns from MLL-rearranged leukemia cells.\n",
+  "physical_validity": {
+    "predictor": "Boltz-2 v2.2.1 (independent of AlphaFold-Multimer)",
+    "gpu": "A100-80GB (Modal)",
+    "input": "full-length KANSL3 (Q9P2N6, 904aa) + KANSL1 (Q7Z3B3, 1105aa), ColabFold MSA",
+    "global_confidence": {
+      "iptm": 0.469,
+      "ptm": 0.426,
+      "complex_plddt": 0.451,
+      "pair_chains_iptm_A_B": 0.469
+    },
+    "confident_interface": {
+      "definition": "CB-CB < 8 \u00c5 AND inter-chain PAE < 10 \u00c5",
+      "n_contacts": 90,
+      "kansl3_residues": "279-448",
+      "kansl1_residues": "624-690",
+      "interface_plddt_kansl3": 0.702,
+      "interface_plddt_kansl1": 0.59,
+      "min_interface_pae_A": 4.84
+    },
+    "pdockq": 0.176,
+    "interpretation": "Boltz-2 \u2014 an architecture independent of the AlphaFold-Multimer that produced the original edge \u2014 independently recovers a localized KANSL3-KANSL1 interface (ipTM 0.47 global; a compact, confidently-placed contact patch KANSL3[279-448]-KANSL1[624-690] with interface pLDDT 0.70/0.59 and best-contact PAE 4.8 \u00c5). Global ipTM/pDockQ are moderate, depressed by the large disordered regions of both proteins; the signal is a specific docked segment, not a high-confidence whole-complex fold. This is corroborating structural evidence for the certified edge, honestly moderate \u2014 not a claim of a solved complex."
+  }
+}
