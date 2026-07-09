@@ -1,0 +1,22 @@
+{
+  "predictor": "Boltz-2 v2.2.1 (independent of AlphaFold-Multimer)",
+  "gpu": "A100-80GB (Modal)",
+  "input": "full-length KANSL3 (Q9P2N6, 904aa) + KANSL1 (Q7Z3B3, 1105aa), ColabFold MSA",
+  "global_confidence": {
+    "iptm": 0.469,
+    "ptm": 0.426,
+    "complex_plddt": 0.451,
+    "pair_chains_iptm_A_B": 0.469
+  },
+  "confident_interface": {
+    "definition": "CB-CB < 8 \u00c5 AND inter-chain PAE < 10 \u00c5",
+    "n_contacts": 90,
+    "kansl3_residues": "279-448",
+    "kansl1_residues": "624-690",
+    "interface_plddt_kansl3": 0.702,
+    "interface_plddt_kansl1": 0.59,
+    "min_interface_pae_A": 4.84
+  },
+  "pdockq": 0.176,
+  "interpretation": "Boltz-2 \u2014 an architecture independent of the AlphaFold-Multimer that produced the original edge \u2014 independently recovers a localized KANSL3-KANSL1 interface (ipTM 0.47 global; a compact, confidently-placed contact patch KANSL3[279-448]-KANSL1[624-690] with interface pLDDT 0.70/0.59 and best-contact PAE 4.8 \u00c5). Global ipTM/pDockQ are moderate, depressed by the large disordered regions of both proteins; the signal is a specific docked segment, not a high-confidence whole-complex fold. This is corroborating structural evidence for the certified edge, honestly moderate \u2014 not a claim of a solved complex."
+}
