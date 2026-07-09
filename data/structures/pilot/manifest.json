@@ -1,0 +1,98 @@
+[
+ {
+  "pair": "GLIPR1L2_YPEL5",
+  "label": "dropped",
+  "total_len": 465,
+  "afm_score": 0.418,
+  "conf_pvalue": 0.0232044198895027,
+  "fasta": "data/structures/pilot/GLIPR1L2_YPEL5.fasta"
+ },
+ {
+  "pair": "STX16_VAMP4",
+  "label": "dropped",
+  "total_len": 466,
+  "afm_score": 0.472,
+  "conf_pvalue": 0.0132596685082872,
+  "fasta": "data/structures/pilot/STX16_VAMP4.fasta"
+ },
+ {
+  "pair": "LSM4_WDR77",
+  "label": "dropped",
+  "total_len": 481,
+  "afm_score": 0.48,
+  "conf_pvalue": 0.0121546961325966,
+  "fasta": "data/structures/pilot/LSM4_WDR77.fasta"
+ },
+ {
+  "pair": "CHMP1B_VTA1",
+  "label": "dropped",
+  "total_len": 506,
+  "afm_score": 0.492,
+  "conf_pvalue": 0.0088397790055248,
+  "fasta": "data/structures/pilot/CHMP1B_VTA1.fasta"
+ },
+ {
+  "pair": "TOMM22_WSB1",
+  "label": "dropped",
+  "total_len": 563,
+  "afm_score": 0.448,
+  "conf_pvalue": 0.0165745856353591,
+  "fasta": "data/structures/pilot/TOMM22_WSB1.fasta"
+ },
+ {
+  "pair": "NUDC_RASSF3",
+  "label": "dropped",
+  "total_len": 569,
+  "afm_score": 0.404,
+  "conf_pvalue": 0.0320441988950276,
+  "fasta": "data/structures/pilot/NUDC_RASSF3.fasta"
+ },
+ {
+  "pair": "LAMTOR2_LAMTOR5",
+  "label": "certified",
+  "total_len": 216,
+  "afm_score": 0.88,
+  "conf_pvalue": 0.0011049723756906,
+  "fasta": "data/structures/pilot/LAMTOR2_LAMTOR5.fasta"
+ },
+ {
+  "pair": "LSM4_LSM7",
+  "label": "certified",
+  "total_len": 242,
+  "afm_score": 0.812,
+  "conf_pvalue": 0.0011049723756906,
+  "fasta": "data/structures/pilot/LSM4_LSM7.fasta"
+ },
+ {
+  "pair": "LSM1_LSM4",
+  "label": "certified",
+  "total_len": 272,
+  "afm_score": 0.666,
+  "conf_pvalue": 0.0022099447513812,
+  "fasta": "data/structures/pilot/LSM1_LSM4.fasta"
+ },
+ {
+  "pair": "BLOC1S3_SNAPIN",
+  "label": "certified",
+  "total_len": 338,
+  "afm_score": 0.51,
+  "conf_pvalue": 0.0066298342541436,
+  "fasta": "data/structures/pilot/BLOC1S3_SNAPIN.fasta"
+ },
+ {
+  "pair": "CLNS1A_LSM7",
+  "label": "certified",
+  "total_len": 340,
+  "afm_score": 0.656,
+  "conf_pvalue": 0.0022099447513812,
+  "fasta": "data/structures/pilot/CLNS1A_LSM7.fasta"
+ },
+ {
+  "pair": "CLNS1A_LSM4",
+  "label": "certified",
+  "total_len": 376,
+  "afm_score": 0.582,
+  "conf_pvalue": 0.0044198895027624,
+  "fasta": "data/structures/pilot/CLNS1A_LSM4.fasta"
+ }
+]
