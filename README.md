@@ -327,20 +327,31 @@ field: interactome releases must ship their negative controls.**
 positives-only release with no null to calibrate against. *Measured in:* ipTM/Score and pDockQ
 (confidence axes), density.
 
-### Cross-architecture pilot — Boltz-2 corroborates the verdict (GO, with caveat)
-An architecturally independent predictor (Boltz-2) reproduces the conformal audit on 12 pilot dimers:
-certified edges get high Boltz-2 ipTM (mean 0.71), dropped edges low (0.46), certified > dropped
-Mann–Whitney p = 0.021; AF-M and Boltz-2 rankings agree (Spearman ρ = 0.80). Underpowered (n = 12),
-and because certification is near-separable from AF-M score on this map, this shows the drops are **not
-AF-M-specific artifacts** — not yet that disagreement adds signal *beyond* score. GO to develop as a
-nonconformity feature; funded scale-up is the path.
+### Cross-architecture pilot — conditional GO (two distinct tests, kept separate)
+Two questions on 12 pilot dimers, reported separately because they are not the same claim:
+
+1. **Corroboration (does an independent architecture agree?).** *Significant.* Boltz-2 reproduces the
+   conformal verdict — certified edges get high Boltz-2 ipTM (mean 0.71), dropped low (0.46),
+   certified > dropped Mann–Whitney **p = 0.021**; AF-M vs Boltz-2 rankings agree (Spearman **ρ = 0.80**).
+   This establishes the dropped edges are **not artifacts of the AF-M pipeline**.
+2. **Divergence as a feature (does cross-architecture disagreement predict the verdict?)** — the actual
+   Phase-3 gate. *Directional but not significant.* Divergence |Score − Boltz ipTM| is larger for
+   dropped edges (mean 0.13) than certified (0.03), one-sided **p = 0.090** at n = 12, driven largely by
+   TOMM22–WSB1 (Boltz-2 collapses to ipTM 0.09).
+
+**Verdict: conditional GO — develop cross-architecture divergence as a *candidate* nonconformity
+feature, do not integrate on this evidence.** Corroboration is real; divergence-predicts-correctness is
+underpowered and needs a score-matched test on a non-separable map (funded scale-up path). Because
+certification is near-separable from AF-M score here, agreement is partly expected from score alone.
 
 ![Cross-architecture pilot]({{artifact:6e7ef55e-4bdc-4c5f-a5ae-925ac5ba2f4b}})
 
-*How to read it.* **Left:** AF-Multimer Score (x) vs Boltz-2 ipTM (y), colored by conformal verdict
-(blue = certified, red = dropped); dashed = identity line. **Right:** Boltz-2 ipTM by verdict, points
-+ group mean bar; TOMM22–WSB1 (a dropped edge) collapses to ipTM 0.09. *Measured in:* AF-M Score,
-Boltz-2 ipTM (both dimensionless confidence in [0,1]).
+*How to read it.* **Left (corroboration):** AF-Multimer Score (x) vs Boltz-2 ipTM (y), colored by
+conformal verdict (blue = certified, red = dropped); dashed = identity line; the tight scatter is the
+ρ = 0.80 agreement. **Right (the gate test):** cross-architecture divergence |Score − Boltz ipTM| by
+verdict, points + group-mean bar — dropped trends higher but overlaps (p = 0.090, not significant).
+*Measured in:* AF-M Score and Boltz-2 ipTM (dimensionless confidence in [0,1]); divergence is their
+absolute difference.
 
 ### Nomination as FDR-controlled selection
 The single KANSL3 nomination generalizes: **393 complexes receive ≥1 certified missing-member

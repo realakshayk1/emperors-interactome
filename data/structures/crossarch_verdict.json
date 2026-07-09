@@ -1,14 +1,22 @@
 {
- "pilot": "cross-architecture disagreement (AlphaFold-Multimer vs Boltz-2)",
- "n_pairs": 12,
- "n_certified": 6,
- "n_dropped": 6,
- "boltz_iptm_certified_mean": 0.706,
- "boltz_iptm_dropped_mean": 0.455,
- "mannwhitney_certified_gt_dropped_p": 0.0206,
- "spearman_afm_vs_boltz_rho": 0.804,
- "spearman_p": 0.0016,
- "verdict": "GO",
- "interpretation": "An independent structure predictor (Boltz-2) reproduces the conformal audit verdict: certified edges get high Boltz-2 ipTM (mean 0.71), dropped edges get low (mean 0.46), certified>dropped p=0.021; AF-M and Boltz-2 rankings agree strongly (Spearman 0.80, p=0.002). Cross-architecture divergence therefore carries a correctness signal and can be integrated as a nonconformity feature. Underpowered pilot (n=12, no score-matched controls possible because certification and AF-M score are near-separable on this map); a funded scale-up (Anthropic AI-for-Science, ~$2k Modal) is the path to a calibrated feature.",
- "caveats": "Small n; certified pairs also have higher AF-M score, so this pilot shows Boltz-2 AGREES with AF-M/conformal, not yet that disagreement adds INDEPENDENT signal beyond score. The score-matched test needs a map where certification and raw score are not separable."
+ "pilot": "cross-architecture pilot (AlphaFold-Multimer vs Boltz-2), n=12 (6 certified + 6 dropped)",
+ "test_1_corroboration": {
+  "description": "Do the two architectures AGREE, i.e. does Boltz-2 reproduce the conformal verdict?",
+  "boltz_iptm_certified_mean": 0.706,
+  "boltz_iptm_dropped_mean": 0.455,
+  "mannwhitney_certified_gt_dropped_p": 0.0206,
+  "spearman_afm_vs_boltz_rho": 0.804,
+  "spearman_p": 0.0016,
+  "result": "SIGNIFICANT \u2014 Boltz-2 corroborates the conformal verdict; the dropped edges are not AF-M-specific artifacts."
+ },
+ "test_2_divergence_vs_correctness": {
+  "description": "The Phase-3 gate: does cross-architecture DIVERGENCE |afm_score - boltz_iptm| predict the verdict (higher for dropped)?",
+  "divergence_certified_mean": 0.034,
+  "divergence_dropped_mean": 0.132,
+  "mannwhitney_dropped_gt_certified_p_onesided": 0.0898,
+  "result": "DIRECTIONAL BUT NOT SIGNIFICANT (p=0.090, one-sided, n=12) \u2014 dropped edges diverge more (0.13 vs 0.03), driven by TOMM22-WSB1, but the pilot is underpowered to establish divergence as a feature."
+ },
+ "verdict": "CONDITIONAL GO (develop, do not yet integrate)",
+ "interpretation": "Corroboration is established: an independent predictor (Boltz-2) agrees with the conformal audit (certified ipTM 0.71 vs dropped 0.46, p=0.021; AF-M/Boltz Spearman 0.80), so the dropped edges are not artifacts of the AF-M pipeline. The specific gate hypothesis \u2014 that cross-architecture DIVERGENCE predicts correctness \u2014 is only directionally supported (dropped divergence 0.13 vs certified 0.03, one-sided p=0.090) and NOT significant at n=12. Decision: develop cross-architecture divergence as a CANDIDATE nonconformity feature, but do NOT integrate it on this evidence; a powered, score-matched test on a map where certification and raw score are not separable is required (funded scale-up path).",
+ "caveats": "n=12; certification is near-separable from AF-M score on this map, so agreement is partly expected from score alone; absolute |afm-boltz| divergence compares two different confidence metrics and is a crude proxy. The corroboration test and the divergence test are reported separately and must not be conflated."
 }

@@ -84,12 +84,14 @@ FDR gain. The guarantee does **not** survive the real shift — reported as a li
 (Figs: `shift_diagnostic.png`, `wcs_vs_plain_fdr.png`.) *This is the paper's core defensibility: the
 shift is diagnosed and quantified, not hidden.*
 
-### 3.8 Cross-architecture pilot (Pillar B, GO with caveat)
-Boltz-2 corroborates the conformal verdict: certified ipTM 0.71 vs dropped 0.46 (Mann–Whitney
-p = 0.021); AF-M vs Boltz-2 Spearman ρ = 0.80. Underpowered (n = 12), and certification is
-near-separable from AF-M score on this map, so this shows *agreement* (drops aren't AF-M-specific
-artifacts), not yet independent signal beyond score. Funded scale-up is the path to a calibrated
-feature. (Fig: `crossarch_pilot.png`.)
+### 3.8 Cross-architecture pilot (Pillar B, CONDITIONAL GO)
+Two separate tests on 12 pilot dimers. **(i) Corroboration** — Boltz-2 reproduces the conformal
+verdict: certified ipTM 0.71 vs dropped 0.46 (Mann–Whitney p = 0.021); AF-M vs Boltz-2 Spearman
+ρ = 0.80 — significant, so the drops are not AF-M-specific artifacts. **(ii) Divergence as a feature**
+(the actual gate) — |Score − Boltz ipTM| is larger for dropped (0.13) than certified (0.03), one-sided
+p = 0.090 at n = 12 — directional, NOT significant. Verdict: develop cross-architecture divergence as a
+*candidate* nonconformity feature, do not integrate on this evidence; a powered score-matched test on a
+non-separable map is required. (Fig: `crossarch_pilot.png`.)
 
 ### 3.9 Nomination as FDR-controlled selection
 393 complexes receive ≥1 certified missing-member nomination (810 total, FDR ≤ q = 0.10 upper bound).
