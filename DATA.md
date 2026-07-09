@@ -99,7 +99,7 @@ includes **$30 free Modal credit**).
 - **Allocation (suggested):**
   - Nominee validation (nominee + top partners): ~5–15 structures.
   - Physical-validity term: targeted subset only — the ~111 high-confidence complex interfaces + decision-boundary edges (~100–300 structures). **Do NOT re-fold the full interactome** (over budget, and the thesis i
-## 5. Structure prediction — nominee interface (VERIFIED, executed 2026-07-09)
+## 6. Structure prediction — nominee interface (VERIFIED, executed 2026-07-09)
 - **Tool:** Boltz-2 v2.2.1, architecturally independent of the audited AlphaFold-Multimer.
 - **Where:** the user's own Modal account (`byoc:modal`), GPU **A100-80GB**. Image
   `im-HUmTG4YGPRXCeHPD6lJUXV` (bundled env `proteomics_boltz_gpu@fc3f36390514cc77`); Boltz-2
