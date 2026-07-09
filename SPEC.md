@@ -20,7 +20,7 @@ a missing member of a cancer complex with a certified confidence and a predicted
 - Not training a new PPI classifier or structure model (we audit existing outputs).
 - Not re-running AlphaFold-Multimer at scale (we use published predictions).
 - Not claiming to invent conformal prediction or conformal FDR (cite as machinery).
-- Not a proteome-wide rerun — primary analysis is the Krogan Nature 2025 map; Predictomes is a robustness stretch only.
+- Not a proteome-wide rerun — primary analysis is the CM4AI map (Schaffer et al. 2025); Predictomes is a robustness stretch only.
 - Not wet-lab validation (held-out computational corroboration only).
 
 ## User stories
@@ -29,7 +29,7 @@ a missing member of a cancer complex with a certified confidence and a predicted
 - As a **hackathon judge**, I want a live, visual audit that ends in a concrete, trustworthy nomination.
 
 ## Functional requirements (numbered, testable)
-- R1. Ingest the primary interactome as a table of protein pairs with ≥1 confidence metric. `[NEEDS CLARIFICATION: exact Krogan Table 5 columns — Day-1 gate]`
+- R1. Ingest the primary interactome as a table of protein pairs with ≥1 confidence metric. `[NEEDS CLARIFICATION: exact CM4AI Table 5 columns — Day-1 gate]`
 - R2. Build calibration labels: CORUM within-complex pairs = positives; matched decoy pairs = negatives; keyed by UniProt accession.
 - R3. Compute a nonconformity score per pair from confidence metric(s) + a physical-validity term (interface clashes / buried surface area / interface-PAE from the deposited complex structures).
 - R4. Compute conformal p-values for candidate edges using calibration negatives; apply Benjamini-Hochberg to control FDR at q.
@@ -60,5 +60,5 @@ a missing member of a cancer complex with a certified confidence and a predicted
 - Sanity: certified-set FDR on held-out CORUM ≤ q; enrichment monotonic-ish as q tightens.
 
 ## Open questions
-- [NEEDS CLARIFICATION] Krogan Table 5 confidence columns (Day-1 gate; fallback in DATA.md).
+- [NEEDS CLARIFICATION] CM4AI Table 5 confidence columns (Day-1 gate; fallback in DATA.md).
 - [NEEDS CLARIFICATION] Target cancer complex choice (pick during Day 3 from the 275 assemblies).

@@ -38,9 +38,9 @@
     "conf_pvalue": 0.0066298342541436465,
     "certified_risk": 0.0066298342541436465,
     "score": 0.508,
-    "coess_signed": 3.0697827264934614,
+    "coess_signed": 3.069782726493462,
     "n_coess_members": 9,
-    "nom_score": 3.0494305758205766
+    "nom_score": 3.049430575820577
   },
   "ranked": [
     {
@@ -49,9 +49,9 @@
       "conf_pvalue": 0.0066298342541436465,
       "certified_risk": 0.0066298342541436465,
       "score": 0.508,
-      "coess_signed": 3.0697827264934614,
+      "coess_signed": 3.069782726493462,
       "n_coess_members": 9,
-      "nom_score": 3.0494305758205766
+      "nom_score": 3.049430575820577
     },
     {
       "candidate": "TAF5",
@@ -59,9 +59,9 @@
       "conf_pvalue": 0.0022099447513812156,
       "certified_risk": 0.0022099447513812156,
       "score": 0.632,
-      "coess_signed": 2.077108291706503,
+      "coess_signed": 2.077108291706502,
       "n_coess_members": 9,
-      "nom_score": 2.0725179971391956
+      "nom_score": 2.0725179971391947
     },
     {
       "candidate": "TAF5",
@@ -69,9 +69,9 @@
       "conf_pvalue": 0.0022099447513812156,
       "certified_risk": 0.0022099447513812156,
       "score": 0.704,
-      "coess_signed": 2.077108291706503,
+      "coess_signed": 2.077108291706502,
       "n_coess_members": 9,
-      "nom_score": 2.0725179971391956
+      "nom_score": 2.0725179971391947
     },
     {
       "candidate": "TAF8",

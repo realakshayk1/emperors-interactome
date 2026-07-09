@@ -8,7 +8,12 @@ Compute note (16 GB RAM): every file below fits comfortably except the DepMap ma
 
 ---
 
-## 1. Primary interactome — Krogan/Ideker *Nature* 2025 "Multimodal cell maps"
+## 1. Primary interactome — CM4AI multimodal cell map (Schaffer et al., *Nature* 2025)
+- **Attribution (VERIFIED firsthand):** Schaffer LV, Hu M, Qian G, … Lundberg E, Ideker T.
+  "Multimodal cell maps as a foundation for structural and functional genomics." *Nature* 642,
+  222–231 (2025). Senior author **Trey Ideker** (UCSD) — **Krogan is NOT an author**. The map is a
+  product of **CM4AI** (Bridge2AI consortium, co-led by Krogan/UCSF-Gladstone, Lundberg, Ideker), the
+  indirect Gladstone/Krogan link. Cite as the "CM4AI map (Krogan-co-led consortium)," never "Krogan's map."
 - Paper: https://www.nature.com/articles/s41586-025-08878-3 (open access; PMID 40205054)
 - Data: **Supplementary Table 5** (AF-Multimer predictions for 1,666 protein pairs → 111 high-confidence
   novel complexes; 275 assemblies). Download the supplementary `.xlsx` from the Nature article page.
@@ -23,7 +28,7 @@ Compute note (16 GB RAM): every file below fits comfortably except the DepMap ma
 ### Confidence-axis fallback (if Table 5 lacks numeric confidence)
 1. Recompute pDockQ2 / interface-PAE from the deposited AF-M model files (small; 1,666 pairs).
 2. Or use the **Predictomes genome-maintenance 40,176-pair set** as the primary (has pDockQ) and make
-   Krogan the robustness check instead. Update DECISIONS.md if you switch.
+   the CM4AI map the robustness check instead. Update DECISIONS.md if you switch.
 
 ## 2. Calibration labels — CORUM (VERIFIED: release **5.3**, 2026-04-14)
 - **Schema/version drift found at build (2026-07).** The planner assumed CORUM 5.0 at

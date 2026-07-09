@@ -35,8 +35,8 @@ TARGET_COMPLEX_ID = "5386"
 
 # Data source URLs (see DATA.md for full provenance) — VERIFIED 2026-07 firsthand.
 URLS = dict(
-    # Krogan/Ideker Nature 2025 Suppl. Tables 1-10 workbook, via Europe PMC (PMC12137143).
-    krogan_supp="https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12137143/supplementaryFiles",
+    # CM4AI cell map (Schaffer et al., Nature 2025) Suppl. Tables 1-10 workbook, via Europe PMC (PMC12137143).
+    cm4ai_supp="https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12137143/supplementaryFiles",
     # CORUM 5.3 human complexes via the FastAPI backend (the old .txt.zip host is now a JS SPA).
     corum_human="https://mips.helmholtz-muenchen.de/fastapi-corum/public/file/download_current_file?file_id=human&file_format=txt",
     depmap_gls_p="http://mitra.stanford.edu/bassik/coessentiality/GLS_p.npy",
@@ -45,14 +45,14 @@ URLS = dict(
     predictomes_pairs="https://predictomes-hsbps-dataset.s3.us-east-1.amazonaws.com/20251110_hs_predictome_pair_scores.csv.gz",
 )
 
-# --- VERIFIED Krogan Suppl. Table 5 schema (opened firsthand 2026-07; see DATA.md) ---
-KROGAN_SHEET = "Table5"
-KROGAN_XLSX_NAME = "NIHMS2086025-supplement-Supplementary_Tables_1_10.xlsx"
+# --- VERIFIED CM4AI (Schaffer et al. 2025) Suppl. Table 5 schema (opened firsthand 2026-07; see DATA.md) ---
+CM4AI_SHEET = "Table5"
+CM4AI_XLSX_NAME = "NIHMS2086025-supplement-Supplementary_Tables_1_10.xlsx"
 # Per-pair AF-Multimer confidence: 5 models of ptm_k / iptm_k, a combined `Score`
 # (~mean of AF 0.8*iptm+0.2*ptm), the paper's own benchmark `FDR`, and boolean flags.
 # NO pDockQ2 and NO tabulated interface-PAE -> confidence axis is ipTM (`Score`).
-KROGAN_CONF_COL = "Score"          # combined AF-M confidence, the nonconformity input
-KROGAN_TRUEFLAG_COL = "True vs. random pair"   # True (1666 candidate) vs random (1788 decoy)
-KROGAN_HICONF_COL = "High confidence"          # paper's own high-confidence flag (161 True)
-KROGAN_NOVEL_COL = "High confidence and novel" # 111 novel complexes
-KROGAN_BENCHFDR_COL = "FDR"                     # paper's benchmark-estimated FDR (the wedge target)
+CM4AI_CONF_COL = "Score"          # combined AF-M confidence, the nonconformity input
+CM4AI_TRUEFLAG_COL = "True vs. random pair"   # True (1666 candidate) vs random (1788 decoy)
+CM4AI_HICONF_COL = "High confidence"          # paper's own high-confidence flag (161 True)
+CM4AI_NOVEL_COL = "High confidence and novel" # 111 novel complexes
+CM4AI_BENCHFDR_COL = "FDR"                     # paper's benchmark-estimated FDR (the wedge target)

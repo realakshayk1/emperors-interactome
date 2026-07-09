@@ -7,8 +7,8 @@ This doc transfers all context needed to start building in a fresh Claude Scienc
 ## Start here (your first move)
 0. **Read VERIFY.md and adopt its mandate: question every input in this folder and confirm it firsthand before building on it.** Nothing here is ground truth — it's a plan to verify, not to trust.
 1. `@`-reference this folder in Claude Science (or open the repo in Claude Code with `@AGENTS.md` in CLAUDE.md).
-2. Create the env (environment.yml) and run `make data` for the small downloads (Krogan Table 5, CORUM, hu.MAP). These are tiny.
-3. **Day-1 gate (do this before anything else):** open Krogan Suppl. Table 5 and confirm it has per-pair confidence columns (ipTM and/or pDockQ / pDockQ2 / PAE). This one schema fact decides the confidence axis. If present → proceed. If only a pass/fail flag is present → fall back per DATA.md §"Confidence-axis fallback".
+2. Create the env (environment.yml) and run `make data` for the small downloads (CM4AI Table 5, CORUM, hu.MAP). These are tiny.
+3. **Day-1 gate (do this before anything else):** open CM4AI Suppl. Table 5 and confirm it has per-pair confidence columns (ipTM and/or pDockQ / pDockQ2 / PAE). This one schema fact decides the confidence axis. If present → proceed. If only a pass/fail flag is present → fall back per DATA.md §"Confidence-axis fallback".
 4. Run the **calibration pre-check** (METHODS.md §7): is raw ipTM/pDockQ2 miscalibrated vs CORUM? This determines the headline branch (see below).
 
 ## Current state
@@ -20,7 +20,7 @@ Nothing built yet — this is the initial handoff. All decisions are made and re
 Both are strong. You win on either branch — do not let Branch B feel like failure. Report whichever is true; keep both plots.
 
 ## Key decisions & rationale (full list in DECISIONS.md)
-- **Primary interactome = Krogan/Ideker Nature 2025** (small, clean, cancer-relevant, DepMap-independent). Not Predictomes-as-primary (SPOC uses DepMap → not held-out).
+- **Primary interactome = CM4AI cell map (Schaffer et al., Nature 2025)** (small, clean, cancer-relevant, DepMap-independent). Not Predictomes-as-primary (SPOC uses DepMap → not held-out).
 - **Confidence axis = raw AF-M metrics (ipTM/pDockQ2) + physical-validity term**, never SPOC on the primary.
 - **Held-out referee = DepMap co-essentiality** (cancer cell lines → matches the U2OS map biology).
 - **FDR machinery = conformal p-values + Benjamini-Hochberg** (Marandon 2023 conformal link-prediction FDR). Cited as machinery, not claimed.
@@ -31,7 +31,7 @@ Both are strong. You win on either branch — do not let Branch B feel like fail
 - Compute division on your 16 GB machine: **everything local/in Claude Science except Boltz-2/AF3 (GPU → Colab/Modal).** DepMap matrix is sliced to interactome genes, so it fits in RAM.
 
 ## Open questions / to resolve during build
-- [ ] Exact confidence columns in Krogan Table 5 (Day-1 gate above).
+- [ ] Exact confidence columns in CM4AI Table 5 (Day-1 gate above).
 - [ ] Which cancer complex to target for the nomination — pick one of the 275 assemblies that is (a) recurrently mutated in cancer and (b) has a borderline/dropped candidate member with high held-out co-essentiality (METHODS.md §6).
 - [ ] Decoy-negative construction ratio for calibration (start 1:1, report sensitivity) — see METHODS.md §3.
 
@@ -47,7 +47,7 @@ Both are strong. You win on either branch — do not let Branch B feel like fail
 ## BRANCH LOCK (2026-07-09, build session)
 **Headline = Branch A (artifacts exist).** Day-1 calibration pre-check on the held-out
 CORUM test split: raw AF-Multimer `Score` is miscalibrated — ECE_raw=0.176 vs
-ECE_isotonic=0.016 (AUROC 0.70). Verified schema: Krogan Table 5 confidence axis = ipTM
+ECE_isotonic=0.016 (AUROC 0.70). Verified schema: CM4AI Table 5 confidence axis = ipTM
 (`Score` ≈ mean AF 0.8·ipTM+0.2·pTM); NO pDockQ2/interface-PAE in the table. Native negatives
 = 1,788 "random" pairs shipped in Table 5 (same AF-M pipeline, DepMap-independent). Final
 Branch-A magnitude = # high-confidence edges dropped by conformal FDR (computed in audit).

@@ -12,7 +12,7 @@ Here's what survives, and a cancer complex member it lets me nominate."
 ## Frame-by-frame (≈ 6 beats, ~30s each)
 
 **0:00–0:25 — The claim.** Title card. One line: raw AlphaFold-Multimer confidence is overconfident and the
-field's FDRs aren't distribution-free. Show the target map (Krogan/Ideker *Nature* 2025, U2OS cancer cells).
+field's FDRs aren't distribution-free. Show the target map (CM4AI cell map (Schaffer et al., *Nature* 2025), U2OS cancer cells).
 
 **0:25–0:55 — Frame 1: overconfidence.** Show `reliability_raw.png` — raw ipTM/pDockQ2 vs actual precision on
 CORUM. Narrate: "well above the diagonal — the scores claim more certainty than they earn." (ECE number on screen.)

@@ -6,7 +6,7 @@ Highest-value content for a fresh agent. Update as you build. Label dead-ends "D
 - **DepMap is the referee, never a feature.** It must not enter `nonconformity.py`, `labels.py`, or calibration.
   On Predictomes, audit **raw pDockQ2, NOT SPOC** — SPOC ingests DepMap + co-expression, so validating SPOC on
   DepMap is circular. This is the single most important rule in the project.
-- **Primary interactome is DepMap-independent** (Krogan AP-MS + AF). Keep it that way; don't "improve" the score with omics.
+- **Primary interactome is DepMap-independent** (CM4AI AP-MS + AF map). Keep it that way; don't "improve" the score with omics.
 - **Complex-disjoint cal/test split.** Don't let pairs from the same CORUM complex land in both calibration and
   test — that leaks and inflates coverage.
 
@@ -18,13 +18,13 @@ Highest-value content for a fresh agent. Update as you build. Label dead-ends "D
 
 ## ID-mapping traps
 - Join through **UniProt accessions**, never gene symbols (alias collisions cause silent misses).
-- Predictomes = UniProt **entry names** (`AMBP_HUMAN`); CORUM = accessions; DepMap = gene symbols; Krogan = symbols/acc.
+- Predictomes = UniProt **entry names** (`AMBP_HUMAN`); CORUM = accessions; DepMap = gene symbols; CM4AI Table 5 = symbols/acc.
 - hu.MAP 3.0 ships dual UniProt+genename columns — use it as a local crosswalk to avoid API calls.
 - Log every unmapped ID; a silent 20% dropout will quietly bias the audit.
 
 ## Data schema surprises
 - CORUM subunits are semicolon-separated multi-accession rows → explode to all within-complex pairs.
-- Krogan Table 5 confidence columns are UNVERIFIED until you open it (Day-1 gate). Have the fallback ready (DATA.md).
+- CM4AI Table 5 confidence columns are UNVERIFIED until you open it (Day-1 gate). Have the fallback ready (DATA.md).
 - Predictomes easy CSV may be SPOC-centric; confirm `pdockq`/`pdockq2` columns before relying on them.
 
 ## Statistical gotchas
@@ -55,12 +55,12 @@ Highest-value content for a fresh agent. Update as you build. Label dead-ends "D
 - **CORUM TLS chain is broken from the sandbox** (`CERTIFICATE_VERIFY_FAILED`). `download.py` disables
   verification for that one public CC-BY file only and size/schema-checks the payload after. Do NOT
   generalize the bypass to other hosts.
-- **Krogan Table 5 confidence axis = ipTM.** Columns: `ptm_0..4`, `iptm_0..4`, combined `Score`
+- **CM4AI Table 5 confidence axis = ipTM.** Columns: `ptm_0..4`, `iptm_0..4`, combined `Score`
   (~mean AF 0.8·ipTM+0.2·pTM), the paper's own `FDR`, and boolean flags. NO pDockQ2, NO tabulated
   interface-PAE → single-metric path (METHODS §2). `phys_penalty` stays 0 until BioNeMo structures wired.
 - **Native negatives.** Table 5 ships 1,788 "random" pairs alongside 1,666 True candidates — same AF-M
   pipeline, DepMap-independent. Use these as calibration negatives (cleaner exchangeability than ad-hoc decoys).
-- **nature.com is NOT reachable from the sandbox** (proxy 403 even after allowlist grant). Fetch the Krogan
+- **nature.com is NOT reachable from the sandbox** (proxy 403 even after allowlist grant). Fetch the CM4AI
   supplement from Europe PMC instead: `ebi.ac.uk/europepmc/webservices/rest/PMC12137143/supplementaryFiles`.
 
 ## Phase 2-3 verified findings (2026-07-09)

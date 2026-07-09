@@ -7,8 +7,8 @@ Today = Tue Jul 8. Submission = Mon Jul 13, 9 PM ET. ~5.5 working days. Check it
 
 ### Day 1 (Tue 7/8) — setup, data, the gate, pre-check
 - [ ] T1. Create repo + env (`environment.yml`), scaffold dirs, add MIT LICENSE. — verify: `conda activate emperor && python -c "import emperor"`
-- [ ] T2. `download.py`: fetch Krogan Table 5, CORUM 5.0, hu.MAP 3.0, DepMap GLS + genes.txt; write provenance rows. — verify: files in `data/raw/` + sha256 logged
-- [ ] T3. **DAY-1 GATE:** open Krogan Table 5; record actual confidence column names in DATA.md. If no numeric confidence → confidence-axis fallback (DATA.md). — verify: column names written down; axis chosen
+- [ ] T2. `download.py`: fetch CM4AI Table 5, CORUM 5.0, hu.MAP 3.0, DepMap GLS + genes.txt; write provenance rows. — verify: files in `data/raw/` + sha256 logged
+- [ ] T3. **DAY-1 GATE:** open CM4AI Table 5; record actual confidence column names in DATA.md. If no numeric confidence → confidence-axis fallback (DATA.md). — verify: column names written down; axis chosen
 - [ ] T4. `idmap.py`: build UniProt-accession crosswalk (entryname/symbol ↔ acc). — verify: >95% of interactome + CORUM proteins map; unmapped logged
 - [ ] T5. `labels.py`: CORUM positives (explode complexes) + decoy negatives (1:1), complex-disjoint cal/test split. — verify: no positive appears as a negative; splits disjoint by complex
 - [ ] T6. Calibration pre-check (METHODS §7): isotonic raw-metric→label, reliability diagram + ECE on test. — verify: `results/figures/reliability_raw.png` exists; **lock headline branch** in HANDOFF.md

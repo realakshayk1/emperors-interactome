@@ -2,7 +2,7 @@
 
 Published AI interactomes label thousands of protein complexes "high-confidence," but their
 error rates are estimated on balanced benchmarks and break when true interactions are rare. We
-re-audit the Krogan/Ideker AlphaFold-Multimer map (*Nature* 2025) with **distribution-free
+re-audit the CM4AI multimodal cell map (Schaffer et al., *Nature* 2025) with **distribution-free
 conformal FDR control** and referee it with **DepMap co-essentiality** — evidence the structure
 model never saw (strict purity firewall).
 

@@ -10,7 +10,7 @@ Keep this file short. If it grows past ~150 lines, move detail into METHODS.md /
 
 ## Project overview
 Distribution-free conformal FDR audit of a published AlphaFold-Multimer protein interactome
-(Krogan/Ideker *Nature* 2025), validated against held-out DepMap co-essentiality, ending in a
+(CM4AI cell map (Schaffer et al., *Nature* 2025)), validated against held-out DepMap co-essentiality, ending in a
 certified missing-member nomination for a cancer complex. Python, scikit-learn, numpy, pandas,
 biopython. All analysis is CPU; structure prediction (nominee validation + physical-validity subset)
 uses the **Boltz-2 / OpenFold3 BioNeMo skills in Claude Science, Modal-backed ($30 credit)** — call them
@@ -37,7 +37,7 @@ nulls, ablations, swapped labels) before trusting them. Full checklist + standin
 ## The one rule that makes or breaks the science (READ THIS)
 **The held-out referee must stay held-out.** DepMap co-essentiality (and any other validation
 channel) must NEVER enter the nonconformity score or the calibration labels. On the primary
-Krogan interactome this is automatic (it's an AP-MS + AF map, never trained on DepMap). On the
+CM4AI interactome this is automatic (it's an AP-MS + AF map, never trained on DepMap). On the
 Predictomes stretch, audit the **raw pDockQ2 metric, NOT the SPOC score** — SPOC ingests DepMap
 and co-expression as features, which would make DepMap validation circular. See LEARNINGS.md.
 

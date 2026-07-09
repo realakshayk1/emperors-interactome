@@ -10,7 +10,7 @@ Structural protein–protein interaction (PPI) maps built from AlphaFold-Multime
 published as catalogues of "high-confidence" complexes and used to nominate drug targets. But
 the confidence axis those catalogues rank on — interface predicted-TM (ipTM) — is *overconfident*,
 and the false-discovery rates attached to them are **benchmark-estimated lookups** that silently
-break when true interactions are rare (prevalence shift). We re-audit the Krogan/Ideker
+break when true interactions are rare (prevalence shift). We re-audit the CM4AI
 AlphaFold-Multimer interactome (*Nature* 2025) with **distribution-free conformal FDR control**
 (conformal p-values + Benjamini–Hochberg), certify which edges survive honest error control at a
 transparent risk level *q*, and referee the certified set against **DepMap co-essentiality — an
@@ -43,7 +43,7 @@ never used, and by an **independent Boltz-2 structure prediction** of the KANSL3
 
 **The claim being audited.** Modern structural-proteomics pipelines run AlphaFold-Multimer on
 thousands of candidate protein pairs, keep the ones whose predicted interface scores highly, and
-publish the survivors as "high-confidence complexes." The Krogan/Ideker cancer cell map (*Nature*
+publish the survivors as "high-confidence complexes." The CM4AI multimodal cell map (Schaffer et al., *Nature*
 2025) is a flagship example: its Supplementary Table 5 ships **1,666 AF-Multimer-scored pairs**,
 of which **161** are flagged high-confidence, organised into novel complexes and used to reason
 about cancer biology.
@@ -79,10 +79,17 @@ to referee the finished certification and to support the final nomination.
 
 | Dataset | Role | Provenance (verified firsthand) |
 |---|---|---|
-| **Krogan/Ideker interactome** (*Nature* 2025, Suppl. Table 5) | The map under audit | 1,666 AF-M pairs (1,666 candidates, 161 high-conf); confidence axis = ipTM (`Score` ≈ mean AF `0.8·ipTM + 0.2·pTM`). Fetched via Europe PMC `PMC12137143` (nature.com proxy-blocked). |
+| **CM4AI cell map** (Schaffer et al., *Nature* 2025, Suppl. Table 5) | The map under audit | 1,666 AF-M pairs (1,666 candidates, 161 high-conf); confidence axis = ipTM (`Score` ≈ mean AF `0.8·ipTM + 0.2·pTM`). Fetched via Europe PMC `PMC12137143` (nature.com proxy-blocked). |
 | **CORUM 5.3** (human core complexes) | Calibration labels + ID crosswalk | 7,867 human complexes; release 5.3 / 2026-04-14 confirmed against the FastAPI backend on `mips.helmholtz-muenchen.de`. Doubles as the symbol→UniProt crosswalk. |
 | **DepMap co-essentiality** (Wainberg 2021 GLS matrix) | Held-out referee (firewalled) | 17,634 × 17,634 GLS p-value + sign matrix. RAM-safely sliced to the 1,049 interactome genes present in DepMap via HTTP range requests (a ~9 MB submatrix, not the 2.49 GB file). |
 | **UniProt REST** | Symbol→accession fallback | Recovered the handful of primary-symbol renames CORUM missed → 100% (3,454/3,454) pairs mapped. |
+
+> **Attribution note.** The primary map is the CM4AI multimodal cell map — Schaffer et al.,
+> "Multimodal cell maps as a foundation for structural and functional genomics," *Nature* 642,
+> 222–231 (2025), doi:10.1038/s41586-025-08878-3 (senior author Trey Ideker, UCSD). It is a product
+> of **CM4AI**, the Bridge2AI functional-genomics consortium co-led by Nevan Krogan (UCSF/Gladstone),
+> Emma Lundberg, and Trey Ideker — the (indirect) Gladstone/Krogan link. It is **not** "Krogan's map"
+> (Krogan is not an author of the paper); it is the CM4AI map (Krogan-co-led consortium).
 
 Exact URLs, schemas, checksums, and licenses are in **DATA.md**; the raw bytes are not committed
 (provenance is tracked instead), so `make reproduce` re-fetches from documented sources.
@@ -318,7 +325,7 @@ emperors-interactome/
 │   ├── config.py          ← paths, params, seeds, FDR level q, target complex
 │   ├── download.py        ← fetch + checksum raw data
 │   ├── idmap.py           ← CORUM/UniProt gene-symbol crosswalk
-│   ├── interactome.py     ← parse Krogan Table 5 → scored pairs
+│   ├── interactome.py     ← parse CM4AI Table 5 → scored pairs
 │   ├── labels.py          ← CORUM positives + native decoy negatives
 │   ├── nonconformity.py   ← (1−score) + w_phys·phys_penalty score
 │   ├── conformal.py       ← conformal p-values + BH FDR control + MC held-out FDR
@@ -348,7 +355,7 @@ a GPU (Modal, A100-80GB) and its outputs are committed so the repo is complete w
 
 ## Config at a glance
 
-- **Primary interactome**: Krogan/Ideker *Nature* 2025 "Multimodal cell maps" (U2OS / cancer), Suppl. Table 5 — 1,666 AF-M scored pairs, 161 high-confidence. Confidence axis = **ipTM** (`Score` ≈ mean AF `0.8·ipTM + 0.2·pTM`; no tabulated pDockQ2 / interface-PAE).
+- **Primary interactome**: CM4AI multimodal cell map (Schaffer et al., *Nature* 2025; Bridge2AI/CM4AI consortium co-led by Krogan/Lundberg/Ideker), U2OS/cancer, Suppl. Table 5 — 1,666 AF-M scored pairs, 161 high-confidence. Confidence axis = **ipTM** (`Score` ≈ mean AF `0.8·ipTM + 0.2·pTM`; no tabulated pDockQ2 / interface-PAE).
 - **Calibration labels**: **CORUM 5.3** (2026-04-14), human core complexes (also the ID crosswalk).
 - **Held-out referee**: DepMap co-essentiality (Wainberg 2021 GLS matrix), purity-firewalled.
 - **FDR level**: q = 0.10 (sweep {0.05, 0.10, 0.20}); `SEED = 42`.

@@ -54,7 +54,7 @@ co-expression, GO, or any channel reserved for validation (§5). This is the hel
 
 ## 4. Physical-validity add-on (your signature contribution)
 Reuse the physical-validity reflex from your `flow-match`/`calibrated-dock` work, transposed to interfaces.
-From each deposited AF-M complex structure (the Krogan map ships 111 high-confidence models; for others
+From each deposited AF-M complex structure (the CM4AI map ships 111 high-confidence models; for others
 recompute lightly or use interface metrics already tabulated), compute an interface-quality vector:
 
 - **Steric clashes** at the interface (count of atom pairs below VdW threshold; Biopython/`freesasa`).
@@ -69,7 +69,7 @@ is what lets a "high-ipTM but physically impossible" edge be correctly demoted �
 Tooling: Biopython (`Bio.PDB`), `freesasa` for BSA, numpy for PAE aggregation. PoseBusters is ligand-oriented;
 for protein–protein use the clash+BSA+interface-PAE composite above. Metric computation is CPU.
 
-**BioNeMo upgrade (Modal-backed):** if the Krogan deposited models or their tabulated interface metrics are
+**BioNeMo upgrade (Modal-backed):** if the CM4AI deposited models or their tabulated interface metrics are
 incomplete, *generate* the interface structures with the **Boltz-2 / OpenFold3 / AlphaFold2-Multimer BioNeMo
 skills** and compute clash/BSA/interface-PAE from those. Budget-limited ($30 Modal ≈ few hundred predictions) —
 apply only to the high-leverage subset (the ~111 high-confidence complex interfaces + decision-boundary edges),
@@ -138,7 +138,7 @@ Either way keep the reliability diagram — it's demo frame 1.
 ---
 
 ## 8. Missing-member nomination
-Pick a **target cancer complex** from the Krogan 275 assemblies — ideally one flagged as recurrently mutated
+Pick a **target cancer complex** from the CM4AI map 275 assemblies — ideally one flagged as recurrently mutated
 in cancer, with a plausible missing subunit. For each non-member candidate protein c:
 
 ```

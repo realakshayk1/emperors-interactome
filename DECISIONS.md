@@ -10,11 +10,11 @@ is shaped this way so a fresh agent doesn't re-litigate settled choices.
 - **Rationale:** Contrarian + falsifiable is more novel and more memorable; wins on either result branch.
 - **Alternatives rejected:** Boltz-2 affinity trust layer (methods-not-biology, GPU-bound, no Gladstone data); Krogan "obvious" PPI trust layer (the idea anyone would generate).
 
-## 2026-07-08 — Primary interactome = Krogan/Ideker Nature 2025
+## 2026-07-08 — Primary interactome = CM4AI cell map (Schaffer et al., Nature 2025)
 - **Status:** accepted
 - **Context:** Need a published, high-profile structural interactome that is DepMap-independent and cancer-relevant.
 - **Decision:** Use the Nature 2025 "Multimodal cell maps" (U2OS) Suppl. Table 5 as primary.
-- **Rationale:** Small/clean (1,666 pairs, 111 complexes), cancer context matches DepMap's cancer cell lines, and it's an AP-MS+AF map so DepMap stays genuinely held-out. Gladstone/Krogan data → Award-eligible.
+- **Rationale:** Small/clean (1,666 pairs, 111 complexes), cancer context matches DepMap's cancer cell lines, and it is an AP-MS+AF map so DepMap stays genuinely held-out. CM4AI is a Bridge2AI consortium co-led by Krogan (Gladstone) → indirect Gladstone link, Award-eligible.
 - **Alternatives rejected:** Predictomes as primary (SPOC ingests DepMap → held-out purity broken); demoted to Stretch 2 with raw-pDockQ2 auditing.
 
 ## 2026-07-08 — Confidence axis = raw AF-M metrics + physical validity (never SPOC on primary)
@@ -62,7 +62,7 @@ is shaped this way so a fresh agent doesn't re-litigate settled choices.
   (~5 min). Cut-order (TASKS.md) still keeps the nominee valid without a predicted structure.
 
 ## 2026-07-09 — Confidence axis = ipTM (verified), single-metric path
-- **Status:** accepted. Krogan Table 5 exposes ipTM (`iptm_0..4`), pTM (`ptm_0..4`), combined `Score`
+- **Status:** accepted. CM4AI Table 5 exposes ipTM (`iptm_0..4`), pTM (`ptm_0..4`), combined `Score`
   (≈ mean AF `0.8·ipTM+0.2·pTM`, verified: mean|err|=0.012), the paper's own `FDR`, and boolean flags.
   **No pDockQ2, no tabulated interface-PAE** — so the nonconformity score is single-metric on `Score`.
 - **Consequence:** METHODS' multi-metric nonconformity reduces to `(1-score)+w_phys·phys_penalty`.

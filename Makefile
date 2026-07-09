@@ -11,7 +11,7 @@ data:      ## download raw datasets + provenance (small; DepMap sliced on use)
 idmap:     ## build UniProt-accession crosswalk
 	$(PY).idmap
 
-interactome: ## parse Krogan Table 5 -> interactome.parquet
+interactome: ## parse CM4AI Table 5 -> interactome.parquet
 	$(PY).interactome
 
 labels:    ## CORUM positives + native decoys, complex-disjoint cal/test split

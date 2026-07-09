@@ -1,7 +1,7 @@
 """download.py — fetch raw datasets, checksum, write provenance rows.
 
 VERIFIED firsthand 2026-07. Notable deviations from the original planning docs:
-  * Krogan Suppl. Table 5 is inside the Suppl. Tables 1-10 .xlsx, fetched from
+  * CM4AI (Schaffer et al. 2025) Suppl. Table 5 is inside the Suppl. Tables 1-10 .xlsx, fetched from
     Europe PMC (PMC12137143) because nature.com is not reachable from the sandbox.
   * CORUM moved to a FastAPI backend serving release 5.3 (not the old .txt.zip).
   * DepMap GLS matrices are 2.49 GB each — we only fetch genes.txt here; the big
@@ -52,16 +52,16 @@ def main() -> None:
     C.RAW.mkdir(parents=True, exist_ok=True)
     prov = []
 
-    # 1) Krogan Suppl. Tables workbook (Europe PMC supplementary zip) -> extract xlsx
-    supp_zip = C.RAW / "krogan_supp.zip"
-    if not (C.RAW / C.KROGAN_XLSX_NAME).exists():
-        data = _fetch(C.URLS["krogan_supp"], supp_zip)
+    # 1) CM4AI Suppl. Tables workbook (Europe PMC supplementary zip) -> extract xlsx
+    supp_zip = C.RAW / "cm4ai_supp.zip"
+    if not (C.RAW / C.CM4AI_XLSX_NAME).exists():
+        data = _fetch(C.URLS["cm4ai_supp"], supp_zip)
         with zipfile.ZipFile(supp_zip) as zf:
             member = next(n for n in zf.namelist() if n.endswith(".xlsx"))
             zf.extract(member, C.RAW)
-            (C.RAW / member).rename(C.RAW / C.KROGAN_XLSX_NAME)
-    xb = (C.RAW / C.KROGAN_XLSX_NAME).read_bytes()
-    prov.append(_prov_row("Krogan/Ideker Nature 2025", C.KROGAN_XLSX_NAME,
+            (C.RAW / member).rename(C.RAW / C.CM4AI_XLSX_NAME)
+    xb = (C.RAW / C.CM4AI_XLSX_NAME).read_bytes()
+    prov.append(_prov_row("CM4AI cell map (Schaffer et al., Nature 2025)", C.CM4AI_XLSX_NAME,
                           "PMC12137143 (Europe PMC supplementaryFiles)",
                           _sha256(xb), len(xb), "CC BY 4.0",
                           "Suppl. Tables 1-10 workbook; Table5 = primary interactome"))

@@ -1,12 +1,12 @@
-"""labels.py — calibration labels from CORUM 5.3 + Krogan native decoys.
+"""labels.py — calibration labels from CORUM 5.3 + native map decoys.
 
 Design (verified against the data, see DECISIONS):
   Positives (label 1): interactome pairs whose two proteins co-occur in the SAME
     CORUM complex — AF-M-scored AND independently CORUM-validated. Selected on
-    CORUM membership ALONE (independent of Krogan's True/random flag), so this
+    CORUM membership ALONE (independent of the map's True/random flag), so this
     includes the 1 decoy-flagged pair that is in fact a CORUM complex: 191 total
     (190 from True candidates + 1 from the random set), all removed from negatives.
-  Negatives (label 0): Krogan's NATIVE random decoy pairs (1,788; same AF-M
+  Negatives (label 0): the map's NATIVE random decoy pairs (1,788; same AF-M
     pipeline, DepMap-independent). Only 1 is accidentally CORUM-same-complex and
     is dropped. A stricter negative set (both proteins in complexes but never the
     same one -> `diff_complex`) is tagged for the pos:neg sensitivity analysis.

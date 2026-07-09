@@ -22,7 +22,7 @@ that doesn't check out.
 ## Assumptions to confirm (checklist — each was asserted by the planner, none is guaranteed)
 
 ### Data facts
-- [ ] Krogan/Ideker *Nature* 2025 Suppl. Table 5 actually contains per-pair numeric confidence (ipTM / pDockQ / pDockQ2 / PAE). **This is the Day-1 gate.** Record real column names in DATA.md.
+- [ ] CM4AI cell map (Schaffer et al., *Nature* 2025) Suppl. Table 5 actually contains per-pair numeric confidence (ipTM / pDockQ / pDockQ2 / PAE). **This is the Day-1 gate.** Record real column names in DATA.md.
 - [ ] The 111 deposited AF-M complex models are downloadable (for the physical-validity term). Find the exact repository.
 - [ ] Predictomes flat CSV (`..._pair_scores.csv.gz`) column set — does it carry raw `pdockq2`, or is it SPOC-only? Print the header before relying on it.
 - [ ] DepMap GLS files load and are 17,634² with `genes.txt` in matching order; identifiers are HGNC symbols.
@@ -34,7 +34,7 @@ that doesn't check out.
 - [ ] Conformal p-values assume **exchangeability**; confirm the calibration↔test setup satisfies it (or use the network-adapted conformal-link-prediction FDR variant). State the limitation.
 - [ ] BH controls FDR **marginally** under the assumed dependence; sanity-check with a synthetic-null unit test (empirical FDR ≤ q across seeds).
 - [ ] The **negative set** is only *presumed* non-interacting — verify results are stable across decoy construction + pos:neg ratio.
-- [ ] **Held-out purity**: independently confirm the Krogan map did NOT use DepMap as an input, and that SPOC DOES use DepMap/co-expression (this is why we audit raw pDockQ2 on Predictomes). If either is wrong, the validation design must change — flag immediately.
+- [ ] **Held-out purity**: independently confirm the CM4AI map did NOT use DepMap as an input, and that SPOC DOES use DepMap/co-expression (this is why we audit raw pDockQ2 on Predictomes). If either is wrong, the validation design must change — flag immediately.
 
 ### Novelty / prior-art (re-check; the field moves weekly)
 - [ ] Re-run a quick prior-art search at build time for "conformal FDR AlphaFold-Multimer interactome / held-out

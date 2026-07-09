@@ -1,4 +1,4 @@
-"""interactome.py — parse Krogan Suppl. Table 5 into the interactome data contract.
+"""interactome.py — parse CM4AI (Schaffer et al. 2025) Suppl. Table 5 into the interactome data contract.
 
 Output: data/interim/interactome.parquet with columns
   [pair, gene_a, gene_b, cluster, score, iptm_mean, ptm_mean, bench_fdr,
@@ -19,9 +19,9 @@ from .idmap import symbols_to_acc
 
 
 def load_table5() -> pd.DataFrame:
-    xlsx = C.RAW / C.KROGAN_XLSX_NAME
+    xlsx = C.RAW / C.CM4AI_XLSX_NAME
     wb = openpyxl.load_workbook(xlsx, read_only=True, data_only=True)
-    ws = wb[C.KROGAN_SHEET]
+    ws = wb[C.CM4AI_SHEET]
     rows = list(ws.iter_rows(values_only=True))
     header = rows[1]  # row 0 is the "Supplementary Table 5" title
     df = pd.DataFrame(rows[2:], columns=header)
@@ -37,14 +37,14 @@ def main() -> None:
         "gene_a": df["geneA"].astype(str),
         "gene_b": df["geneB"].astype(str),
         "cluster": df["Cluster"],
-        "score": pd.to_numeric(df[C.KROGAN_CONF_COL], errors="coerce"),
+        "score": pd.to_numeric(df[C.CM4AI_CONF_COL], errors="coerce"),
         "iptm_mean": df[iptm_cols].apply(pd.to_numeric, errors="coerce").mean(axis=1),
         "ptm_mean": df[ptm_cols].apply(pd.to_numeric, errors="coerce").mean(axis=1),
-        "bench_fdr": pd.to_numeric(df[C.KROGAN_BENCHFDR_COL], errors="coerce"),
-        "is_true_pair": df[C.KROGAN_TRUEFLAG_COL].astype(bool),
-        "high_conf": df[C.KROGAN_HICONF_COL].astype(bool),
-        "high_conf_novel": df[C.KROGAN_NOVEL_COL].astype(bool),
-        "source": "krogan_nature2025_table5",
+        "bench_fdr": pd.to_numeric(df[C.CM4AI_BENCHFDR_COL], errors="coerce"),
+        "is_true_pair": df[C.CM4AI_TRUEFLAG_COL].astype(bool),
+        "high_conf": df[C.CM4AI_HICONF_COL].astype(bool),
+        "high_conf_novel": df[C.CM4AI_NOVEL_COL].astype(bool),
+        "source": "cm4ai_schaffer2025_table5",
     })
     # Map gene symbols -> UniProt accessions (join key; METHODS/LEARNINGS: join on acc)
     genes = sorted(set(out["gene_a"]) | set(out["gene_b"]))
