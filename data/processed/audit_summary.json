@@ -1,0 +1,35 @@
+{
+  "n_candidates": 1666,
+  "n_high_conf": 161,
+  "certified_by_q": {
+    "0.2": 177,
+    "0.1": 132,
+    "0.05": 78
+  },
+  "high_conf_dropped_by_q": {
+    "0.05": 83,
+    "0.1": 35,
+    "0.2": 12
+  },
+  "heldout_fdr_by_q": {
+    "0.05": {
+      "pooled_fdr": 0.2634730538922156,
+      "mean_split_fdr": 0.26139804639804637,
+      "mean_n_certified": 0.835,
+      "n_splits_with_cert": 6
+    },
+    "0.1": {
+      "pooled_fdr": 0.15709046454767725,
+      "mean_split_fdr": 0.13437975100435517,
+      "mean_n_certified": 8.18,
+      "n_splits_with_cert": 93
+    },
+    "0.2": {
+      "pooled_fdr": 0.21498435054773082,
+      "mean_split_fdr": 0.17514936265772071,
+      "mean_n_certified": 25.56,
+      "n_splits_with_cert": 198
+    }
+  },
+  "q_primary": 0.1
+}
