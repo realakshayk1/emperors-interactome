@@ -254,8 +254,10 @@ verbatim here. Figures live in `results/figures/`.
 - **How to read it.** Dark (low-PAE) off-diagonal blocks mean the two chains are confidently placed
   *relative to each other* — i.e. a real predicted interface. The red boxes mark where that holds. On
   the right, bars above ~0.5 indicate a credible interface.
-- **Result.** Global **ipTM = 0.47** (matching the AF-Multimer score for the same edge), with a
-  localized, confidently-placed interface: **KANSL3 residues 279–448 dock KANSL1 residues 624–690**,
+- **Result.** Global **ipTM = 0.47** (Boltz-2's own interface confidence; the AF-Multimer edge's
+  composite `Score` for the same pair is 0.508 — a different metric, but both land in the same
+  moderate range), with a localized, confidently-placed interface: **KANSL3 residues 279–448 dock
+  KANSL1 residues 624–690**,
   90 inter-chain contacts (Cβ–Cβ < 8 Å *and* PAE < 10 Å), interface pLDDT 0.70 / 0.59, best-contact
   PAE 4.8 Å.
 - **Significance / meaning.** A *second, independent* structure model recovers the same interface,
