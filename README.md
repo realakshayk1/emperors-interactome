@@ -344,7 +344,7 @@ feature, do not integrate on this evidence.** Corroboration is real; divergence-
 underpowered and needs a score-matched test on a non-separable map (funded scale-up path). Because
 certification is near-separable from AF-M score here, agreement is partly expected from score alone.
 
-![Cross-architecture pilot]({{artifact:6e7ef55e-4bdc-4c5f-a5ae-925ac5ba2f4b}})
+![Cross-architecture pilot]({{artifact:5a31d5b5-e666-422b-9718-8806e6d70cb2}})
 
 *How to read it.* **Left (corroboration):** AF-Multimer Score (x) vs Boltz-2 ipTM (y), colored by
 conformal verdict (blue = certified, red = dropped); dashed = identity line; the tight scatter is the
@@ -385,6 +385,47 @@ exactly why an interactome release that ships no exchangeable null (Phase-2 seco
 this way, and why the CM4AI native decoys are what make it auditable. Reproduced by
 `make identifying` (unit-tested in `tests/test_identifying.py`); data in
 `data/processed/identifying_experiment.json`.
+
+---
+
+## 4c. Higher-scope VERIFY — production-mode go/no-go probes
+
+Beyond auditing this map, four higher-scope directions were probed with cheap go/no-go gates
+(G1 novelty · G2 data · G3 signal · G4 feasibility) *before* committing to a build. Outcome: **three
+KILLs and one GO** — the intended discipline (learn from cheap probes, don't build on an unverified
+premise). Full scorecard: [`reports/higher_scope_scorecard.md`](reports/higher_scope_scorecard.md).
+
+- **D2 structure-mechanism — KILL (G1):** method saturated (AlphaMissense / RosettaDDG / ΔΔG-of-binding).
+- **D3 noncoding-variant — KILL (G1+G2):** published Corces 2023 workflow; ChromBPNet weights on a
+  denylisted host, Borzoi substitute exceeds the GPU budget.
+- **D1 CD4⁺ Perturb-seq — KILL (G3, on executed evidence):** with data access granted, the
+  calibration-gated confident-hit rule ran on all 33,983 target×condition tests (→ 878 regulators);
+  Open Targets corroboration across 11 autoimmune diseases showed **no enrichment** (9.7% vs 8.8%,
+  Fisher OR=1.13, p=0.32), and **zero** confident regulators cleared a strict novel-AND-corroborated bar.
+- **D4 RNA physical-validity benchmark — GO (the winner).**
+
+### D4 — a physical-validity benchmark for RNA 3D structure prediction
+
+The one direction that survived a hard novelty search (PoseBusters covers ligands, not RNA — no direct
+competitor) *and* returned a surprising G3 result. On the RNA-Puzzles standardized dataset (24 native
+crystals + 1000 group predictions; 927 parsed on CPU), a MolProbity-style clashscore discriminates native
+from predicted structures.
+
+![D4 RNA physical-validity probe]({{artifact:b699dc63-04b6-4371-82f3-35e274441481}})
+
+**How to read it.** *Left:* distribution of the clashscore (severe steric overlaps per 1000 heavy atoms,
+excluding covalent 1–2/1–3 neighbours; log x-axis) for native crystals (red) vs group predictions (blue),
+with the native-plausible band shaded. *Right:* where predictions fall relative to that band, as a
+percentage. **What it means / significance.** The metric separates native from prediction strongly
+(**KS D=0.50, p=1.5×10⁻⁴**), and the finding is non-obvious: native crystals are **not** clash-free
+(median clashscore 9.6), and predictions are **bimodal** — **33% are over-idealized** (energy-minimized
+cleaner than any real crystal), **14% are physically implausible** (up to 15,000+ clashes), and only
+**53% fall inside the native-calibrated band**. **The lesson:** a naive "fewer clashes = better" score
+would reward the over-idealized third and mislead; the informative benchmark is a **native-calibrated
+validity band**. Evidence: `results/figures/rna_physval_probe.png`,
+`data/processed/D1_confident_hits_corroborated.csv` (D1) and `rna_physval.parquet` (D4). D4 is the
+verified winning direction, elevated alongside §A per the user's decision; it is a standalone
+methods/resource result, not an interactome finding.
 
 ---
 
