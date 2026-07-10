@@ -378,7 +378,7 @@ sweep levels shown muted for context. The green band marks where control holds.
 **What it means.** At **δ = 0** the calibration null and the test null are *exchangeable* → conformal
 p-values of nulls are (super-)uniform → BH controls FDR at q: realized FDR **0.08 ≤ 0.10, control ON**.
 As δ grows — the true null looking progressively more interaction-like than what the auditor calibrated
-on — realized FDR climbs **monotonically: 0.14 → 0.24 → 0.37 → 0.51 → 0.77, control OFF**. Because δ is
+on — realized FDR climbs **monotonically: 0.14 → 0.24 → 0.37 → 0.51 → 0.69 → 0.77, control OFF**. Because δ is
 the sole moving part, the collapse is *attributable to exchangeability alone*. This is the identifying
 result: **distribution-free control is present if and only if the null is exchangeable** — which is
 exactly why an interactome release that ships no exchangeable null (Phase-2 second map) cannot be audited

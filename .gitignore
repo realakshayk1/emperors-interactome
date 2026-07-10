@@ -15,6 +15,7 @@ data/processed/*
 !data/processed/mondrian_summary.json
 !data/processed/wcs_results.json
 !data/processed/identifying_experiment.json
+!data/processed/D1_confident_hits_corroborated.csv
 # Second-map: track the small score/boundary JSONs, NOT the multi-GB model archives
 data/mimicry/*
 !data/mimicry/apms_pdockq.json
