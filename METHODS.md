@@ -246,3 +246,45 @@ The prevalence-shift result (§ Results) is stated formally as a boxed two-part 
 (`reports/proposition.md`): (a) conformal+BH is prevalence-invariant (Bates 2023 / BH-PRDS); (b) a
 benchmark-tuned cutoff's realized FDR = (1−π)FPR / [(1−π)FPR + π·TPR] → 1 as prevalence π → 0. Boxed as
 framing/motivation, explicitly NOT claimed as a theorem or contribution.
+
+## 19. §A — Identifying experiment for distribution-free control
+
+An observational finding (the real CORUM/DepMap null is non-exchangeable under disjoint splits, so
+control does not hold — §13) is upgraded to a causal claim by isolating the single responsible variable.
+In the synthetic setting where the guarantee is provable (the `tests/test_conformal.py` setting), we
+hold fixed the true-positive count (200), the null count (800), the calibration size (1500), the BH
+procedure, q, and the conformal p-value construction, and vary ONLY δ: the mean shift (in σ) between the
+calibration-negative law N(0,1) and the true test-null law N(−δ,1). Positives stay at N(−2.5,1).
+Nonconformity is oriented so lower = more interaction-like, so δ>0 makes the true null look more
+interaction-like than the calibrated null → anti-conservative conformal p-values. Result over 400 splits
+per δ: realized held-out FDR at q=0.10 is 0.08 (δ=0, control ON) rising monotonically to 0.14/0.24/0.37/
+0.51/0.69/0.77 (δ=0.25…2.0, control OFF). Because δ is the only moving part, the collapse is attributable
+to exchangeability alone — control holds iff the null is exchangeable. Module `src/emperor/identifying.py`
+(`make identifying`), figure `src/emperor/plots_identifying.py`, unit test `tests/test_identifying.py`,
+output `data/processed/identifying_experiment.json`. This is the causal justification for the Phase-2
+"ship the null" recommendation.
+
+## 20. Higher-scope VERIFY probes (production-mode go/no-go)
+
+Four higher-scope directions were probed with cheap go/no-go gates (G1 novelty · G2 data · G3 signal ·
+G4 feasibility) before any build, to decide whether a production-mode discovery/method/resource was worth
+pursuing over the workshop-level audit. Outcome (full scorecard: `reports/higher_scope_scorecard.md`):
+D2 structure-mechanism KILL at G1 (method saturated: AlphaMissense/RosettaDDG/ΔΔG-of-binding); D3
+noncoding-variant KILL at G1+G2 (published Corces 2023 workflow; ChromBPNet weights on a denylisted host,
+Borzoi substitute exceeds GPU budget); D1 Perturb-seq pending (data on a grantable bucket but a novelty
+headwind — the source paper already nominates GWAS-linked regulators); **D4 benchmark-gap GO**. D4's G3
+probe (below) was the one that passed.
+
+### 20a. D4 — RNA physical-validity benchmark (the GO)
+A physical-validity benchmark for RNA/nucleic-acid 3D structure prediction survived a hard novelty search
+(PoseBusters targets ligands, not RNA; no direct competitor found). Informativeness probe on the
+RNA-Puzzles standardized dataset (24 native crystals + 1000 group predictions; 927 parsed on CPU with a
+MolProbity-style clashscore = severe steric overlaps per 1000 heavy atoms, excluding covalent 1–2/1–3
+neighbours). The metric discriminates native from prediction (KS D=0.50, p=1.5×10⁻⁴), and the finding is
+non-obvious: native crystals are NOT clash-free (median clashscore 9.6), and predictions are bimodal —
+**33% are over-idealized (cleaner than any native, energy-minimized), 14% are physically implausible (up
+to 15,000+ clashes), and only 53% fall inside the native-calibrated validity band**. A "fewer clashes =
+better" benchmark would be wrong; the informative benchmark is a native-calibrated band. Module analysis
+in-session; figure `results/figures/rna_physval_probe.png`, data `rna_physval.parquet`. Ceiling: a
+standalone methods/resource (good venue, high adoption). Not yet built out to a full release — it is the
+verified winning direction, elevated alongside §A per the user's decision.

@@ -359,6 +359,33 @@ nomination (810 total)**, all inheriting the conformal-BH FDR ≤ q = 0.10 guara
 Selection is purely conformal; DepMap co-essentiality only *ranks* within each set (purity firewall).
 See `data/processed/nomination_sets.json`.
 
+### §A — The identifying experiment: exchangeability is the *cause* of control
+
+The honest negative above (covariate-shift robustness) is an *observation*: on the real CORUM/DepMap
+null, distribution-free control does not hold under disjoint splits. **§A upgrades that observation to a
+causal claim.** In the synthetic setting where the guarantee is provable, we hold *everything* fixed —
+the number of true positives, the number of nulls, the calibration size, the BH procedure, q, and the
+conformal p-value construction — and toggle exactly one scalar: **δ, the distributional shift between the
+null the auditor calibrates on and the true null it scores against**.
+
+![§A identifying experiment]({{artifact:f6ea9fc7-a001-470c-96da-5f515b71d5a4}})
+
+**How to read it.** The x-axis is δ (in units of σ), the *only* variable that moves; the y-axis is the
+realized held-out FDR (fraction of certified edges that are truly null), averaged over 400 splits per δ.
+The dashed line is the nominal target q = 0.10; the focal blue curve is the primary q, with the two other
+sweep levels shown muted for context. The green band marks where control holds.
+
+**What it means.** At **δ = 0** the calibration null and the test null are *exchangeable* → conformal
+p-values of nulls are (super-)uniform → BH controls FDR at q: realized FDR **0.08 ≤ 0.10, control ON**.
+As δ grows — the true null looking progressively more interaction-like than what the auditor calibrated
+on — realized FDR climbs **monotonically: 0.14 → 0.24 → 0.37 → 0.51 → 0.77, control OFF**. Because δ is
+the sole moving part, the collapse is *attributable to exchangeability alone*. This is the identifying
+result: **distribution-free control is present if and only if the null is exchangeable** — which is
+exactly why an interactome release that ships no exchangeable null (Phase-2 second map) cannot be audited
+this way, and why the CM4AI native decoys are what make it auditable. Reproduced by
+`make identifying` (unit-tested in `tests/test_identifying.py`); data in
+`data/processed/identifying_experiment.json`.
+
 ---
 
 ## 5. The nomination — KANSL3 → MLL1-WDR5 complex (CORUM 5386)

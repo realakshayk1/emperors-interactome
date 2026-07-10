@@ -1,9 +1,9 @@
-.PHONY: reproduce data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets figures test lint clean mimicry structure
+.PHONY: reproduce data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets identifying figures test lint clean mimicry structure
 
 # Run modules with src on the path — no editable install required (robust across envs).
 PY=PYTHONPATH=src python -m emperor
 
-reproduce: data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets figures ## full CPU pipeline, raw -> figures + certified/validation/nomination(+sets)
+reproduce: data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets identifying figures ## full CPU pipeline, raw -> figures + certified/validation/nomination(+sets)+identifying
 
 data:      ## download raw datasets + provenance (small; DepMap sliced on use)
 	$(PY).download
@@ -38,8 +38,12 @@ nominate:  ## missing-member nomination for the target cancer complex (flagship 
 nominate_sets: ## FDR-controlled nomination SETS: per-complex certified missing members (<=q wrong)
 	$(PY).nominate_sets
 
+identifying: ## §A identifying experiment: toggle ONLY null-exchangeability -> control switches ON/OFF
+	$(PY).identifying
+
 figures:   ## regenerate all figures in results/figures/
 	$(PY).plots
+	$(PY).plots_identifying
 
 # --- one-off / external-data steps (NOT in `reproduce`; documented in DATA.md) ---
 mimicry:   ## second-map: pDockQ on the Krogan host-pathogen deposit (needs Zenodo download)
