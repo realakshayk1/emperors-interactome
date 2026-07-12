@@ -43,8 +43,43 @@ N_NULL = 8000          # native random-pair calibration null size
 COESS_SIG = 0.05       # DepMap co-essentiality significance (matches CM4AI run)
 
 
+PREDICTOMES_CSV_URL = (
+    "https://predictomes-hsbps-dataset.s3.us-east-1.amazonaws.com/"
+    "20251110_hs_predictome_pair_scores.csv.gz"
+)
+
+
+def _build_parquet(dst):
+    """Fetch the public Predictomes pair-scores CSV (28 MB) and parse to parquet.
+
+    Called only when the parquet is absent (e.g. a bare git clone — the 42 MB parquet is
+    git-ignored, see data/external/README.md). Makes `make audit-self` reproducible from clean.
+    """
+    import urllib.request
+
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    gz = dst.parent / "20251110_hs_predictome_pair_scores.csv.gz"
+    if not gz.exists():
+        urllib.request.urlretrieve(PREDICTOMES_CSV_URL, gz)
+    raw = pd.read_csv(gz)
+    raw[["g_a", "g_b"]] = (
+        raw.complex_name.str.replace("_HUMAN", "", regex=False).str.split("__", expand=True).iloc[:, :2]
+    )
+    up = raw.uniprot_ids.str.split(":", expand=True)
+    raw["acc_a"], raw["acc_b"] = up[0], up[1]
+    idm = pd.read_parquet(C.INTERIM / "idmap.parquet")
+    acc2sym = dict(zip(idm.accession, idm.symbol))
+    raw["sym_a"] = raw.acc_a.map(acc2sym); raw["sym_b"] = raw.acc_b.map(acc2sym)
+    cols = ["complex_name", "uniprot_ids", "acc_a", "acc_b", "sym_a", "sym_b", "spoc_score",
+            "kirc_score", "num_unique_contacts", "string_db_score", "biogrid_detect_count",
+            "intact_db_evidence_count", "in_pdb"]
+    raw[cols].to_parquet(dst, index=False)
+
+
 def _load():
     ext = C.ROOT / "data" / "external" / "predictomes_pair_scores.parquet"
+    if not ext.exists():
+        _build_parquet(ext)
     df = pd.read_parquet(ext)
     df["nc"] = pd.to_numeric(df["num_unique_contacts"], errors="coerce").fillna(0.0)
     return df

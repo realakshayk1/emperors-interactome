@@ -75,7 +75,11 @@ protein/node-disjoint held-out FDR **0.29 / 0.32 / 0.37** at q = 0.05 / 0.10 / 0
 `make audit-self` runs the entire hardened suite (dependence → shift attribution →
 hard negatives → shift-control gate → Γ seed → sensitivity → semi-synthetic → PPI
 referee → second real map → LOCO recovery) in ~1 min. `make test` = 21/21.
-**Fresh-clone check:** extracting the release tarball into a clean directory and running
-`make audit-self` + `make test` reproduces every number with no prior state (2026-07-12).
+**Reproducibility check (2026-07-12):** from the release **tarball** (which ships interim
+files), `make audit-self` + `make test` reproduce every number with no prior state. From a
+bare **git clone** (interim files are git-ignored by design), `audit-self` first regenerates
+them via its `make data idmap interactome labels depmap` prerequisite, and `secondmap`
+auto-fetches the public Predictomes CSV — so `make reproduce && make audit-self` is the
+clean-clone path. Verified the secondmap auto-fetch and the interim prerequisite wiring.
 All numbers in this scorecard are emitted to
 `data/processed/*.json`.

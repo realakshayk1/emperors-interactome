@@ -41,7 +41,10 @@ figures:   ## regenerate all figures in results/figures/
 structure: ## report the nominee's Boltz-2 interface (remote GPU step; see src/emperor/structure.py)
 	$(PY).structure
 
-audit-self: ## PLAN_V3 self-audit: dependence-robust FDR, shift attribution, hard-negatives, shift-control gate, sensitivity bound, semi-synthetic benchmark, experimental-PPI referee
+data/interim/labels.parquet:  ## pipeline prerequisites for audit-self (raw -> interim)
+	$(MAKE) data idmap interactome labels depmap
+
+audit-self: data/interim/labels.parquet ## PLAN_V3 self-audit (needs interim files: run `make reproduce` first, or this builds them). Dependence-robust FDR, shift attribution, hard-negatives, shift-control gate, sensitivity bound, semi-synthetic benchmark, PPI referee, 2nd real map, LOCO
 	$(PY).dependence
 	$(PY).shift_attribution
 	$(PY).hardnegatives
