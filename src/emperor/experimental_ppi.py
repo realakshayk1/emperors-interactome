@@ -32,7 +32,13 @@ from scipy.stats import fisher_exact
 
 from . import config as C
 
-INTACT_CACHE = C.ROOT / "handoff" / "intact_edges.json"
+def _cache(name):
+    """Prefer the tracked data/external/ copy (ships in git); fall back to handoff/ (working repo)."""
+    ext = C.ROOT / "data" / "external" / name
+    return ext if ext.exists() else C.ROOT / "handoff" / name
+
+
+INTACT_CACHE = _cache("intact_edges.json")
 
 
 def _physical_pairs(cache_path=INTACT_CACHE):
@@ -58,7 +64,7 @@ def _independence_audit():
     that records sourceDatabase / detectionMethod / PMID per hit). Establishes the
     channel is not a single-deposition circular reference with the CM4AI/Krogan screen.
     """
-    prov_path = C.ROOT / "handoff" / "intact_provenance.json"
+    prov_path = _cache("intact_provenance.json")
     if not prov_path.exists():
         return dict(note="provenance cache (handoff/intact_provenance.json) not present; "
                          "re-run the per-pair IntAct provenance query to populate.")
