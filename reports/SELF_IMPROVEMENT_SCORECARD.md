@@ -75,11 +75,13 @@ protein/node-disjoint held-out FDR **0.29 / 0.32 / 0.37** at q = 0.05 / 0.10 / 0
 `make audit-self` runs the entire hardened suite (dependence → shift attribution →
 hard negatives → shift-control gate → Γ seed → sensitivity → semi-synthetic → PPI
 referee → second real map → LOCO recovery) in ~1 min. `make test` = 21/21.
-**Reproducibility check (2026-07-12):** from the release **tarball** (which ships interim
-files), `make audit-self` + `make test` reproduce every number with no prior state. From a
-bare **git clone** (interim files are git-ignored by design), `audit-self` first regenerates
-them via its `make data idmap interactome labels depmap` prerequisite, and `secondmap`
-auto-fetches the public Predictomes CSV — so `make reproduce && make audit-self` is the
-clean-clone path. Verified the secondmap auto-fetch and the interim prerequisite wiring.
+**Reproducibility check (2026-07-12) — verified end-to-end from a bare git clone.**
+`git clone` ships no interim files and not the 42 MB Predictomes parquet (both git-ignored by
+design). `make audit-self` nonetheless completes with **exit 0**: its prerequisite regenerates
+the interim files (`make data idmap interactome labels depmap`), `secondmap` auto-fetches the
+public Predictomes CSV (28 MB) and builds the parquet, and the IntAct referee reads its cache
+shipped in `data/external/`. All nine module numbers reproduce (secondmap 20,196 proteins /
+degenerate SPOC axis / certified 12,420 at q=0.10; LOCO members 49.5% vs impostors 23.2%,
+OR 3.3). `pytest` = **25/25** from the same clean clone (21 hardening/base + 4 pre-existing).
 All numbers in this scorecard are emitted to
 `data/processed/*.json`.
