@@ -1,0 +1,141 @@
+{
+  "frozen": "2026-07-10",
+  "positive_control": "KANSL3->5386/610/7221",
+  "top15": [
+    {
+      "nominee": "YPEL5",
+      "via_member": "WDR26",
+      "complex_id": "6490",
+      "complex_name": "CUL4B-DDB1-WDR26 complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.844,
+      "coess": 68.255
+    },
+    {
+      "nominee": "MAEA",
+      "via_member": "WDR26",
+      "complex_id": "6490",
+      "complex_name": "CUL4B-DDB1-WDR26 complex",
+      "conf_pvalue": 0.005525,
+      "afm_score": 0.566,
+      "coess": 49.673
+    },
+    {
+      "nominee": "CHUK",
+      "via_member": "IKBKB",
+      "complex_id": "2104",
+      "complex_name": "IKBKB-MAP3K14 complex",
+      "conf_pvalue": 0.00221,
+      "afm_score": 0.626,
+      "coess": 31.8
+    },
+    {
+      "nominee": "IKBKB",
+      "via_member": "CHUK",
+      "complex_id": "5285",
+      "complex_name": "TNF-alpha/NF-kappa B signaling complex 9",
+      "conf_pvalue": 0.00221,
+      "afm_score": 0.626,
+      "coess": 31.8
+    },
+    {
+      "nominee": "CHUK",
+      "via_member": "IKBKB",
+      "complex_id": "8868",
+      "complex_name": "BCL10-CARD11-DPP4-IKBKB complex",
+      "conf_pvalue": 0.00221,
+      "afm_score": 0.626,
+      "coess": 31.8
+    },
+    {
+      "nominee": "YPEL5",
+      "via_member": "WDR26",
+      "complex_id": "8273",
+      "complex_name": "CTLH complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.844,
+      "coess": 25.59
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "711",
+      "complex_name": "Brm-associated complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "713",
+      "complex_name": "BRG1-SIN3A complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "714",
+      "complex_name": "BRM-SIN3A complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "803",
+      "complex_name": "BRG1-SIN3A-HDAC containing SWI/SNF remodeling complex I",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "806",
+      "complex_name": "BRM-SIN3A-HDAC complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "807",
+      "complex_name": "BRG1-associated complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "808",
+      "complex_name": "BRM-associated complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "2764",
+      "complex_name": "PRMT5 complex",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    },
+    {
+      "nominee": "WDR77",
+      "via_member": "PRMT5",
+      "complex_id": "3063",
+      "complex_name": "Brg1-associated complex II",
+      "conf_pvalue": 0.001105,
+      "afm_score": 0.898,
+      "coess": 20.526
+    }
+  ]
+}

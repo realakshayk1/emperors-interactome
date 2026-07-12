@@ -1,0 +1,52 @@
+{
+  "per_covariate_ks": {
+    "score": {
+      "ks": 0.12928527115544206,
+      "p": 4.982068947441972e-13
+    },
+    "iptm_mean": {
+      "ks": 0.13166810348300395,
+      "p": 1.691186798664942e-13
+    },
+    "ptm_mean": {
+      "ks": 0.061007624526320595,
+      "p": 0.003075814521076416
+    },
+    "iptm_ptm_gap": {
+      "ks": 0.11997282134330242,
+      "p": 2.8107411733295615e-11
+    },
+    "degree": {
+      "ks": 0.2555881412967872,
+      "p": 5.378478984696105e-50
+    }
+  },
+  "density_ratio": {
+    "score_only": {
+      "auc": 0.5548481137421412,
+      "ess_frac": 0.2671643509300306,
+      "weight_max": 41.44372044694436
+    },
+    "full_covariate": {
+      "auc": 0.6434150841544671,
+      "ess_frac": 0.09837894684972097,
+      "weight_max": 77.40948934632537
+    },
+    "divergence_invisible_to_score_frac": 0.6175568695196227
+  },
+  "nn_coverage": {
+    "score_only": {
+      "covered_frac": 0.8931572629051621,
+      "decoy_radius": 0.0,
+      "median_cand_nn": 0.0,
+      "median_decoy_nn": 0.0
+    },
+    "full_covariate": {
+      "covered_frac": 0.8001200480192077,
+      "decoy_radius": 0.4702644898004466,
+      "median_cand_nn": 0.25369837748097057,
+      "median_decoy_nn": 0.1711621137057444
+    }
+  },
+  "interpretation": "Full-covariate classifier AUC 0.643 vs score-only 0.555: 62% of the cal<->wild divergence is INVISIBLE to a 1-D score reweighting (the WCS failure is a null-completeness problem, not a reweighting bug). Full-covariate NN coverage of wild candidates by decoys = 80% -> the decoy null does span the candidate region."
+}

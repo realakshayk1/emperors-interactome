@@ -1,0 +1,79 @@
+{
+  "degree_cutoff": 9.0,
+  "n_decoy_total": 1788,
+  "n_hard": 1058,
+  "n_soft": 730,
+  "ks_all_vs_wild": {
+    "ks": 0.12928527115544206,
+    "p": 4.982068947441972e-13
+  },
+  "ks_hard_vs_wild": {
+    "ks": 0.15577308428097136,
+    "p": 3.5768641636440597e-14
+  },
+  "ks_note": "DIAGNOSTIC ONLY \u2014 the hard-negative rule was pre-registered before this was measured and is NOT tuned to reduce it",
+  "certified": {
+    "plain_decoy_null": {
+      "0.05": {
+        "certified": 58,
+        "high_conf_dropped": 103
+      },
+      "0.1": {
+        "certified": 114,
+        "high_conf_dropped": 49
+      },
+      "0.2": {
+        "certified": 179,
+        "high_conf_dropped": 11
+      }
+    },
+    "hard_region_null": {
+      "0.05": {
+        "certified": 33,
+        "high_conf_dropped": 128
+      },
+      "0.1": {
+        "certified": 129,
+        "high_conf_dropped": 37
+      },
+      "0.2": {
+        "certified": 190,
+        "high_conf_dropped": 8
+      }
+    },
+    "augmented_null": {
+      "0.05": {
+        "certified": 59,
+        "high_conf_dropped": 102
+      },
+      "0.1": {
+        "certified": 129,
+        "high_conf_dropped": 37
+      },
+      "0.2": {
+        "certified": 183,
+        "high_conf_dropped": 9
+      }
+    }
+  },
+  "contamination_sensitivity": {
+    "note": "eps = fraction of hard negatives that are truly interacting; removing them makes p-values LARGER -> FEWER certified (anti-conservative bias direction if they are wrongly kept as nulls). Bounds the augmented-null count.",
+    "by_eps": {
+      "0.01": {
+        "certified": 139,
+        "high_conf_dropped": 31,
+        "n_dropped_from_null": 10
+      },
+      "0.05": {
+        "certified": 139,
+        "high_conf_dropped": 31,
+        "n_dropped_from_null": 52
+      },
+      "0.1": {
+        "certified": 135,
+        "high_conf_dropped": 34,
+        "n_dropped_from_null": 105
+      }
+    }
+  }
+}

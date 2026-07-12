@@ -1,0 +1,20 @@
+{
+  "design": "temporal split: label with pre-2021 CORUM, test nominations against post-2021 newly-appearing co-complex pairs",
+  "cutoff_year": 2021,
+  "rationale": "AlphaFold-Multimer released late 2021; cutoff separates pre-AF (baseline) from AF-era (test) complexes, implementing markup #4's AF-provenance guard",
+  "corum_release": "5.3 (2026-04-14); historical release files not served by the current FastAPI backend, so complexes dated by earliest supporting-publication year via NCBI E-utilities",
+  "old_complexes": 5481,
+  "new_era_complexes": 145,
+  "old_cocomplex_pairs": 48226,
+  "newly_appearing_cocomplex_pairs": 348,
+  "candidate_pairs": 1666,
+  "candidates_that_are_newly_appearing": 0,
+  "candidate_proteins_in_newly_appearing": 12,
+  "gate_status": "NOT MET VIA THIS ROUTE \u2014 infeasible: zero positives",
+  "finding": "The temporal-split validation cannot be run with any statistical power on this data: ZERO of the 1,666 CM4AI candidate pairs are newly-appearing (post-2021) CORUM co-complex pairs, so the ground-truth positive set for the enrichment test is empty. Root cause: the CM4AI cell-map screen (690 proteins) does not intersect what recent CORUM curation added \u2014 only 12 of 252 proteins in newly-appearing pairs are in the candidate universe, and none of their specific pairs coincide. This is an honest infeasibility, reported rather than forced. AF-provenance guard (markup #4) is moot here because the test cannot run; had it run, the 145 AF-era complexes would have been the sensitivity-arm exclusion set.",
+  "validation_channels_that_DID_work": [
+    "WS2.2 semi-synthetic benchmark (known-truth prevalence sweep): conformal FDR<=q at all pi, benchmark cutoff inflates to 0.84 \u2014 validates the METHOD",
+    "WS3.3 experimental-PPI referee (IntAct physical): certified edges OR 21.9 enriched (p<1e-4) vs degree-matched null \u2014 validates the CERTIFIED SET against orthogonal wet-lab data",
+    "DepMap co-essentiality (original): certified 0.414 vs dropped 0.167 co-essential (perm p=0.016)"
+  ]
+}

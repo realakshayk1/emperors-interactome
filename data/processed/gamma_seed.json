@@ -1,0 +1,17 @@
+{
+  "delta_real_sigma": 0.6003980883288635,
+  "mean_gap": 0.03950991989716246,
+  "nonconf_sd": 0.06580620535807102,
+  "estimated_realized_fdr": {
+    "0.05": 0.18114842405339562,
+    "0.1": 0.29460221634737294,
+    "0.2": 0.45076408013449976
+  },
+  "delta_star": {
+    "0.05": 0.08492208594614191,
+    "0.1": 0.07700756827946179,
+    "0.2": 0.09600648924399748
+  },
+  "basis": "interp on identifying-experiment curve (n_splits=400)",
+  "shift_source": "wcs_results.shift: score_mean_calneg vs score_mean_wild / nonconf sd"
+}

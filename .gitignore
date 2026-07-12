@@ -16,6 +16,19 @@ data/processed/*
 !data/processed/wcs_results.json
 !data/processed/identifying_experiment.json
 !data/processed/D1_confident_hits_corroborated.csv
+!data/processed/dependence_robustness.json
+!data/processed/shift_attribution.json
+!data/processed/gamma_seed.json
+!data/processed/hard_negatives.json
+!data/processed/shift_control.json
+!data/processed/sensitivity.json
+!data/processed/benchmark_synth.json
+!data/processed/experimental_ppi_referee.json
+!data/processed/secondmap_audit.json
+!data/processed/loco_validation.json
+!data/processed/prospective_register.json
+!data/processed/timesplit_validation.json
+# --- WS0-WS4 hardening additions (above) ---
 # Second-map: track the small score/boundary JSONs, NOT the multi-GB model archives
 data/mimicry/*
 !data/mimicry/apms_pdockq.json
@@ -44,3 +57,8 @@ __pycache__/
 .env
 handoff/
 *.egg-info/
+
+# Second-map / gamma-seed external inputs: track small JSONs, NOT the 42MB parquet
+data/external/*.parquet
+!data/external/*.json
+!data/external/README.md

@@ -1,0 +1,55 @@
+{
+  "map": "Predictomes hs (Schmid & Walter, Mol Cell 2025, 85(6):1216-1232.e5, doi:10.1016/j.molcel.2025.01.034) \u2014 genome-scale human AF-Multimer interactome",
+  "n_proteins": 20196,
+  "n_pairs": 1614047,
+  "audit_axis": "num_unique_contacts (raw interface size; SPOC is a trained classifier and is degenerate for auditing)",
+  "spoc_axis_degenerate": true,
+  "high_conf_tier": "SPOC>=0.9",
+  "n_high_conf": 12767,
+  "native_null": "random-pair sample (negatives dominate); size 8000",
+  "certified_by_q": {
+    "0.05": 11642,
+    "0.1": 12420,
+    "0.2": 12765
+  },
+  "dropped_by_q": {
+    "0.05": 1125,
+    "0.1": 347,
+    "0.2": 2
+  },
+  "referee": {
+    "source": "DepMap co-essentiality (same referee as CM4AI; SPOC-independent -> purity firewall holds)",
+    "n_covered": 320,
+    "certified_coess": 0.42857142857142855,
+    "n_certified": 308,
+    "dropped_coess": 0.5,
+    "n_dropped": 12,
+    "background_coess": 0.43125,
+    "referee_alive_spoc_gradient": {
+      "0.90-1.01": {
+        "n": 320,
+        "coess": 0.43125
+      },
+      "0.75-0.90": {
+        "n": 189,
+        "coess": 0.17989417989417988
+      },
+      "0.50-0.75": {
+        "n": 909,
+        "coess": 0.08250825082508251
+      },
+      "0.05-0.50": {
+        "n": 2154,
+        "coess": 0.09702878365831012
+      },
+      "0.00-0.05": {
+        "n": 8170,
+        "coess": 0.08421052631578947
+      }
+    },
+    "separation": "NONE within SPOC>=0.9 tier \u2014 the tier is already uniformly co-essentiality-rich (classifier-curated); the co-essentiality signal is carried by SPOC, not the raw contact axis. Contrast: CM4AI's uncurated ipTM-threshold tier IS separated (certified 0.41 vs dropped 0.17)."
+  },
+  "gate": "G-GENERAL: audit method transfers to a second REAL map (>=2 real maps + semi-synthetic).",
+  "limitation": "ipTM-vs-ipTM cross-map referee replication needs the ~1.5 TB per-structure archives (not pulled).",
+  "seed": 42
+}

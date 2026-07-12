@@ -1,9 +1,9 @@
-.PHONY: reproduce data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets identifying figures test lint clean mimicry structure
+.PHONY: reproduce data idmap interactome labels calibrate audit prevalence depmap validate nominate figures test lint clean audit-self
 
 # Run modules with src on the path — no editable install required (robust across envs).
 PY=PYTHONPATH=src python -m emperor
 
-reproduce: data idmap interactome labels calibrate audit prevalence depmap validate nominate nominate_sets identifying figures ## full CPU pipeline, raw -> figures + certified/validation/nomination(+sets)+identifying
+reproduce: data idmap interactome labels calibrate audit prevalence depmap validate nominate figures ## full pipeline, raw -> figures + certified/validation/nomination
 
 data:      ## download raw datasets + provenance (small; DepMap sliced on use)
 	$(PY).download
@@ -11,7 +11,7 @@ data:      ## download raw datasets + provenance (small; DepMap sliced on use)
 idmap:     ## build UniProt-accession crosswalk
 	$(PY).idmap
 
-interactome: ## parse CM4AI Table 5 -> interactome.parquet
+interactome: ## parse Krogan Table 5 -> interactome.parquet
 	$(PY).interactome
 
 labels:    ## CORUM positives + native decoys, complex-disjoint cal/test split
@@ -32,25 +32,27 @@ depmap:    ## RAM-safe HTTP-range slice of the DepMap GLS matrix (held-out refer
 validate:  ## held-out DepMap co-essentiality enrichment (+ permutation p)
 	$(PY).validate
 
-nominate:  ## missing-member nomination for the target cancer complex (flagship worked example)
+nominate:  ## missing-member nomination for the target cancer complex
 	$(PY).nominate
-
-nominate_sets: ## FDR-controlled nomination SETS: per-complex certified missing members (<=q wrong)
-	$(PY).nominate_sets
-
-identifying: ## §A identifying experiment: toggle ONLY null-exchangeability -> control switches ON/OFF
-	$(PY).identifying
 
 figures:   ## regenerate all figures in results/figures/
 	$(PY).plots
-	$(PY).plots_identifying
-
-# --- one-off / external-data steps (NOT in `reproduce`; documented in DATA.md) ---
-mimicry:   ## second-map: pDockQ on the Krogan host-pathogen deposit (needs Zenodo download)
-	$(PY).mimicry
 
 structure: ## report the nominee's Boltz-2 interface (remote GPU step; see src/emperor/structure.py)
 	$(PY).structure
+
+audit-self: ## PLAN_V3 self-audit: dependence-robust FDR, shift attribution, hard-negatives, shift-control gate, sensitivity bound, semi-synthetic benchmark, experimental-PPI referee
+	$(PY).dependence
+	$(PY).shift_attribution
+	$(PY).hardnegatives
+	$(PY).shift_control
+	$(PY).gamma_seed
+	$(PY).sensitivity
+	$(PY).benchmark_synth
+	$(PY).experimental_ppi
+	$(PY).secondmap
+	$(PY).loco_validation
+	@echo "audit-self complete -> data/processed/{dependence_robustness,shift_attribution,hard_negatives,shift_control,sensitivity,benchmark_synth,experimental_ppi_referee,secondmap_audit,loco_validation}.json"
 
 test:      ## unit + integration tests
 	pytest -q

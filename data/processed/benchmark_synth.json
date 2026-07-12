@@ -1,0 +1,160 @@
+{
+  "pos_beta": [
+    1.8918970576459064,
+    2.7084271458177906
+  ],
+  "neg_beta": [
+    11.571984301651064,
+    34.09102987927778
+  ],
+  "real_score_means": {
+    "pos": 0.3945602094240837,
+    "neg": 0.25266927811975376
+  },
+  "prevalences": [
+    0.3,
+    0.1,
+    0.05,
+    0.02
+  ],
+  "q_sweep": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "n_seeds": 100,
+  "rows": [
+    {
+      "prevalence": 0.3,
+      "q": 0.05,
+      "conformal_fdr": 0.034019604244129836,
+      "conformal_fdr_se": 0.0013367940718274009,
+      "conformal_power": 0.4490049308657254,
+      "benchmark_fdr": 0.10564524309228701,
+      "benchmark_fdr_se": 0.0014993016883550823,
+      "benchmark_power": 0.5182036439716197,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.3,
+      "q": 0.1,
+      "conformal_fdr": 0.06887954512017608,
+      "conformal_fdr_se": 0.0017338127122625384,
+      "conformal_power": 0.48962575688681653,
+      "benchmark_fdr": 0.1993662039916809,
+      "benchmark_fdr_se": 0.001980982764679242,
+      "benchmark_power": 0.5674774897470877,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.3,
+      "q": 0.2,
+      "conformal_fdr": 0.13538901584284724,
+      "conformal_fdr_se": 0.00245924513053923,
+      "conformal_power": 0.5361168010654224,
+      "benchmark_fdr": 0.362238659242253,
+      "benchmark_fdr_se": 0.0016916823839873342,
+      "benchmark_power": 0.6320295871613206,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.1,
+      "q": 0.05,
+      "conformal_fdr": 0.03896565991764311,
+      "conformal_fdr_se": 0.002999341336412385,
+      "conformal_power": 0.3887892820818004,
+      "benchmark_fdr": 0.3163783391947669,
+      "benchmark_fdr_se": 0.0037416729335684176,
+      "benchmark_power": 0.5169888918620298,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.1,
+      "q": 0.1,
+      "conformal_fdr": 0.09172734082957801,
+      "conformal_fdr_se": 0.003983903170294555,
+      "conformal_power": 0.4324102152200209,
+      "benchmark_fdr": 0.48951219135006807,
+      "benchmark_fdr_se": 0.0031775617496799914,
+      "benchmark_power": 0.5662291345163127,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.1,
+      "q": 0.2,
+      "conformal_fdr": 0.17820287083469147,
+      "conformal_fdr_se": 0.00517852421098309,
+      "conformal_power": 0.47230998623009124,
+      "benchmark_fdr": 0.6857492589519636,
+      "benchmark_fdr_se": 0.0020081614600807826,
+      "benchmark_power": 0.6315342705692927,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.05,
+      "q": 0.05,
+      "conformal_fdr": 0.03678607355863361,
+      "conformal_fdr_se": 0.004005393309347563,
+      "conformal_power": 0.3361471174393016,
+      "benchmark_fdr": 0.491584756137387,
+      "benchmark_fdr_se": 0.004755908555149622,
+      "benchmark_power": 0.5141807614274836,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.05,
+      "q": 0.1,
+      "conformal_fdr": 0.08018018280404693,
+      "conformal_fdr_se": 0.00578182573092064,
+      "conformal_power": 0.38773299058705696,
+      "benchmark_fdr": 0.6680477949056249,
+      "benchmark_fdr_se": 0.0031262964926105676,
+      "benchmark_power": 0.5628467321891758,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.05,
+      "q": 0.2,
+      "conformal_fdr": 0.1913012118857244,
+      "conformal_fdr_se": 0.007675462522019068,
+      "conformal_power": 0.4355687188545906,
+      "benchmark_fdr": 0.8213462821001947,
+      "benchmark_fdr_se": 0.0015832695358803002,
+      "benchmark_power": 0.6273721165688038,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.02,
+      "q": 0.05,
+      "conformal_fdr": 0.0,
+      "conformal_fdr_se": 0.0,
+      "conformal_power": 0.0,
+      "benchmark_fdr": 0.7108175736231719,
+      "benchmark_fdr_se": 0.004654605158211114,
+      "benchmark_power": 0.5162351963402529,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.02,
+      "q": 0.1,
+      "conformal_fdr": 0.07943998531532674,
+      "conformal_fdr_se": 0.009650820484751261,
+      "conformal_power": 0.2716865248211248,
+      "benchmark_fdr": 0.8361178727466466,
+      "benchmark_fdr_se": 0.002577767387138084,
+      "benchmark_power": 0.5664415424491909,
+      "conformal_controls": true
+    },
+    {
+      "prevalence": 0.02,
+      "q": 0.2,
+      "conformal_fdr": 0.16954723900207122,
+      "conformal_fdr_se": 0.012699726163306372,
+      "conformal_power": 0.382762275132291,
+      "benchmark_fdr": 0.9212864648010283,
+      "benchmark_fdr_se": 0.0012370930294271715,
+      "benchmark_power": 0.6291929434429768,
+      "conformal_controls": true
+    }
+  ]
+}

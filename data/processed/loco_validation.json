@@ -1,0 +1,21 @@
+{
+  "instrument": "leave-one-complex-member-out recovery vs eligible-impostor null (G-VALID temporal substitute)",
+  "q": 0.1,
+  "n_complexes": 73,
+  "n_member_trials": 216,
+  "n_impostor_trials": 276,
+  "n_certified_edges": 132,
+  "observed_member_recovery": 0.49537037037037035,
+  "observed_impostor_recovery": 0.2318840579710145,
+  "recovery_gap": 0.2634863123993558,
+  "odds_ratio_member_vs_impostor": 3.2517201834862384,
+  "permutation_p": 0.0,
+  "n_permutations": 10000,
+  "seed": 42,
+  "null": "within-complex member/impostor label permutation (impostor = non-member with >=1 candidate edge into the complex)",
+  "preregistered_thresholds": {
+    "min_or": 2.0,
+    "max_p": 0.05
+  },
+  "gate_met": true
+}

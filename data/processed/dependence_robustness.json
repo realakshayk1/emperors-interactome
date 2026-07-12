@@ -1,0 +1,58 @@
+{
+  "n_candidates": 1666,
+  "n_high_conf": 161,
+  "n_cal_neg": 904,
+  "by_q": {
+    "0.05": {
+      "BH": {
+        "certified": 78,
+        "high_conf_dropped": 83
+      },
+      "BY": {
+        "certified": 0,
+        "high_conf_dropped": 161
+      },
+      "eBH": {
+        "certified": 0,
+        "high_conf_dropped": 161
+      }
+    },
+    "0.1": {
+      "BH": {
+        "certified": 132,
+        "high_conf_dropped": 35
+      },
+      "BY": {
+        "certified": 0,
+        "high_conf_dropped": 161
+      },
+      "eBH": {
+        "certified": 0,
+        "high_conf_dropped": 161
+      }
+    },
+    "0.2": {
+      "BH": {
+        "certified": 177,
+        "high_conf_dropped": 12
+      },
+      "BY": {
+        "certified": 0,
+        "high_conf_dropped": 161
+      },
+      "eBH": {
+        "certified": 0,
+        "high_conf_dropped": 161
+      }
+    }
+  },
+  "diagnostic": {
+    "min_possible_p": 0.0011049723756906078,
+    "n_tied_at_min_p": 33,
+    "harmonic_penalty_H_m": 7.995696577652327,
+    "by_effective_q_at_primary": 0.012506727716443901,
+    "interpretation": "BY/e-BH (valid under ARBITRARY dependence) certify 0 at every q: the harmonic penalty H_m~8 over m=1666 tests requires the leading conformal p-values to reach ~1e-4, but the calibration floor is 1/(n+1)=0.0011 and only 33 edges beat the entire null. HOWEVER, conformal p-values computed against a common calibration set are mutually dependent yet PROVEN PRDS across test points (Bates et al. 2023, Ann. Statist. 51(1):149-178, doi:10.1214/22-AOS2244, verified 2026-07-10), and BH controls FDR under PRDS (Benjamini & Yekutieli 2001). So plain BH already controls FDR here WITHOUT an independence assumption. The correct justification for the 132/35 headline is PRDS (not independence); the arbitrary-dependence price is simply unpayable at this calibration size and score separation.",
+    "headline_justification": "PRDS across test points (Bates 2023 -> BH via Benjamini-Yekutieli 2001); BY/e-BH reported as the arbitrary-dependence floor",
+    "citation_verified": "Bates, Candes, Lei, Romano, Sesia 2023, Ann. Statist. 51(1):149-178, doi:10.1214/22-AOS2244 (web-verified 2026-07-10)"
+  }
+}
