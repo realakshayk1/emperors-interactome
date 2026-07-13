@@ -5,7 +5,7 @@ evidence, ending on the reliability standard. Target ~3 minutes.
 
 ## Through-line (say this at the top)
 
-"The Krogan/Ideker CM4AI map — a Nature 2025 AI interactome from the Gladstone Institutes — is
+"The CM4AI cell map — a Nature 2025 AI interactome from the Bridge2AI consortium co-led by Nevan Krogan (Gladstone) and Trey Ideker — is
 one of the few you can actually audit, because it ships a native random-pair null. I audited its
 'high-confidence' complexes with distribution-free error control and let evidence the model never
 saw — DepMap co-essentiality — be the judge. Here's what survives, and why it matters."
@@ -14,7 +14,7 @@ saw — DepMap co-essentiality — be the judge. Here's what survives, and why i
 
 **0:00–0:25 — The claim.** Title card. One line: a "high-confidence" cutoff tuned on a balanced
 benchmark hides a much larger false-discovery rate in the real regime, where true interactions are
-rare. Name the map (CM4AI, Krogan/Ideker, *Nature* 2025).
+rare. Name the map (CM4AI, Schaffer et al. / Ideker lab, Bridge2AI Krogan/Ideker consortium, *Nature* 2025).
 
 **0:25–1:00 — The prevalence wedge.** Show `fig1_audit_wedge.png` (panel A). Narrate: "on
 known-truth data, a fixed benchmark cutoff's realized FDR climbs toward 0.9 as interactions grow

@@ -6,7 +6,7 @@
 
 ## Summary
 
-The Krogan/Ideker CM4AI multimodal cell map (Gladstone Institutes, *Nature* 2025) is among the few published AI interactomes that can be audited externally, because it ships a raw confidence axis (AlphaFold-Multimer ipTM) alongside a native random-pair null — the exchangeable calibration set that honest, distribution-free error control requires. That matters because a "high-confidence" cutoff calibrated on a class-balanced benchmark hides a much larger false-discovery rate in the real regime of a genome-scale screen, where true interactions are rare — and we measure exactly that gap.
+The CM4AI multimodal cell map (Schaffer et al., *Nature* 2025, Ideker lab) — from the NIH Bridge2AI *Cell Maps for AI* consortium co-led by Nevan Krogan (Gladstone Institutes) and Trey Ideker (UC San Diego) — is among the few published AI interactomes that can be audited externally, because it ships a raw confidence axis (AlphaFold-Multimer ipTM) alongside a native random-pair null — the exchangeable calibration set that honest, distribution-free error control requires. That matters because a "high-confidence" cutoff calibrated on a class-balanced benchmark hides a much larger false-discovery rate in the real regime of a genome-scale screen, where true interactions are rare — and we measure exactly that gap.
 
 Applying **distribution-free conformal FDR control** to the map's published high-confidence tier, **35 of 161 edges (22%) fail honest error control at q=0.10**. The audit's direction is confirmed by an independent referee the structural model never saw: **certified edges are 41% co-essential (DepMap) versus 17% for dropped edges** (permutation p=0.016), under a strict purity firewall that keeps the referee out of every score, label, and calibration set. We then interrogate the guarantee itself — measuring the calibration-to-candidate exchangeability violation and converting it into a conditional robustness statement — and validate the certified set against orthogonal wet-lab physical interactions and by held-out complex-member recovery.
 
@@ -24,7 +24,7 @@ The audit is reproducible from a bare clone (interim tables are regenerated from
 
 ## Data and configuration
 
-- **Primary map**: Krogan/Ideker CM4AI, Schaffer et al., *Nature* 2025 (doi:10.1038/s41586-025-08878-3); AlphaFold-Multimer ipTM as the confidence axis, with 1,788 native random-pair decoys as calibration negatives.
+- **Primary map**: CM4AI, Schaffer et al., *Nature* 2025 (doi:10.1038/s41586-025-08878-3; Bridge2AI Cell Maps for AI consortium, Krogan/Ideker); AlphaFold-Multimer ipTM as the confidence axis, with 1,788 native random-pair decoys as calibration negatives.
 - **Positive labels**: CORUM human complexes, complex-disjoint calibration/test split.
 - **Held-out referee**: DepMap co-essentiality (Wainberg et al. 2021) — strict purity firewall.
 - **Target FDR**: q = 0.10 (reported across a q ∈ {0.05, 0.10, 0.20} sweep).
