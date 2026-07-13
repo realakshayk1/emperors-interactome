@@ -80,9 +80,13 @@ external reference DOI was resolved and its author/year/title checked against Cr
 
 ## B. External references (18 DOIs, all resolve; author/year/title verified via Crossref)
 
-All 18 reference DOIs resolve and match the cited authors and years. Spot-verified in
-detail: Bates 2023 (AoS 51(1):149–178), Schmid & Walter 2025 (Mol Cell 85(6):1216–1232.e5),
-Benjamini-Yekutieli 2001, Rosenbaum 2002, Wainberg 2021.
+All 18 reference DOIs resolve via Crossref, and the returned **author + year + title** match
+the cited works for every reference. Crossref-confirmed structural fields where returned:
+Bates 2023 — *The Annals of Statistics*, vol 51, issue 1 (Crossref returns no page field, so the
+cited page range "149–178" is from the reference itself and is **not** independently confirmed
+here); Schmid & Walter 2025 — *Molecular Cell*, vol 85, issue 6, pages 1216–1232.e5 (all
+Crossref-confirmed). The verification performed was DOI-resolution + author/year/title matching
+for all 18; volume/issue/page were spot-checked only where noted.
 
 ### One cosmetic discrepancy (not an error, worth a one-line fix)
 - **Schaffer 2025 (CM4AI), doi:10.1038/s41586-025-08878-3.** The reference list gives the

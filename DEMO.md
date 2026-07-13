@@ -1,50 +1,52 @@
-# DEMO — 3-minute video script (notebook + recorded narration)
+# DEMO — walkthrough script
 
-Vehicle: run `notebooks/1.0-demo.ipynb` and narrate over it. Hard cap **3:00**. Required by the hackathon.
-Goal: land the contrarian thesis, prove it with held-out evidence, end on a concrete nomination.
-Judging leverage: Demo 30% (visual + live), plus it showcases Claude Use, Depth, Impact in one arc.
+A short narrated walkthrough of `notebooks/1.0-demo.ipynb`. One thesis, proven with held-out
+evidence, ending on the reliability standard. Target ~3 minutes.
 
-## Through-line (say this in one breath at the top)
-"Published AI interactomes call thousands of protein complexes 'high-confidence.' I audited one with
-distribution-free error control and let evidence the model never saw — DepMap co-essentiality — be the judge.
-Here's what survives, and a cancer complex member it lets me nominate."
+## Through-line (say this at the top)
 
-## Frame-by-frame (≈ 6 beats, ~30s each)
+"The Krogan/Ideker CM4AI map — a Nature 2025 AI interactome from the Gladstone Institutes — is
+one of the few you can actually audit, because it ships a native random-pair null. I audited its
+'high-confidence' complexes with distribution-free error control and let evidence the model never
+saw — DepMap co-essentiality — be the judge. Here's what survives, and why it matters."
 
-**0:00–0:25 — The claim.** Title card. One line: raw AlphaFold-Multimer confidence is overconfident and the
-field's FDRs aren't distribution-free. Show the target map (CM4AI cell map (Schaffer et al., *Nature* 2025), U2OS cancer cells).
+## Beats (~5, ~30s each)
 
-**0:25–0:55 — Frame 1: overconfidence.** Show `reliability_raw.png` — raw ipTM/pDockQ2 vs actual precision on
-CORUM. Narrate: "well above the diagonal — the scores claim more certainty than they earn." (ECE number on screen.)
+**0:00–0:25 — The claim.** Title card. One line: a "high-confidence" cutoff tuned on a balanced
+benchmark hides a much larger false-discovery rate in the real regime, where true interactions are
+rare. Name the map (CM4AI, Krogan/Ideker, *Nature* 2025).
 
-**0:55–1:30 — Frame 2: honest re-scoring.** Show `fdr_curve.png` + the certified-vs-dropped count at q=0.10.
-Narrate the headline: **"35 of the 161 'high-confidence' complexes — 22% — don't survive honest FDR
-control."** Then `prevalence_shift.png`: "and unlike benchmark-estimated FDR, this guarantee holds when real
-interactions are rare — the benchmark cutoff's error climbs to 90% as interactions get sparse; conformal stays near 10%."
+**0:25–1:00 — The prevalence wedge.** Show `fig1_audit_wedge.png` (panel A). Narrate: "on
+known-truth data, a fixed benchmark cutoff's realized FDR climbs toward 0.9 as interactions grow
+rare — while conformal + BH stays bounded at the target q. That gap is the problem." This is the
+single headline motivation.
 
-**1:30–2:05 — Frame 3: the referee agrees.** Show `heldout_enrichment.png`. Narrate: "the certified set is
-**41% co-essential vs 17% for the dropped edges** (permutation p=0.016) — cancer-cell-line dependency data the
-structure model never saw. Honest error control isn't just conservative; it's more biologically real."
+**1:00–1:35 — The audit.** Show the certified-vs-dropped count at q=0.10. Narrate the headline:
+"**35 of 161 published high-confidence edges — 22% — don't survive honest FDR control.** The audit
+has teeth precisely because this map ships the null that makes distribution-free control possible."
 
-**2:05–2:45 — Frame 4: the nomination.** Target = leukemia-associated **MLL1-WDR5 complex (CORUM 5386)**. Show
-the nominee lighting up on held-out co-essentiality, and its Boltz-2 predicted interface — `nominee_structure.png`
-— with the physical-validity check. Narrate: "so I nominate **KANSL3** as a missing member of the MLL1-WDR5
-complex, certified risk 0.007, independently confirmed as an NSL-complex subunit held out of the pipeline and
-corroborated by a Boltz-2 interface." (Optional extension beat: the audit generalizes — 393 complexes get
-FDR-controlled missing-member nominations; and auditability itself is a property of the data release.)
+**1:35–2:15 — The referee agrees.** Show `fig1_audit_wedge.png` (panel B) / `heldout_enrichment.png`.
+Narrate: "the certified set is **41% co-essential versus 17% for the dropped edges** (p=0.016) —
+cancer-cell dependency data the structure model never saw. Honest error control isn't just
+conservative; the surviving edges are more biologically real."
 
-**2:45–3:00 — Close.** "One map, honestly audited: fewer false complexes, a cleaner core, and a corroborated
-new target — the reliability layer structural interactomics is missing." Card: repo link + "Built with Claude Science."
+**2:15–2:45 — Reliability, made precise.** One line that the guarantee was stress-tested: the
+strongly-certified core stays controlled under exchangeability violations far larger than the one
+actually present, and it is independently enriched for wet-lab physical interactions. (Depth cue;
+don't belabor the statistics on camera.)
+
+**2:45–3:00 — Close.** "One map, honestly audited: fewer false complexes, a cleaner core, and a
+concrete reliability standard for AI interactomes — ship a raw confidence axis and a native null,
+so your map can be audited too." Card: repo link.
 
 ## Recording tips
-- Pre-run the notebook so cells are cached; narrate over a clean scroll (don't wait on compute on camera).
-- Put the key number on each figure (ECE, #dropped, enrichment fold, certified risk) as a title — readable at 720p.
-- If Stretch 1 didn't finish, replace Frame 4's structure with the co-essentiality nomination alone — still lands.
-- Keep energy high in the first 25s; judges decide fast. Lead with the contrarian claim, not the methods.
+- Pre-run the notebook so cells are cached; narrate over a clean scroll.
+- Put the key number on each figure (wedge 0.9 vs q; 35/161; 41% vs 17%) as a title — readable at 720p.
+- Lead with the wedge and the map lineage, not the methods. One headline number: 22%. One positive
+  result: 41% vs 17% co-essential.
 
-## Assets checklist (all in results/figures/)
-Core arc: [x] reliability_raw.png  [x] fdr_curve.png  [x] prevalence_shift.png
-[x] heldout_enrichment.png  [x] nominee_structure.png
-Extension (optional deeper-cut beats): [x] overconfidence_structured.png (Mondrian)
-[x] shift_diagnostic.png + wcs_vs_plain_fdr.png (honest negative)  [x] baseline_headtohead.png
-[x] auditability_boundary.png (ship-the-null)  [x] crossarch_pilot.png (Boltz-2 corroboration)
+## Assets (results/figures/)
+- [ ] fig1_audit_wedge.png (prevalence wedge + co-essentiality)
+- [ ] fig2_guarantee.png (reliability stress-test — supporting)
+- [ ] fig3_validation.png (independent physical validation — supporting)
+- [ ] heldout_enrichment.png (referee enrichment)
