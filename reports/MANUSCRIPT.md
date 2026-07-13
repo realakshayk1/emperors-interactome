@@ -165,7 +165,7 @@ All four manuscript figures are rendered and verified (geometric §9.1 + percept
 - Humphreys et al. (2021). *Computed structures of core eukaryotic protein complexes*. Science 374(6573). doi:10.1126/science.abm4805
 - Quiñonero-Candela et al. (2008). *Dataset Shift in Machine Learning*. MIT Press. doi:10.7551/mitpress/9780262170055.001.0001
 - Rosenbaum (2002). *Observational Studies (2nd ed.)*. Springer Series in Statistics. doi:10.1007/978-1-4757-3692-2
-- Schaffer et al. (2025). *A multimodal cell map of human cells (CM4AI)*. Nature. doi:10.1038/s41586-025-08878-3
+- Schaffer et al. (2025). *Multimodal cell maps as a foundation for structural and functional genomics (CM4AI)*. Nature. doi:10.1038/s41586-025-08878-3
 - Schmid, Walter (2025). *Predictomes, a classifier-curated database of AlphaFold-modeled protein-protein interactions*. Molecular Cell 85(6):1216–1232.e5. doi:10.1016/j.molcel.2025.01.034
 - Tsitsiridis et al. (2022). *CORUM: comprehensive resource of mammalian protein complexes – 2022*. Nucleic Acids Research 51(D1). doi:10.1093/nar/gkac1015
 - Vovk, Gammerman, Shafer (2022). *Algorithmic Learning in a Random World (2nd ed.)*. Springer. doi:10.1007/978-3-031-06649-8
