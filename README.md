@@ -70,9 +70,12 @@ The audit transfers to a second, independent real map — the genome-scale human
 make reproduce    # raw → idmap → labels → conformal audit → validate → nominate → figures
 make audit-self   # the full hardened analysis suite (dependence, shift, sensitivity, second map, recovery)
 make test         # unit + adversarial firewall + held-out-recovery tests (run AFTER make reproduce)
+make verify       # recheck every manuscript number against its artifact (no interim data needed)
 ```
 
-`make test` must follow `make reproduce`: the firewall and held-out-recovery tests read `data/interim/`, so on a fresh clone they fail (4 failures) until the pipeline has run once. After `make reproduce`: 24 passed, 1 skipped.
+`make verify` runs on a bare clone as-is: the result artifacts are committed, and the checker re-reads each one at check time rather than trusting a transcribed value. 74 claims across 12 artifacts; it exits non-zero if any number has drifted, and CI runs it on every push.
+
+`make test` must follow `make reproduce`: the firewall and held-out-recovery tests read `data/interim/`, so on a fresh clone 4 of the 27 fail until the pipeline has run once.
 
 Reproducible from a bare clone: interim tables regenerate from raw data, and the second-map score table auto-fetches from its public source. Every numeric claim traces to a result JSON in `data/processed/`.
 
@@ -93,6 +96,6 @@ Reproducible from a bare clone: interim tables regenerate from raw data, and the
 | `src/emperor/` | pipeline (`conformal.py`, `validate.py`, `nominate.py`) + hardening modules |
 | `data/processed/` | every result JSON; each numeric claim traces to one |
 | `results/figures/` | generated figures |
-| `tests/` | firewall, dependence, and held-out-recovery tests (25 tests; run `make reproduce` first — the firewall and recovery tests read `data/interim/`) |
+| `tests/` | firewall, dependence, held-out-recovery, and claim-verification tests (27 tests; run `make reproduce` first — the firewall and recovery tests read `data/interim/`) |
 
 Licensed MIT.

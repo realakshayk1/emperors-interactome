@@ -36,7 +36,14 @@ from .conformal import conformal_pvalues, benjamini_hochberg
 
 
 def run(n_splits: int = 400, deltas=None, n_pos: int = 200, n_null: int = 800,
-        n_cal: int = 1500):
+        n_cal: int = 1500, write: bool = True):
+    """Sweep delta and measure realized FDR.
+
+    `write=False` returns the result without touching data/processed/. Callers that
+    run a reduced sweep -- the unit test uses n_splits=150 over three deltas -- must
+    pass it, or they overwrite the committed 400-split artifact that the manuscript
+    and figures cite with a coarser one.
+    """
     if deltas is None:
         deltas = [0.0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0]
     qs = sorted(set(C.Q_SWEEP) | {C.Q})
@@ -68,8 +75,9 @@ def run(n_splits: int = 400, deltas=None, n_pos: int = 200, n_null: int = 800,
                     "BH procedure", "q", "conformal p-value construction"],
         q_primary=C.Q, q_sweep=qs, n_splits=n_splits, rows=rows,
     )
-    C.PROCESSED.mkdir(parents=True, exist_ok=True)
-    (C.PROCESSED / "identifying_experiment.json").write_text(json.dumps(out, indent=2))
+    if write:
+        C.PROCESSED.mkdir(parents=True, exist_ok=True)
+        (C.PROCESSED / "identifying_experiment.json").write_text(json.dumps(out, indent=2))
     return out
 
 

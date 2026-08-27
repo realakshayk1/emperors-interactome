@@ -1,0 +1,23 @@
+# The repository's claim is that stated confidence should be checkable. This applies
+# that standard to the repository itself, on every push.
+#
+# It needs no raw data and no pipeline run: the result artifacts are committed, and
+# verify_claims.py re-reads them at check time. So a number can never drift from the
+# artifact it came from without the build going red.
+name: verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  claims:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Every manuscript number matches its artifact
+        run: python scripts/verify_claims.py

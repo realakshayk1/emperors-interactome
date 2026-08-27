@@ -60,8 +60,11 @@ audit-self: data/interim/labels.parquet ## PLAN_V3 self-audit (needs interim fil
 test:      ## unit + integration tests
 	pytest -q
 
+verify:    ## check every manuscript number against its result artifact (no interim data needed)
+	python scripts/verify_claims.py
+
 lint:      ## format + lint
-	ruff format src tests && ruff check src tests
+	ruff format src tests scripts && ruff check src tests scripts
 
 clean:     ## remove interim/processed (keeps immutable data/raw)
 	rm -rf data/interim/* data/processed/* results/figures/*

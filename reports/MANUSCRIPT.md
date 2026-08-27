@@ -130,7 +130,7 @@ Rather than hide this, we quantify it three ways — a breaking-point δ*, a rea
 
 **5.6 Independent validation.** IntAct physical interactions provide an orthogonal channel; enrichment is tested against a degree-matched null by 10,000-permutation test, with a provenance/independence audit over source databases, detection methods, and publications. The semi-synthetic benchmark fits Beta laws to the real positive/negative score distributions and sweeps prevalence π over 100 seeds. LOCO recovery uses within-complex label permutation (10,000 permutations) against an eligible-impostor null. All randomness uses SEED=42.
 
-**5.7 Reproducibility.** Every numeric claim traces to a result JSON in `data/processed/`, regenerable via `make audit-self` (the full hardened suite, ~1 min) from a bare clone; interim tables regenerate from raw data and the second-map score table auto-fetches from its public source. Unit, adversarial-firewall, and held-out-recovery tests (25 tests) accompany the pipeline; the firewall and recovery tests read interim tables, so `make reproduce` must precede `make test` on a fresh clone.
+**5.7 Reproducibility.** Every numeric claim traces to a result JSON in `data/processed/`, regenerable via `make audit-self` (the full hardened suite, ~1 min) from a bare clone; interim tables regenerate from raw data and the second-map score table auto-fetches from its public source. Unit, adversarial-firewall, and held-out-recovery tests (27 tests, including a gate that rechecks every number in this document against its artifact) accompany the pipeline; the firewall and recovery tests read interim tables, so `make reproduce` must precede `make test` on a fresh clone.
 
 ## Data and Code Availability
 

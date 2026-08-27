@@ -5,7 +5,8 @@ from emperor.identifying import run
 
 
 def test_control_on_when_exchangeable_off_when_not():
-    o = run(n_splits=150, deltas=[0.0, 1.0, 2.0])
+    # write=False: this reduced sweep must not clobber the committed 400-split artifact
+    o = run(n_splits=150, deltas=[0.0, 1.0, 2.0], write=False)
     qp = o["q_primary"]
     by_delta = {r["delta"]: r for r in o["rows"]}
     # ON: exchangeable null (delta=0) controls FDR at/below q (+ small MC slack)

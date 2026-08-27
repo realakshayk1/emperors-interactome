@@ -110,7 +110,7 @@ for all 18; volume/issue/page were spot-checked only where noted.
 ## C. Reproducibility
 - `make audit-self` regenerates all 9 result JSONs from raw → interim (exit 0, ~1 min).
 - All numbers above were checked against THIS fresh regeneration, not cached values.
-- pytest collects 25 tests. Four require `data/interim/` and fail on a tree where the
+- pytest collects 27 tests. Four require `data/interim/` and fail on a tree where the
   pipeline has not been run; run `make reproduce` first.
 
 ## Summary
