@@ -82,6 +82,6 @@ the interim files (`make data idmap interactome labels depmap`), `secondmap` aut
 public Predictomes CSV (28 MB) and builds the parquet, and the IntAct referee reads its cache
 shipped in `data/external/`. All nine module numbers reproduce (secondmap 20,196 proteins /
 degenerate SPOC axis / certified 12,420 at q=0.10; LOCO members 49.5% vs impostors 23.2%,
-OR 3.3). `pytest` = **25/25** from the same clean clone (21 hardening/base + 4 pre-existing).
+OR 3.3). `pytest` collects **27** tests from the same clean clone (21 hardening/base, 4 pre-existing, 2 claim-gate).
 All numbers in this scorecard are emitted to
 `data/processed/*.json`.

@@ -43,7 +43,7 @@ external reference DOI was resolved and its author/year/title checked against Cr
 | Measured shift | 0.60σ | 0.6004 | ✓ |
 | KS score | 0.129 | 0.1293 | ✓ |
 | KS degree (dominant) | 0.256 | 0.2556 | ✓ |
-| Density-ratio AUC score-only | 0.56 | 0.5548 | ✓ |
+| Density-ratio AUC score-only | 0.56 | 0.5548 | ✗ **FAIL** — 0.5548 rounds to 0.55; see amendment above. Manuscript corrected. |
 | Density-ratio AUC full | 0.64 | 0.6434 | ✓ |
 | Divergence invisible to score | 62% | 0.6176 | ✓ |
 | Breaking point δ* | 0.08σ | 0.0770 | ✓ |
@@ -114,7 +114,10 @@ for all 18; volume/issue/page were spot-checked only where noted.
   pipeline has not been run; run `make reproduce` first.
 
 ## Summary
-**Every numeric claim in the manuscript is backed by a matching artifact value (54/54).**
+**~~Every numeric claim in the manuscript is backed by a matching artifact value (54/54).~~**
+**Amended: 53/54.** One row above is a FAIL that this pass recorded as a PASS. The claim
+of full coverage is now made by `scripts/verify_claims.py` instead, which re-reads each
+artifact at check time (74 claims, 12 artifacts) and runs in CI.
 **Every reference DOI resolves to the cited work (18/18).** The single actionable item is the
 Schaffer title paraphrase, which is cosmetic. No overstated statistics, no unsupported numbers,
 no fabricated citations.

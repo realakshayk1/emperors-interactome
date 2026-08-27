@@ -1,5 +1,12 @@
 # TASKS — day-by-day to July 13, 9 PM ET
 
+> **Status: historical build plan, retained as a record. The checkboxes below were never
+> maintained and should not be read as progress — every task's named verification artifact
+> exists in the repo (T1–T18 modules, figures, and result JSONs all shipped), and the work
+> has since been extended well past this plan. For what the repository actually contains and
+> how to reproduce it, read [README.md](README.md); for the results, [reports/MANUSCRIPT.md](reports/MANUSCRIPT.md).**
+
+
 Today = Tue Jul 8. Submission = Mon Jul 13, 9 PM ET. ~5.5 working days. Check items off with date/commit.
 `[P]` = parallel-safe. Each task names a verify step. Core is D1–D3; stretches D4; polish/ship D5–D6.
 
