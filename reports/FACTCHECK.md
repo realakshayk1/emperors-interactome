@@ -7,6 +7,18 @@ external reference DOI was resolved and its author/year/title checked against Cr
 
 ## Verdict: all claims verified. One cosmetic citation-title discrepancy (below). Zero numeric errors.
 
+> **Amendment (2026-08-17).** This verdict was wrong on one row, and the error was in this
+> document's own check. The table below records `Density-ratio AUC score-only | 0.56 | 0.5548 | PASS`.
+> 0.5548 rounds to **0.55**, not 0.56 — the manuscript value looks double-rounded via 0.555 — so that
+> row should have been a FAIL and the "zero numeric errors" verdict does not hold. The manuscript is
+> now corrected to 0.55. Two further issues escaped this same pass: the second-map certified-vs-dropped
+> comparison rests on n=12 dropped edges (now stated), and the Figure 2 caption said "three routes"
+> where the body says two. The test count in this document's header (21/21) is also stale; pytest
+> collects 25.
+>
+> The mechanical replacement is `scripts/verify_claims.py` (74/74, exit 0), which re-reads each
+> artifact at check time rather than comparing against a hand-transcribed value.
+
 ---
 
 ## A. Internal numeric claims (54 checked, all PASS)
@@ -98,7 +110,8 @@ for all 18; volume/issue/page were spot-checked only where noted.
 ## C. Reproducibility
 - `make audit-self` regenerates all 9 result JSONs from raw → interim (exit 0, ~1 min).
 - All numbers above were checked against THIS fresh regeneration, not cached values.
-- pytest 21/21 (working repo) / 25/25 (bare clone incl. pre-existing tests).
+- pytest collects 25 tests. Four require `data/interim/` and fail on a tree where the
+  pipeline has not been run; run `make reproduce` first.
 
 ## Summary
 **Every numeric claim in the manuscript is backed by a matching artifact value (54/54).**

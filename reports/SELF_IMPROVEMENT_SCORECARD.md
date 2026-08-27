@@ -16,7 +16,7 @@ protein/node-disjoint held-out FDR **0.29 / 0.32 / 0.37** at q = 0.05 / 0.10 / 0
 | **G-VALID (recovery)** | Nomination procedure recovers held-out true members | ✅ **met** (LOCO) | Members recovered 49.5% vs eligible-impostor null 23.2%, OR 3.3, perm p<1e-4; temporal instrument infeasible (0 positives) so substituted with leave-one-member-out |
 | **G-VALID (orthogonal)** | Certified set validated by independent data | ✅ **met** | WS3.3 IntAct: certified matched-null OR 6.2 enriched (perm p<1e-4, 101/132 have physical evidence) vs degree-matched null; provenance over a 40-edge per-pair subset spans 5 DBs / 13 methods / 35 PMIDs |
 | **G-NOVELTY** | KANSL3 demoted; prospective register frozen | ✅ **met** | WS3.2: dated shortlist + confirm/refute criteria; KANSL3 → labeled positive control |
-| **G-INTEGRITY** | Purity firewall + dependence robustness | ✅ **met** | 21/21 tests incl. 5 adversarial firewall + no-signal control + 3 LOCO held-out-recovery; BY/e-BH floor computed |
+| **G-INTEGRITY** | Purity firewall + dependence robustness | ✅ **met** | 25 tests (24 pass, 1 skip; requires `make reproduce` first) incl. 5 adversarial firewall + no-signal control + 3 LOCO held-out-recovery; BY/e-BH floor computed |
 
 ## What changed vs. the baseline
 
@@ -74,7 +74,7 @@ protein/node-disjoint held-out FDR **0.29 / 0.32 / 0.37** at q = 0.05 / 0.10 / 0
 
 `make audit-self` runs the entire hardened suite (dependence → shift attribution →
 hard negatives → shift-control gate → Γ seed → sensitivity → semi-synthetic → PPI
-referee → second real map → LOCO recovery) in ~1 min. `make test` = 21/21.
+referee → second real map → LOCO recovery) in ~1 min. `make test` collects 25 tests (four need `data/interim/`, so run `make reproduce` first).
 **Reproducibility check (2026-07-12) — verified end-to-end from a bare git clone.**
 `git clone` ships no interim files and not the 42 MB Predictomes parquet (both git-ignored by
 design). `make audit-self` nonetheless completes with **exit 0**: its prerequisite regenerates

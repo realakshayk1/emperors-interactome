@@ -62,3 +62,7 @@ handoff/
 data/external/*.parquet
 !data/external/*.json
 !data/external/README.md
+
+# Local manuscript drafts and their LaTeX builds. Ignored rather than merely
+# untracked so a stray `git add -A` cannot commit a draft.
+paper/

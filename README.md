@@ -38,7 +38,7 @@ What we *can* guarantee is **conditional**: via a Rosenbaum-style sensitivity bo
 
 ![Figure 2](results/figures/fig2_guarantee.png)
 
-**Figure 2. Interrogating the guarantee (the paper's spine).** (A) Per-covariate shift: union-graph degree (KS 0.26) is the dominant calibration-to-candidate axis, not the confidence score (KS 0.13). (B) Three routes agree the realized FDR under the measured shift is ≈0.30 at nominal q=0.10, with control breaking at δ*≈0.08σ. (C) Rosenbaum-Γ worst-case FDR: the certified core stays ≤ q up to Γ\*≈31, far past the measured Γ≈1.8.
+**Figure 2. Interrogating the guarantee (the paper's spine).** (A) Per-covariate shift: union-graph degree (KS 0.26) is the dominant calibration-to-candidate axis, not the confidence score (KS 0.13). (B) Two independent estimates agree the realized FDR under the measured shift is ≈0.30 at nominal q=0.10 (identifying-curve 0.295; protein-disjoint empirical 0.319), with control breaking at δ*≈0.08σ. (C) Rosenbaum-Γ worst-case FDR: the certified core stays ≤ q up to Γ\*≈31, far past the measured Γ≈1.8.
 
 ---
 
@@ -58,7 +58,7 @@ The audit transfers to a second, independent real map — the genome-scale human
 
 ![Figure 4](results/figures/fig4_secondmap.png)
 
-**Figure 4. A second real map (Predictomes).** (A) The audit transfers on a raw interface-contact axis (SPOC≥0.9 tier, 12,767 edges; certified/dropped across q). (B) The DepMap referee is alive on this map (co-essential fraction climbs 0.08→0.43 across SPOC bins) but the tier is already uniformly co-essentiality-rich — classifier-curated, so little for the audit to drop, unlike CM4AI's uncurated ipTM tier.
+**Figure 4. A second real map (Predictomes).** (A) The audit transfers on a raw interface-contact axis (SPOC≥0.9 tier, 12,767 edges; certified/dropped across q). (B) The DepMap referee is alive on this map (co-essential fraction climbs 0.08→0.43 across SPOC bins) but the within-tier certified/dropped comparison rests on only 12 dropped edges with referee coverage and is underpowered. What is well-supported is the contrast in removal rate: 22% on CM4AI’s uncurated ipTM tier vs 347/12,767 (2.7%) here.
 
 **The contribution, in one sentence:** distribution-free auditing of an AI interactome is only valid to the extent the map ships a calibration null exchangeable with its candidate edges — we quantify how much violation the guarantee tolerates on a real map (Γ\*), and argue that shipping a **raw confidence axis plus a native random-pair null** should be a release standard, tested by transferring the audit to a second map.
 
@@ -69,8 +69,10 @@ The audit transfers to a second, independent real map — the genome-scale human
 ```bash
 make reproduce    # raw → idmap → labels → conformal audit → validate → nominate → figures
 make audit-self   # the full hardened analysis suite (dependence, shift, sensitivity, second map, recovery)
-make test         # unit + adversarial firewall + held-out-recovery tests
+make test         # unit + adversarial firewall + held-out-recovery tests (run AFTER make reproduce)
 ```
+
+`make test` must follow `make reproduce`: the firewall and held-out-recovery tests read `data/interim/`, so on a fresh clone they fail (4 failures) until the pipeline has run once. After `make reproduce`: 24 passed, 1 skipped.
 
 Reproducible from a bare clone: interim tables regenerate from raw data, and the second-map score table auto-fetches from its public source. Every numeric claim traces to a result JSON in `data/processed/`.
 
@@ -91,6 +93,6 @@ Reproducible from a bare clone: interim tables regenerate from raw data, and the
 | `src/emperor/` | pipeline (`conformal.py`, `validate.py`, `nominate.py`) + hardening modules |
 | `data/processed/` | every result JSON; each numeric claim traces to one |
 | `results/figures/` | generated figures |
-| `tests/` | firewall, dependence, and held-out-recovery tests (21 tests) |
+| `tests/` | firewall, dependence, and held-out-recovery tests (25 tests; run `make reproduce` first — the firewall and recovery tests read `data/interim/`) |
 
 Licensed MIT.
