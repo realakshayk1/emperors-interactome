@@ -17,6 +17,7 @@ data/processed/*
 !data/processed/identifying_experiment.json
 !data/processed/D1_confident_hits_corroborated.csv
 !data/processed/dependence_robustness.json
+!data/processed/calibrator_comparison.json
 !data/processed/shift_attribution.json
 !data/processed/gamma_seed.json
 !data/processed/hard_negatives.json

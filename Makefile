@@ -60,6 +60,9 @@ audit-self: data/interim/labels.parquet ## PLAN_V3 self-audit (needs interim fil
 test:      ## unit + integration tests
 	pytest -q
 
+calibrators: ## feasibility bounds + e-BH under harmonic vs threshold calibration
+	$(PY).calibrators
+
 verify:    ## check every manuscript number against its result artifact (no interim data needed)
 	python scripts/verify_claims.py
 

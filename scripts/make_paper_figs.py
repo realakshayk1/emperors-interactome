@@ -241,12 +241,46 @@ def fig4_secondmap():
     save(fig, "fig4_secondmap")
 
 
+# --------------------------------------------------------------------------------------
+def fig5_shift_evalues():
+    """Two-panel version of Figure 2 for the e-values paper, which does not use the
+    Gamma-sensitivity panel: per-covariate divergence and realized FDR only."""
+    sa, sen = load("shift_attribution.json"), load("sensitivity.json")
+    q = "0.1"
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 4.2), constrained_layout=True)
+
+    ks = sa["per_covariate_ks"]
+    labels = [("degree", "endpoint degree"), ("iptm_mean", "ipTM"), ("score", "score"),
+              ("iptm_ptm_gap", "ipTM$-$pTM gap"), ("ptm_mean", "pTM")]
+    ys = list(range(len(labels)))[::-1]
+    for y, (key, _lab) in zip(ys, labels):
+        ax1.barh(y, ks[key]["ks"], height=0.5, color=BLUE if key == "degree" else PALE)
+    ax1.set_yticks(ys)
+    ax1.set_yticklabels([lab for _, lab in labels])
+    ax1.set_xlim(0, 0.28)
+    ax1.set_ylim(-0.55, len(labels) - 0.45)
+    ax1.set_xlabel("KS(decoy, candidate)")
+
+    pop = sen["realized_fdr_population"]
+    names = ["nominal", "identifying\ncurve", "protein-disjoint\nempirical"]
+    vals = [float(q), pop["identifying_curve_fdr"][q], pop["empirical_node_disjoint_fdr"][q]]
+    ax2.bar(names, vals, color=[PALE, LIGHT, DARK], width=0.6)
+    ax2.axhline(float(q), ls="--", color=GREY, lw=1.5)
+    ax2.set_ylabel("realized FDR")
+    ax2.set_ylim(0, 0.36)
+
+    panel_tags(fig, 2)
+    save(fig, "fig5_shift_evalues")
+
+
 def main() -> int:
     print("regenerating manuscript figures from data/processed/ ...")
     fig1_audit_wedge()
     fig2_guarantee()
     fig3_validation()
     fig4_secondmap()
+    fig5_shift_evalues()
     print("done")
     return 0
 
