@@ -22,6 +22,7 @@ are ~2x their on-page size. Run: python scripts/make_paper_figs.py
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -31,10 +32,10 @@ import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
 PROCESSED = ROOT / "data" / "processed"
-OUT_DIRS = [ROOT / "results" / "figures",
-            ROOT / "paper" / "icbinb" / "figs",
-            ROOT / "paper" / "gem" / "figs",
-            ROOT / "paper" / "evalues" / "figs"]
+# Canonical output is results/figures/. Additional destinations may be passed on the
+# command line, which is how local manuscript trees pick the figures up without this
+# script needing to know anything about them.
+OUT_DIRS = [ROOT / "results" / "figures"] + [Path(a).resolve() for a in sys.argv[1:]]
 
 BLUE, ORANGE, GREY = "#1f77b4", "#e8590c", "#7f7f7f"
 LIGHT, DARK, PALE = "#9ecae1", "#08519c", "#d9d9d9"
@@ -242,8 +243,8 @@ def fig4_secondmap():
 
 
 # --------------------------------------------------------------------------------------
-def fig5_shift_evalues():
-    """Two-panel version of Figure 2 for the e-values paper, which does not use the
+def fig5_shift_two_panel():
+    """Two-panel variant of the shift figure, for uses that do not want the
     Gamma-sensitivity panel: per-covariate divergence and realized FDR only."""
     sa, sen = load("shift_attribution.json"), load("sensitivity.json")
     q = "0.1"
@@ -271,7 +272,7 @@ def fig5_shift_evalues():
     ax2.set_ylim(0, 0.36)
 
     panel_tags(fig, 2)
-    save(fig, "fig5_shift_evalues")
+    save(fig, "fig5_shift_two_panel")
 
 
 def main() -> int:
@@ -280,7 +281,7 @@ def main() -> int:
     fig2_guarantee()
     fig3_validation()
     fig4_secondmap()
-    fig5_shift_evalues()
+    fig5_shift_two_panel()
     print("done")
     return 0
 
