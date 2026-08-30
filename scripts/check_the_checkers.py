@@ -27,6 +27,10 @@ MUTATIONS = [
     ("audit_summary.json", ["n_candidates"], lambda v: v + 1),
     ("dependence_robustness.json", ["n_cal_neg"], lambda v: v - 1),
     ("calibrator_comparison.json", ["bh_cutoff", "0.05", "largest_rejected_rank"], lambda v: v + 1),
+    # A float field, so the tolerance branch is exercised and not only the integer equality
+    # branch. verify_claims derives its tolerance from repr(), which is weaker for values
+    # ending in zero, and that arm went untested until this line existed.
+    ("shift_attribution.json", ["per_covariate_ks", "degree", "ks"], lambda v: v + 0.05),
 ]
 
 

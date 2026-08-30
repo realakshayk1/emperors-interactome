@@ -49,10 +49,17 @@ def main() -> int:
         if not found:
             continue
         vals = set(found.values())
-        status = "ok" if len(vals) == 1 else "DISAGREE"
+        # Three ABSENTs agree with each other, so equality alone would pass a quantity that
+        # has vanished from every paper -- which is how a shared number gets silently dropped.
+        if "ABSENT" in vals:
+            status = "MISSING"
+        elif len(vals) == 1:
+            status = "ok"
+        else:
+            status = "DISAGREE"
         detail = ", ".join(f"{k}={v}" for k, v in found.items())
         print(f"  {label:36s} {status:9s} {detail}")
-        if len(vals) > 1:
+        if len(vals) > 1 or "ABSENT" in vals:
             fails.append(f"{label}: {detail}")
         if expect and vals and next(iter(vals)) != expect and len(vals) == 1:
             fails.append(f"{label}: all papers say {next(iter(vals))}, expected {expect}")

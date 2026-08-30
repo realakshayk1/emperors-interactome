@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import math
 import sys
 from pathlib import Path
@@ -53,14 +54,25 @@ def dig(obj, path: str):
 class Claim:
     def __init__(self, text, file, path, expect, tol=None, transform=None, note=""):
         self.text, self.file, self.path, self.expect = text, file, path, expect
-        self.tol = tol if tol is not None else self._auto_tol(expect)
+        self.tol = tol if tol is not None else self._auto_tol(expect, text)
         self.transform, self.note = transform, note
 
     @staticmethod
-    def _auto_tol(expect):
-        """Half a unit in the last decimal place the paper actually quotes."""
+    def _auto_tol(expect, text=""):
+        """Half a unit in the last decimal place the paper actually quotes.
+
+        repr() drops trailing zeros -- repr(0.60) is '0.6' -- which made this ten times looser
+        than advertised for any value the paper writes with a trailing zero. The claim's own
+        description holds the number as written, so take the precision from there when it is
+        there, and fall back to repr() when it is not.
+        """
         if isinstance(expect, int):
             return 0
+        quoted = re.findall(r"\d+\.(\d+)", text)
+        for frac in quoted:
+            if abs(float(f"0.{frac}") - (abs(expect) % 1)) < 1e-12 or \
+                    f"{abs(expect):.{len(frac)}f}".endswith(frac):
+                return 0.5 * 10 ** (-len(frac))
         s = repr(float(expect))
         return 0.5 * 10 ** (-len(s.split(".")[1])) if "." in s else 0.5
 

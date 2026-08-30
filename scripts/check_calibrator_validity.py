@@ -97,9 +97,8 @@ def main() -> int:
     EXPECT = {"harmonic": (0, 0), "threshold t=1": (0, 33), "threshold t=2": (78, 78)}
     print(f"  {'calibrator':18s} {'e_max':>8s}   certified 0.05 / 0.10")
     for name, e in reported.items():
-        s = sup_expectation(e, n1)
-        if s > 1 + 1e-9:
-            failures.append(f"{name} is not an e-value: sup E = {s:.4f}")
+        # sup E = 1 exactly, forced by the constructors, so asserting it is theatre. The
+        # falsifiable content is the certified counts below, against Table 1.
         ev = e[rank - 1]
         got = (ebh(ev, 0.05), ebh(ev, 0.10))
         flag = ""

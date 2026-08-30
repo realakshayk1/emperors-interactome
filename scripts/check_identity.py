@@ -94,24 +94,29 @@ def main() -> int:
     # Dropping monotonicity only helps where the rank distribution is lumpy. Under the exact
     # uniformity that a.s.-distinct scores would give -- the premise under which the monotone
     # restriction stops being free -- the unconstrained class certifies nothing.
-    rng = np.random.default_rng(0)
+    # All three levels the manuscript quotes, across independent seeds. Running only two
+    # levels left the third claim with no code path, and the number that reached the paper was
+    # reproducible only by continuing this script's RNG stream past the earlier loops.
     M, mm = 905, 1666
-    for q in (0.05, 0.10):
-        nonzero = 0
-        for _ in range(300):
-            occ = np.bincount(rng.integers(1, M + 1, size=mm), minlength=M + 1)[1:]
-            order = np.argsort(-occ)
-            best = 0
-            for a in range(1, M + 1):
-                n_a = int(occ[order[:a]].sum())
-                if n_a and (M / a) >= mm / (n_a * q):
-                    best = max(best, n_a)
-            nonzero += best > 0
-        print(f"  exactly-uniform ranks, q={q}: unconstrained class certifies "
-              f"something in {nonzero}/300 draws")
-        if nonzero > 15:
+    for q, ceiling in ((0.05, 0.005), (0.10, 0.005), (0.20, 0.040)):
+        esc, draws = 0, 3000
+        for seed in range(3):
+            rng2 = np.random.default_rng(seed)
+            for _ in range(draws // 3):
+                occ = np.bincount(rng2.integers(1, M + 1, size=mm), minlength=M + 1)[1:]
+                order = np.argsort(-occ)
+                best = 0
+                for a_ in range(1, M + 1):
+                    n_a = int(occ[order[:a_]].sum())
+                    if n_a and (M / a_) >= mm / (n_a * q):
+                        best = max(best, n_a)
+                        break
+                esc += best > 0
+        rate = esc / draws
+        print(f"  exactly-uniform ranks, q={q}: class escapes in {esc}/{draws} ({100 * rate:.1f}%)")
+        if rate > ceiling:
             bad += 1
-            print(f"    unexpected: the non-monotone class gains under exact uniformity")
+            print(f"    escape rate {rate:.3f} exceeds the {ceiling:.3f} the manuscript implies")
 
     print()
     if bad:
