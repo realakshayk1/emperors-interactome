@@ -290,6 +290,44 @@ def fig5_shift_two_panel():
     save(fig, "fig5_shift_two_panel")
 
 
+
+def fig6_attainment():
+    """Certified count against a pre-registered threshold t, at two levels.
+
+    e-BH with threshold t certifies N(t) when N(t) >= ceil(m t/(q(n_cal+1))) and nothing
+    otherwise. The maximum equals BH's count, but it is attained on a set of t the analyst
+    cannot identify in advance -- one point at q=0.05.
+    """
+    import math
+
+    import numpy as np
+    import pandas as pd
+
+    d = pd.read_parquet(ROOT / "data" / "processed" / "certified.parquet")
+    dep = load("dependence_robustness.json")
+    p = d["conf_pvalue"].to_numpy(float)
+    m, n1 = p.size, dep["n_cal_neg"] + 1
+    rank = np.rint(p * n1).astype(int)
+
+    ts = list(range(1, 26))
+    fig, ax = plt.subplots(figsize=(7.0, 2.3), constrained_layout=True)
+    for q, colour, mk, ls, bh in ((0.05, BLUE, "o", "-", 78), (0.10, DARK, "s", "--", 132)):
+        y = []
+        for tt in ts:
+            n_t = int((rank <= tt).sum())
+            y.append(n_t if n_t >= math.ceil(m * tt / (q * n1)) else 0)
+        ax.plot(ts, y, marker=mk, ls=ls, ms=5, lw=1.6, color=colour, label=f"$q={q:g}$")
+        ax.axhline(bh, ls=":", lw=1.2, color=colour, alpha=0.6)
+        ax.annotate(f"BH = {bh}", xy=(25, bh), xytext=(-2, 3), textcoords="offset points",
+                    ha="right", va="bottom", fontsize=8, color=colour)
+    ax.set_xlabel(r"pre-registered threshold $t$")
+    ax.set_ylabel("candidates certified")
+    ax.set_xlim(0.5, 25.5)
+    ax.set_ylim(-6, 150)
+    ax.set_xticks([1, 2, 5, 7, 10, 15, 20, 25])
+    ax.legend(frameon=False, fontsize=9, loc="center right", bbox_to_anchor=(1.0, 0.40))
+    save(fig, "fig6_attainment")
+
 def main() -> int:
     print("regenerating manuscript figures from data/processed/ ...")
     fig1_audit_wedge()
@@ -297,6 +335,7 @@ def main() -> int:
     fig3_validation()
     fig4_secondmap()
     fig5_shift_two_panel()
+    fig6_attainment()
     print("done")
     return 0
 
