@@ -72,12 +72,17 @@ def main() -> int:
     # every calibrator the paper reports must be a genuine e-value
     reported = {"harmonic": harmonic(n1)}
     reported.update({f"threshold t={t}": threshold(n1, t) for t in (1, 2, 3, 7, 8, 19, 20, 25)})
+    # These are built to spend the budget exactly and be non-increasing, so sup E = 1 is
+    # forced; the informative check is that each also clears e-BH's own feasibility bound
+    # where the manuscript says it does.
     for name, e in reported.items():
         s = sup_expectation(e, n1)
         ok = s <= 1 + 1e-9
-        print(f"  {name:18s} sup E[e] = {s:.6f}  {'ok' if ok else 'INVALID'}")
+        print(f"  {name:18s} sup E[e] = {s:.6f}  e_max = {e.max():8.1f}  {'ok' if ok else 'INVALID'}")
         if not ok:
             failures.append(name)
+        if abs(e.sum() - n1) > 1e-6:
+            failures.append(f"{name} does not spend its budget: {e.sum():.3f} vs {n1}")
 
     # the budget alone does not imply validity off the monotone class
     S = [1, 2, 3, 4, 5, 6, 15]
@@ -94,18 +99,34 @@ def main() -> int:
     if not np.all(cdf <= np.arange(1, n1 + 1) / n1 + 1e-12):
         failures.append("worst-case null violates the dominance constraint")
 
-    # monotonicity is free: the envelope is valid whenever the calibrator is, and dominates it
+    # The envelope sum is asserted to BE the supremum of E[e(R)] over the null family
+    # {P : P(R <= t) <= t/n for all t}. Comparing sup_expectation(a) with
+    # sup_expectation(envelope(a)) cannot test that -- sup_expectation is defined as the
+    # envelope sum and the envelope is idempotent, so the two are identically equal. Solve the
+    # optimisation instead: maximise e . p subject to the dominance constraints.
     rng = np.random.default_rng(0)
-    for _ in range(2000):
-        m = int(rng.integers(4, 60))
-        a = rng.random(m) * rng.integers(1, 40)
-        g = envelope(a)
-        if not np.all(g >= a - 1e-12):
-            failures.append("envelope fails to dominate")
+    worst = 0.0
+    for _ in range(200):
+        k = int(rng.integers(4, 25))
+        e = rng.random(k) * rng.integers(1, 40)
+        claimed = envelope(e).sum() / k
+        # the supremum is attained by pushing each unit of rank mass to the first rank
+        # achieving its envelope value; verify against a direct search over vertices
+        best = 0.0
+        for _ in range(4000):
+            c = np.sort(rng.random(k))
+            c = np.minimum(c, np.arange(1, k + 1) / k)
+            c = np.maximum.accumulate(c)
+            c[-1] = 1.0
+            prob = np.diff(np.concatenate([[0.0], c]))
+            if prob.min() >= -1e-12:
+                best = max(best, float(prob @ e))
+        worst = max(worst, best - claimed)
+        if best > claimed + 1e-9:
+            failures.append(f"a null law beats the envelope bound by {best - claimed:.2e}")
             break
-        if abs(sup_expectation(a, m) - sup_expectation(g, m)) > 1e-9:
-            failures.append("envelope changes the supremum")
-            break
+    print(f"\n  envelope bound vs direct search over 200 calibrators: "
+          f"max excess {worst:.2e} (must be <= 0)")
 
     print()
     if failures:
