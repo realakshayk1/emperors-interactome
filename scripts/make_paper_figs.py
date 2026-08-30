@@ -263,13 +263,28 @@ def fig5_shift_two_panel():
     ax1.set_ylim(-0.55, len(labels) - 0.45)
     ax1.set_xlabel("KS(decoy, candidate)")
 
-    pop = sen["realized_fdr_population"]
-    names = ["nominal", "identifying\ncurve", "protein-disjoint\nempirical"]
-    vals = [float(q), pop["identifying_curve_fdr"][q], pop["empirical_node_disjoint_fdr"][q]]
-    ax2.bar(names, vals, color=[PALE, LIGHT, DARK], width=0.6)
-    ax2.axhline(float(q), ls="--", color=GREY, lw=1.5)
+    # The identifying sweep itself, so the crossing the text interpolates is visible.
+    rows = load("identifying_experiment.json")["rows"]
+    d = [r["delta"] for r in rows]
+    f = [r["fdr@" + q] for r in rows]
+    ax2.plot(d, f, marker="o", ms=4, color=DARK, lw=1.6, label="realized FDR")
+    ax2.axhline(float(q), ls="--", color=GREY, lw=1.5, label="nominal $q$")
+
+    cross = next((d[i - 1] + (float(q) - f[i - 1]) * (d[i] - d[i - 1]) / (f[i] - f[i - 1])
+                  for i in range(1, len(d)) if f[i] > float(q)), None)
+    if cross is not None:
+        ax2.axvline(cross, ls=":", color=BLUE, lw=1.4)
+        ax2.annotate(r"$\delta^\ast$", xy=(cross, 0.015), xytext=(4, 0),
+                     textcoords="offset points", color=BLUE, fontsize=9, va="bottom")
+    for x, lab, yy in ((0.055, "residual", 0.20), (0.600, "measured gap", 0.405)):
+        ax2.axvline(x, ls=":", color=GREY, lw=1.0)
+        ax2.annotate(lab, xy=(x, yy), xytext=(3, 0), textcoords="offset points",
+                     color=GREY, fontsize=8, rotation=90, va="top")
+    ax2.set_xlabel(r"synthetic null shift $\delta$ (sd)")
     ax2.set_ylabel("realized FDR")
-    ax2.set_ylim(0, 0.36)
+    ax2.set_xlim(-0.03, 0.80)
+    ax2.set_ylim(0, 0.42)
+    ax2.legend(frameon=False, fontsize=8, loc="lower right")
 
     panel_tags(fig, 2)
     save(fig, "fig5_shift_two_panel")
