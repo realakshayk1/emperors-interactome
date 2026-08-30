@@ -49,13 +49,14 @@ audit-self: data/interim/labels.parquet ## PLAN_V3 self-audit (needs interim fil
 	$(PY).shift_attribution
 	$(PY).hardnegatives
 	$(PY).shift_control
+	$(PY).identifying
 	$(PY).gamma_seed
 	$(PY).sensitivity
 	$(PY).benchmark_synth
 	$(PY).experimental_ppi
 	$(PY).secondmap
 	$(PY).loco_validation
-	@echo "audit-self complete -> data/processed/{dependence_robustness,shift_attribution,hard_negatives,shift_control,sensitivity,benchmark_synth,experimental_ppi_referee,secondmap_audit,loco_validation}.json"
+	@echo "audit-self complete -> data/processed/{dependence_robustness,shift_attribution,hard_negatives,shift_control,identifying_experiment,sensitivity,benchmark_synth,experimental_ppi_referee,secondmap_audit,loco_validation}.json"
 
 test:      ## unit + integration tests
 	pytest -q
