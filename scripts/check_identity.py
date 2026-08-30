@@ -24,6 +24,24 @@ def bh_count(ranks: np.ndarray, m: int, n1: int, q: float) -> int:
     return int(ok[-1] + 1) if ok.size else 0
 
 
+def bh_set(ranks: np.ndarray, m: int, n1: int, q: float) -> set:
+    """The rejected set itself. Proposition 3 claims set equality, so counts are too weak."""
+    p = np.sort(ranks) / n1
+    ok = np.nonzero(p <= np.arange(1, m + 1) * q / m)[0]
+    if not ok.size:
+        return set()
+    return set(np.nonzero(ranks / n1 <= p[int(ok[-1])])[0].tolist())
+
+
+def class_max_set(ranks: np.ndarray, m: int, n1: int, q: float) -> set:
+    best = set()
+    for t in range(1, min(n1, int(math.floor(q * n1)) + 1) + 1):
+        n_t = int((ranks <= t).sum())
+        if n_t and n_t >= math.ceil(m * t / (q * n1)) and n_t > len(best):
+            best = set(np.nonzero(ranks <= t)[0].tolist())
+    return best
+
+
 def class_max(ranks: np.ndarray, m: int, n1: int, q: float) -> int:
     best = 0
     for t in range(1, min(n1, int(math.floor(q * n1)) + 1) + 1):
@@ -47,6 +65,18 @@ def main() -> int:
         if class_max(ranks, m, n1, q) != bh_count(ranks, m, n1, q):
             bad += 1
     print(f"  random designs                 {trials - bad}/{trials} agree")
+
+    # the proposition claims the SETS coincide, which equal counts would not establish
+    set_bad = 0
+    for _ in range(800):
+        n1 = rng.randint(5, 120)
+        m = rng.randint(5, 200)
+        q = rng.choice([0.05, 0.1, 0.2, 0.3])
+        ranks = np.array([rng.randint(1, n1) for _ in range(m)])
+        if bh_set(ranks, m, n1, q) != class_max_set(ranks, m, n1, q):
+            set_bad += 1
+    print(f"  set equality (not just counts)  {800 - set_bad}/800 agree")
+    bad += set_bad
 
     for ratio in (0.002, 0.01, 0.03, 0.543, 10, 200):
         sub = 0
