@@ -21,7 +21,11 @@ EXT = C.ROOT / "data" / "external"
 
 
 def run():
-    ident = json.loads((EXT / "identifying_experiment.json").read_text())
+    # Prefer the regenerated sweep; fall back to the released copy for a bare clone.
+    _ident = C.PROCESSED / "identifying_experiment.json"
+    if not _ident.exists():
+        _ident = EXT / "identifying_experiment.json"
+    ident = json.loads(_ident.read_text())
     wcs = json.loads((EXT / "wcs_results.json").read_text())["shift"]
     rows = ident["rows"]
     deltas = np.array([r["delta"] for r in rows])

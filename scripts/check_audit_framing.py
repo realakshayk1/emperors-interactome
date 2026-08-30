@@ -88,7 +88,9 @@ def main() -> int:
     # 3 -- the shift is dominated by the tier
     w = json.loads((PROC / "wcs_results.json").read_text())["shift"]
     mu_cal = w["score_mean_calneg"]
-    sd = (w["score_mean_wild"] - mu_cal) / 0.600
+    # Read the sd rather than back-deriving it from the rounded 0.600 we are checking;
+    # dividing by the answer makes the assertion below unfalsifiable.
+    sd = json.loads((PROC / "gamma_seed.json").read_text())["nonconf_sd"]
     gap_all = score.mean() - mu_cal
     gap_rest = score[~hi].mean() - mu_cal
     share = 1 - gap_rest / gap_all
@@ -96,6 +98,8 @@ def main() -> int:
           f"residual {gap_rest / sd:.3f} sd")
     if not (0.90 <= share <= 0.92):
         fails.append(f"tier share of the shift is {share:.3f}, expected ~0.91")
+    if abs(gap_all / sd - 0.600) > 0.005:
+        fails.append(f"total shift is {gap_all / sd:.3f} sd, expected 0.600")
 
     # the identifying curve evaluated at the residual rather than the full gap
     rows = json.loads((PROC / "identifying_experiment.json").read_text())["rows"]
