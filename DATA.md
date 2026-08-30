@@ -89,8 +89,7 @@ Compute note (16 GB RAM): every file below fits comfortably except the DepMap ma
 ## 5. Structure prediction — BioNeMo skills (Boltz-2 / OpenFold3 / AlphaFold2-Multimer) via Modal
 Claude Science natively exposes **Evo 2, Boltz-2, and OpenFold3** as callable BioNeMo Agent Toolkit skills;
 the broader BioNeMo NIM catalog adds **AlphaFold2-Multimer, ESMFold, DiffDock, RFdiffusion**. Call them as
-skills in-app — no Colab handoff. Backend compute = **your Modal account** (the hackathon/Claude Science plan
-includes **$30 free Modal credit**).
+skills in-app — no Colab handoff. Backend compute = **your own Modal account**.
 - Boltz-2 outputs: `iptm`, `ligand_iptm`, `plddt`, PAE, `affinity_probability_binary` (affinity not needed here).
 - OpenFold3 / AlphaFold2-Multimer: protein-protein complex structures + confidence — use for the
   physical-validity term and the nominee validation.

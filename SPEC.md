@@ -26,7 +26,7 @@ a missing member of a cancer complex with a certified confidence and a predicted
 ## User stories
 - As a **structural-interactomics researcher**, I want to know which "high-confidence" complexes survive honest error control, so I don't build on artifacts.
 - As a **cancer-biology target-hunter**, I want a missing complex member nominated with a certified error rate and independent corroboration, so I can prioritize follow-up.
-- As a **hackathon judge**, I want a live, visual audit that ends in a concrete, trustworthy nomination.
+- As a **reviewer of this work**, I want a live, visual audit that ends in a concrete, trustworthy nomination.
 
 ## Functional requirements (numbered, testable)
 - R1. Ingest the primary interactome as a table of protein pairs with ≥1 confidence metric. `[NEEDS CLARIFICATION: exact CM4AI Table 5 columns — Day-1 gate]`

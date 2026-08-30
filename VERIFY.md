@@ -39,7 +39,7 @@ that doesn't check out.
 - [ ] DepMap GLS files load and are 17,634² with `genes.txt` in matching order; identifiers are HGNC symbols.
 - [ ] CORUM 5.0 current download URL on the moved host (mips.helmholtz-munich.de) still serves `coreComplexes.txt` and it's CC BY 4.0.
 - [ ] hu.MAP 3.0 files + dual UniProt/gene-name columns are as described.
-- [ ] Every dataset's license still permits open-source redistribution of derived results (hackathon requires open source).
+- [ ] Every dataset's license still permits open-source redistribution of derived results.
 
 ### Method / statistics assumptions
 - [ ] Conformal p-values assume **exchangeability**; confirm the calibration↔test setup satisfies it (or use the network-adapted conformal-link-prediction FDR variant). State the limitation.
