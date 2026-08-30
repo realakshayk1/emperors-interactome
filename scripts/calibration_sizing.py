@@ -20,10 +20,10 @@ procedure you are willing to use. The H_m factor is the whole price of BY over a
 calibrator: about eightfold here, and it appears directly as a multiple on the number of
 negatives you must ship.
 
-Applied to the CM4AI map, the requirement must be minimised over t: at q = 0.05 BY needs
-6,832 calibration points before any threshold becomes feasible, attained at t = 2. Evaluating
+Applied to the CM4AI map, the requirement must be minimised over t: at q = 0.05 BY needs a
+calibration set of 6,831 (n_cal+1 = 6,832) before any threshold becomes feasible, attained at t = 2. Evaluating
 only at t = 1, where the map supplies 33 candidates, gives 8,074 and overstates the requirement
-by 18%. The map shipped 1,788 decoys, of which 905 became the calibration set.
+by 18%. The map shipped 1,788 decoys, of which 904 became the calibration set.
 
 The estimate is optimistic and should be read as a lower bound. It holds phi fixed while
 n_cal grows, but a candidate's rank is its position among the calibration scores, so enlarging

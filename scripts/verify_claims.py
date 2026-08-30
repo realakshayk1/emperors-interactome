@@ -238,12 +238,12 @@ CLAIMS = [
           "class_optimum/n_feasible_t/0.1", 7),
 
     # -- the two design levers, and the coincidence we flag as a caution ---------
-    Claim("BH's largest accepted rank at q=0.05 = 2", "calibrator_comparison.json",
+    Claim("BH's largest rejected rank at q=0.05 = 2", "calibrator_comparison.json",
           "bh_cutoff/0.05/largest_rejected_rank", 2,
           note="equals the threshold t that reproduces BH's count; the paper flags this"),
-    Claim("BH's largest accepted rank at q=0.10 = 7", "calibrator_comparison.json",
+    Claim("BH's largest rejected rank at q=0.10 = 7", "calibrator_comparison.json",
           "bh_cutoff/0.1/largest_rejected_rank", 7),
-    Claim("BH's largest accepted rank at q=0.20 = 19", "calibrator_comparison.json",
+    Claim("BH's largest rejected rank at q=0.20 = 19", "calibrator_comparison.json",
           "bh_cutoff/0.2/largest_rejected_rank", 19),
     Claim("exactly one t in 1..25 certifies anything at q=0.05", "calibrator_comparison.json",
           "n_t_certifying_at_0.05", 1),

@@ -310,7 +310,7 @@ def fig6_attainment():
     rank = np.rint(p * n1).astype(int)
 
     ts = list(range(1, 26))
-    fig, ax = plt.subplots(figsize=(7.0, 2.3), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(7.0, 2.6), constrained_layout=True)
     for q, colour, mk, ls, bh in ((0.05, BLUE, "o", "-", 78), (0.10, DARK, "s", "--", 132)):
         y = []
         for tt in ts:
@@ -321,7 +321,7 @@ def fig6_attainment():
         ax.annotate(f"BH = {bh}", xy=(25, bh), xytext=(-2, 3), textcoords="offset points",
                     ha="right", va="bottom", fontsize=8, color=colour)
     ax.set_xlabel(r"pre-registered threshold $t$")
-    ax.set_ylabel("candidates certified")
+    ax.set_ylabel("certified")
     ax.set_xlim(0.5, 25.5)
     ax.set_ylim(-6, 150)
     ax.set_xticks([1, 2, 5, 7, 10, 15, 20, 25])

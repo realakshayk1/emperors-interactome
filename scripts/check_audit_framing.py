@@ -102,8 +102,10 @@ def main() -> int:
     print(f"  shift {gap_all / sd:.3f} sd total; tier contributes {100 * share:.1f}%, "
           f"the other {m - n_hi} contribute {100 * rest_share:.1f}%; "
           f"residual gap {gap_rest / sd:.3f} sd")
-    if abs(share + rest_share - 1.0) > 1e-9:
-        fails.append("shift decomposition does not sum to the total")
+    # share + rest_share == 1 is algebra, not a test. The claim with content is that the tier
+    # contributes the reported fraction while holding a tenth of the candidates.
+    if not (0.09 <= n_hi / m <= 0.10):
+        fails.append(f"tier is {n_hi}/{m} of candidates, not the ~10% the decomposition assumes")
     if not (0.915 <= share <= 0.925):
         fails.append(f"tier share of the shift is {share:.4f}, expected ~0.92")
     if abs(gap_all / sd - 0.600) > 0.005:
@@ -118,10 +120,10 @@ def main() -> int:
         fails.append(f"residual-shift FDR is {at_res:.3f}, not below nominal")
 
     # 4 -- randomised calibrators escape the deterministic ceiling
-    # Firing (n1/t)/pi on {R<=t} with probability pi is valid exactly when
-    # pi <= q*N(t)*n1/(m*t), which is also the condition for e-BH to take all N(t) when it
-    # fires; expected yield is pi*N(t). Optimise over t rather than fixing a few c, since a
-    # narrow sweep is how the opposite (and false) claim survived here.
+    # The calibrator is valid for EVERY firing probability, since pi cancels in the
+    # expectation. pi <= q*N(t)*n1/(m*t) is the separate condition for e-BH to take all of
+    # N(t) when it fires; expected yield is then pi*N(t). Optimise over t rather than fixing
+    # a few c, since a narrow sweep is how the opposite (and false) claim survived here.
     print("  randomised calibrator, firing probability optimised:")
     for q in QS:
         bh_q = _bh(p, q)
