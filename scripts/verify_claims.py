@@ -123,8 +123,14 @@ CLAIMS = [
     Claim("native decoys shipped = 1,788", "hard_negatives.json", "n_decoy_total", 1788),
     Claim("hard decoys = 1,058", "hard_negatives.json", "n_hard", 1058),
     Claim("soft decoys = 730", "hard_negatives.json", "n_soft", 730),
-    Claim("Mondrian pooled held-out FDR = 0.198", "mondrian_summary.json",
+    # pooled_overall_heldout_fdr is the UNSTRATIFIED baseline, not a Mondrian result;
+    # the degree-conditioned numbers are in shift_control.json.
+    Claim("pooled unstratified held-out FDR = 0.198", "mondrian_summary.json",
           "pooled_overall_heldout_fdr", 0.198),
+    Claim("degree-Mondrian held-out FDR at q=0.10 = 0.321", "shift_control.json",
+          "methods/mondrian/0.1/pooled_fdr", 0.321, tol=0.001),
+    Claim("degree-Mondrian certifications per split = 0.14", "shift_control.json",
+          "methods/mondrian/0.1/mean_ncert", 0.14),
 
     # -- dependence --------------------------------------------------------
     Claim("calibration negatives n_cal = 904", "dependence_robustness.json", "n_cal_neg", 904),
