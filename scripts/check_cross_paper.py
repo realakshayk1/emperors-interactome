@@ -20,11 +20,14 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ("evalues", "icbinb", "gem")
 
 # A shared claim: a regex that captures the number, and the value all papers must agree on.
+# Every entry must capture the value, or the comparison is between the string "present" and
+# itself. A paper missing the quantity is a finding, not something to skip.
 SHARED = {
     "tier share of the 0.60 sigma shift": (r"\$(9\d)\\%\$ of (?:it|that|that gap) comes from the 161", "92"),
-    "measured shift (sigma)": (r"\$?0\.60\\?sigma\$?|\$0\.60\$ standard deviations", None),
-    "degree KS": (r"KS \$?0\.256|\(KS \$0\.256\$\)|degree \(KS \$0\.256\$\)", None),
-    "certified at q=0.10": (r"\b132\b", None),
+    "measured shift (sigma)": (r"(0\.60)\\sigma|\$(0\.60)\$ standard deviations", None),
+    "degree KS": (r"degree[^.]{0,40}?KS \$?(0\.25\d)", None),
+    "score KS": (r"score[^.]{0,30}?(0\.12\d)", None),
+    "certified at q=0.10": (r"certifies (13\d) of the|\b(13\d) of 1\{,\}666 candidates certify", None),
 }
 
 
@@ -39,8 +42,10 @@ def main() -> int:
             t = src.read_text(encoding="utf-8")
             m = re.search(pat, t)
             if not m:
+                found[name] = "ABSENT"
                 continue
-            found[name] = m.group(1) if m.groups() else "present"
+            groups = [g for g in m.groups() if g is not None]
+            found[name] = groups[0] if groups else "present"
         if not found:
             continue
         vals = set(found.values())

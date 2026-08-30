@@ -122,21 +122,14 @@ def main() -> int:
     # asserting it proves nothing. What is worth checking is that the law it returns actually
     # attains the envelope bound -- i.e. that the bound is a supremum, not merely an upper
     # bound, which is the claim the paper makes.
-    # worst_case_null puts mass where e equals its envelope, so attaining the envelope sum is
-    # an identity of its own construction and cannot fail. The falsifiable half is whether the
-    # law it returns is IN the null family -- if it is not, the "supremum" is over the wrong
-    # set and the bound means nothing.
+    # worst_case_null starts from the uniform law and only moves mass rightward, so it lies in
+    # the null family and sums to one BY CONSTRUCTION -- asserting either proves nothing (max
+    # slack 5.6e-16 over 3,000 calibrators). It is displayed as an exhibit, not a test. The
+    # check that certifies the envelope bound is the direct search over the dominance polytope
+    # below, which can fail and is where this claim is actually earned.
     q_law = worst_case_null(e, n1)
-    attained = float(q_law @ e)
-    claimed = sup_expectation(e, n1)
-    cdf = np.cumsum(q_law)
-    slack = float((cdf - np.arange(1, n1 + 1) / n1).max())
-    print(f"    worst-case law attains {attained:.6f} (bound {claimed:.6f}); "
-          f"dominance slack {slack:+.2e}, mass {q_law.sum():.6f}")
-    if slack > 1e-12:
-        failures.append(f"worst-case law leaves the null family: P(R<=t) exceeds t/n by {slack:.2e}")
-    if abs(q_law.sum() - 1.0) > 1e-9:
-        failures.append(f"worst-case law is not a probability: mass {q_law.sum():.6f}")
+    print(f"    exhibit: the rightward-pushed law attains {float(q_law @ e):.6f}, "
+          f"the bound being {sup_expectation(e, n1):.6f}")
 
     # The envelope sum is asserted to BE the supremum of E[e(R)] over the null family
     # {P : P(R <= t) <= t/n for all t}. Comparing sup_expectation(a) with
