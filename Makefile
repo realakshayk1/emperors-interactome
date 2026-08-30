@@ -70,6 +70,7 @@ verify:    ## check every manuscript number against its result artifact (no inte
 	python scripts/check_identity.py
 	python scripts/check_audit_framing.py
 	python scripts/check_page_limits.py
+	python scripts/check_crossrefs.py
 	python scripts/calibration_sizing.py
 
 lint:      ## format + lint
