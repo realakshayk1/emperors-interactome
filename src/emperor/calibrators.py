@@ -42,6 +42,7 @@ from .dependence import _harmonic, benjamini_yekutieli, ebh
 
 QS = (0.05, 0.10, 0.20)
 THRESHOLDS = (1, 2)
+T_SWEEP = range(1, 26)   # report the whole grid, not whichever cell flatters the result
 
 
 def threshold_evalues(rank: np.ndarray, n_cal: int, t: int) -> np.ndarray:
@@ -98,6 +99,73 @@ def run() -> dict:
             c, d = counts(ebh(e, q))
             rec["certified"][str(q)], rec["dropped"][str(q)] = c, d
         out["procedures"]["e-BH " + name] = rec
+
+    # --- the whole threshold grid, and where BH itself stopped --------------------
+    # Threshold-t e-BH rejects exactly {R_j <= t} when it rejects at all, and BH rejects a
+    # rank prefix, so setting t to BH's realized cutoff makes the two sets identical by
+    # construction. Recording the cutoff makes that coincidence visible instead of
+    # letting a tuned t look like a discovery.
+    out["bh_cutoff"] = {}
+    for q in QS:
+        r = benjamini_hochberg(p, q)
+        cut = int(rank[r].max()) if r.any() else None
+        out["bh_cutoff"][str(q)] = {"largest_rejected_rank": cut,
+                                    "n_at_or_below": int((rank <= cut).sum()) if cut else 0}
+
+    # --- the whole admissible calibrator class -----------------------------------
+    # A calibrator maps rank R to an e-value e(R). Exchangeability constrains the rank only
+    # through P(R <= t) <= t/(n_cal+1), under which
+    #     sup E[e(R)] = (1/(n_cal+1)) * sum_r max_{s>=r} e(s).
+    # For NON-INCREASING e that supremum is the budget sum_r e(r) <= n_cal+1, so the budget
+    # is validity. Off the monotone class it is not: a calibrator can spend exactly the
+    # budget and still reach E[e] > 1, so the budget alone must never be used as an
+    # admissibility test (scripts/check_calibrator_validity.py exhibits one at 15/7).
+    # Restricting to non-increasing e costs nothing, because the right-running maximum is
+    # valid whenever e is, dominates it pointwise, and e-BH only grows in its e-values.
+    # Monotonicity then makes e-BH reject a down-set {R <= t}, with t*e(t) <= n_cal+1 and so
+    # e_max <= (n_cal+1)/t, and sweeping t over 1..n_cal+1 exhausts the class.
+    best, feasible = {}, {}
+    for q in QS:
+        b, feas = 0, []
+        for t in range(1, n1 + 1):
+            e_max_t = n1 / t
+            if int((rank <= t).sum()) >= math.ceil(m / (q * e_max_t)):
+                feas.append(t)
+                b = max(b, int(ebh(threshold_evalues(rank, n_cal, t), q).sum()))
+        best[str(q)] = b
+        feasible[str(q)] = feas
+    out["class_optimum"] = {
+        "max_certified_over_monotone_calibrators": best,
+        "feasible_t": {q: v if len(v) <= 20 else v[:20] for q, v in feasible.items()},
+        "n_feasible_t": {q: len(v) for q, v in feasible.items()},
+        "equals_BH": {q: best[q] == out["procedures"]["BH"]["certified"][q] for q in best},
+    }
+
+    out["t_sweep"] = []
+    for t in T_SWEEP:
+        e = threshold_evalues(rank, n_cal, t)
+        row = {"t": t, "n_at_or_below": int((rank <= t).sum()),
+               "e_max": float(n1 / t),
+               "k_star": {str(q): math.ceil(m / (q * (n1 / t))) for q in QS},
+               "certified": {str(q): int(ebh(e, q).sum()) for q in QS}}
+        out["t_sweep"].append(row)
+    out["n_t_certifying_at_0.05"] = sum(1 for r in out["t_sweep"]
+                                        if r["certified"]["0.05"] > 0)
+
+    # --- the other lever: the size of the hypothesis set --------------------------
+    # k*_BY = ceil(m H_m F / q) grows with m, so restricting the audit to the published
+    # tier is a design choice that moves BY's bound as surely as the calibrator moves
+    # e-BH's. The tier is defined by the map's authors, independently of any p-value.
+    p_hi = p[hi]
+    out["restricted_to_tier"] = {
+        "m": int(p_hi.size), "H_m": _harmonic(p_hi.size),
+        "contains_all_rank1": int((rank[hi] <= 1).sum()) == int((rank <= 1).sum()),
+        "contains_all_rank2": int((rank[hi] <= 2).sum()) == int((rank <= 2).sum()),
+        "k_star_BY": {str(q): math.ceil(p_hi.size * _harmonic(p_hi.size) / (q * n1))
+                      for q in QS},
+        "BH": {str(q): int(benjamini_hochberg(p_hi, q).sum()) for q in QS},
+        "BY": {str(q): int(benjamini_yekutieli(p_hi, q).sum()) for q in QS},
+    }
 
     (C.PROCESSED / "calibrator_comparison.json").write_text(json.dumps(out, indent=2))
     return out

@@ -208,6 +208,68 @@ CLAIMS = [
     Claim("k*_eBH threshold t=2 at q=0.05 = 74", "calibrator_comparison.json",
           "procedures/e-BH threshold_t2/k_star/0.05", 74),
 
+    # -- class optimality: the paper's headline -----------------------------------
+    # Swept over every down-set t <= n_cal+1, which by Proposition 2 exhausts the
+    # monotone deterministic calibrators.
+    Claim("class maximum at q=0.05 = 78", "calibrator_comparison.json",
+          "class_optimum/max_certified_over_monotone_calibrators/0.05", 78,
+          note="equals BH's count; e-BH cannot beat BH on this map"),
+    Claim("class maximum at q=0.10 = 132", "calibrator_comparison.json",
+          "class_optimum/max_certified_over_monotone_calibrators/0.1", 132),
+    Claim("class maximum at q=0.20 = 177", "calibrator_comparison.json",
+          "class_optimum/max_certified_over_monotone_calibrators/0.2", 177),
+    Claim("class maximum equals BH at q=0.05", "calibrator_comparison.json",
+          "class_optimum/equals_BH/0.05", 1, transform=lambda b: int(bool(b))),
+    Claim("class maximum equals BH at q=0.10", "calibrator_comparison.json",
+          "class_optimum/equals_BH/0.1", 1, transform=lambda b: int(bool(b))),
+    Claim("class maximum equals BH at q=0.20", "calibrator_comparison.json",
+          "class_optimum/equals_BH/0.2", 1, transform=lambda b: int(bool(b))),
+    Claim("exactly one feasible calibrator at q=0.05", "calibrator_comparison.json",
+          "class_optimum/n_feasible_t/0.05", 1),
+    Claim("the unique feasible t at q=0.05 is 2", "calibrator_comparison.json",
+          "class_optimum/feasible_t/0.05", 2, transform=lambda v: v[0]),
+    Claim("seven feasible calibrators at q=0.10", "calibrator_comparison.json",
+          "class_optimum/n_feasible_t/0.1", 7),
+
+    # -- the two design levers, and the coincidence we flag as a caution ---------
+    Claim("BH's largest accepted rank at q=0.05 = 2", "calibrator_comparison.json",
+          "bh_cutoff/0.05/largest_rejected_rank", 2,
+          note="equals the threshold t that reproduces BH's count; the paper flags this"),
+    Claim("BH's largest accepted rank at q=0.10 = 7", "calibrator_comparison.json",
+          "bh_cutoff/0.1/largest_rejected_rank", 7),
+    Claim("BH's largest accepted rank at q=0.20 = 19", "calibrator_comparison.json",
+          "bh_cutoff/0.2/largest_rejected_rank", 19),
+    Claim("exactly one t in 1..25 certifies anything at q=0.05", "calibrator_comparison.json",
+          "n_t_certifying_at_0.05", 1),
+    Claim("t=1 certifies 0 at q=0.05", "calibrator_comparison.json",
+          "t_sweep/0/certified/0.05", 0),
+    Claim("t=1 certifies 33 at q=0.10", "calibrator_comparison.json",
+          "t_sweep/0/certified/0.1", 33),
+    Claim("t=2 certifies 78 at q=0.05", "calibrator_comparison.json",
+          "t_sweep/1/certified/0.05", 78),
+    Claim("t=2 k* at q=0.05 = 74", "calibrator_comparison.json",
+          "t_sweep/1/k_star/0.05", 74),
+
+    # -- the other lever: restricting the hypothesis set to the published tier ----
+    Claim("restricted hypothesis set m = 161", "calibrator_comparison.json",
+          "restricted_to_tier/m", 161),
+    Claim("restricted k*_BY at q=0.05 = 21", "calibrator_comparison.json",
+          "restricted_to_tier/k_star_BY/0.05", 21),
+    Claim("BY on the published tier certifies 124 at q=0.05", "calibrator_comparison.json",
+          "restricted_to_tier/BY/0.05", 124,
+          note="refutes any claim that BY admits no remedy on this map"),
+    Claim("BY on the published tier certifies 133 at q=0.10", "calibrator_comparison.json",
+          "restricted_to_tier/BY/0.1", 133),
+
+    # -- Section 3 figures the paper now quotes precisely -------------------------
+    Claim("delta* at q=0.10 = 0.077 sigma", "sensitivity.json",
+          "realized_fdr_population/delta_star_control_breaks/0.1", 0.077),
+    Claim("measured shift is 7.8x delta*", "sensitivity.json",
+          "realized_fdr_population", 7.8, tol=0.05,
+          transform=lambda d: d["measured_shift_sigma"] / d["delta_star_control_breaks"]["0.1"]),
+    Claim("realized FDR at nominal q=0.05 = 0.181", "sensitivity.json",
+          "realized_fdr_population/identifying_curve_fdr/0.05", 0.181),
+
     # -- shift attribution: Table 1 and the density-ratio diagnosis --------
     # These are the paper's central diagnosis (which axis the shift lives on, and how
     # much of it a 1-D score reweighting can see). They were previously unverified.
