@@ -67,6 +67,7 @@ verify:    ## check every manuscript number against its result artifact (no inte
 	python scripts/verify_claims.py
 	python scripts/check_calibrator_validity.py
 	python scripts/check_identity.py
+	python scripts/check_audit_framing.py
 
 lint:      ## format + lint
 	ruff format src tests scripts && ruff check src tests scripts
