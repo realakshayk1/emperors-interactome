@@ -61,6 +61,28 @@ def main() -> int:
                 bad += 1
         print(f"  (n_cal+1)/m = {ratio:<7}          {200 - sub}/200 agree")
 
+    # Dropping monotonicity only helps where the rank distribution is lumpy. Under the exact
+    # uniformity that a.s.-distinct scores would give -- the premise under which the monotone
+    # restriction stops being free -- the unconstrained class certifies nothing.
+    rng = np.random.default_rng(0)
+    M, mm = 905, 1666
+    for q in (0.05, 0.10):
+        nonzero = 0
+        for _ in range(300):
+            occ = np.bincount(rng.integers(1, M + 1, size=mm), minlength=M + 1)[1:]
+            order = np.argsort(-occ)
+            best = 0
+            for a in range(1, M + 1):
+                n_a = int(occ[order[:a]].sum())
+                if n_a and (M / a) >= mm / (n_a * q):
+                    best = max(best, n_a)
+            nonzero += best > 0
+        print(f"  exactly-uniform ranks, q={q}: unconstrained class certifies "
+              f"something in {nonzero}/300 draws")
+        if nonzero > 15:
+            bad += 1
+            print(f"    unexpected: the non-monotone class gains under exact uniformity")
+
     print()
     if bad:
         print(f"FAIL: {bad} of {trials} designs contradict Proposition 3")
