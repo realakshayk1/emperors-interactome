@@ -11,8 +11,9 @@ statement that reproduces perfectly while describing the wrong population or the
      a p-value above 0.041, so the 161 tested as their own family certify entirely.
   3. The 0.60 sigma calibration-to-candidate shift is dominated by the tier under audit; the
      residual over the remaining candidates is below the measured breaking point.
-  4. Randomised calibrators break the class identity but lose in expectation, which is why
-     Proposition 3 is stated for deterministic ones.
+  4. Randomised calibrators break the class identity and beat BH in expectation, which is
+     why Proposition 3 is stated for deterministic ones. A sweep over a few fixed firing
+     probabilities suggested the opposite; optimising the probability does not.
 """
 
 from __future__ import annotations
@@ -93,11 +94,18 @@ def main() -> int:
     sd = json.loads((PROC / "gamma_seed.json").read_text())["nonconf_sd"]
     gap_all = score.mean() - mu_cal
     gap_rest = score[~hi].mean() - mu_cal
-    share = 1 - gap_rest / gap_all
-    print(f"  shift {gap_all / sd:.3f} sd total; tier contributes {100 * share:.1f}%; "
-          f"residual {gap_rest / sd:.3f} sd")
-    if not (0.90 <= share <= 0.92):
-        fails.append(f"tier share of the shift is {share:.3f}, expected ~0.91")
+    # The gap decomposes by pool share, which is what "92% comes from the tier" means; the
+    # unweighted ratio of the residual to the total decomposes nothing.
+    n_hi = int(hi.sum())
+    share = (n_hi / m) * (score[hi].mean() - mu_cal) / gap_all
+    rest_share = ((m - n_hi) / m) * (gap_rest) / gap_all
+    print(f"  shift {gap_all / sd:.3f} sd total; tier contributes {100 * share:.1f}%, "
+          f"the other {m - n_hi} contribute {100 * rest_share:.1f}%; "
+          f"residual gap {gap_rest / sd:.3f} sd")
+    if abs(share + rest_share - 1.0) > 1e-9:
+        fails.append("shift decomposition does not sum to the total")
+    if not (0.915 <= share <= 0.925):
+        fails.append(f"tier share of the shift is {share:.4f}, expected ~0.92")
     if abs(gap_all / sd - 0.600) > 0.005:
         fails.append(f"total shift is {gap_all / sd:.3f} sd, expected 0.600")
 
@@ -109,17 +117,25 @@ def main() -> int:
     if at_res >= 0.10:
         fails.append(f"residual-shift FDR is {at_res:.3f}, not below nominal")
 
-    # 4 -- randomised calibrators win conditionally and lose in expectation
-    print("  randomised calibrator, fires with probability 1/c:")
-    for q in (0.05, 0.10):
+    # 4 -- randomised calibrators escape the deterministic ceiling
+    # Firing (n1/t)/pi on {R<=t} with probability pi is valid exactly when
+    # pi <= q*N(t)*n1/(m*t), which is also the condition for e-BH to take all N(t) when it
+    # fires; expected yield is pi*N(t). Optimise over t rather than fixing a few c, since a
+    # narrow sweep is how the opposite (and false) claim survived here.
+    print("  randomised calibrator, firing probability optimised:")
+    for q in QS:
         bh_q = _bh(p, q)
-        for c in (2, 3, 4):
-            best = max(_ebh(np.where(rank <= t, c * n1 / t, 0.0), q) for t in range(1, n1 + 1))
-            exp = best / c
-            flag = "ok" if exp < bh_q else "BEATS BH IN EXPECTATION"
-            print(f"    q={q} c={c}: {best} when it fires, {exp:.1f} expected vs BH {bh_q}  {flag}")
-            if exp >= bh_q:
-                fails.append(f"randomised c={c} at q={q} beats BH in expectation")
+        best, arg = 0.0, None
+        for t in range(1, n1 + 1):
+            n_t = int((rank <= t).sum())
+            if not n_t:
+                continue
+            pi = min(1.0, q * n_t * n1 / (m * t))
+            if pi * n_t > best:
+                best, arg = pi * n_t, (t, pi)
+        print(f"    q={q}: expected {best:.1f} at t={arg[0]} (pi={arg[1]:.4f}) vs BH {bh_q}")
+        if best <= bh_q:
+            fails.append(f"randomised optimum {best:.1f} at q={q} does not exceed BH {bh_q}")
 
     print()
     if fails:
