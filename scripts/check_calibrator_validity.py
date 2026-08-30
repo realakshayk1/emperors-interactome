@@ -22,9 +22,13 @@ monotone one, which is what lets Proposition 3 range over all of them.
 from __future__ import annotations
 
 import math
+import math
 import sys
+from pathlib import Path
 
 import numpy as np
+
+PROC = Path(__file__).resolve().parents[1] / "data" / "processed"
 
 
 def envelope(e: np.ndarray) -> np.ndarray:
@@ -72,17 +76,37 @@ def main() -> int:
     # every calibrator the paper reports must be a genuine e-value
     reported = {"harmonic": harmonic(n1)}
     reported.update({f"threshold t={t}": threshold(n1, t) for t in (1, 2, 3, 7, 8, 19, 20, 25)})
-    # These are built to spend the budget exactly and be non-increasing, so sup E = 1 is
-    # forced; the informative check is that each also clears e-BH's own feasibility bound
-    # where the manuscript says it does.
+    # sup E = 1 and the budget equality are forced by the constructors, so neither can fail.
+    # The check with content is the one the manuscript's Table 1 rests on: whether each
+    # calibrator clears e-BH's feasibility bound, k* = ceil(m/(q e_max)), against the number of
+    # candidates it can actually reach.
+    import pandas as pd
+    d = pd.read_parquet(PROC / "certified.parquet")
+    pv = d["conf_pvalue"].to_numpy(float)
+    m = pv.size
+    rank = np.rint(pv * n1).astype(int)
+    def ebh(e_vals, q):
+        s = np.sort(e_vals)[::-1]
+        ok = np.nonzero(s >= m / (np.arange(1, m + 1) * q))[0]
+        if not ok.size:
+            return 0
+        k = int(ok[-1] + 1)
+        return int((e_vals >= m / (k * q)).sum())
+
+    # Table 1's certified counts at q = 0.05 and 0.10, which these must reproduce.
+    EXPECT = {"harmonic": (0, 0), "threshold t=1": (0, 33), "threshold t=2": (78, 78)}
+    print(f"  {'calibrator':18s} {'e_max':>8s}   certified 0.05 / 0.10")
     for name, e in reported.items():
         s = sup_expectation(e, n1)
-        ok = s <= 1 + 1e-9
-        print(f"  {name:18s} sup E[e] = {s:.6f}  e_max = {e.max():8.1f}  {'ok' if ok else 'INVALID'}")
-        if not ok:
-            failures.append(name)
-        if abs(e.sum() - n1) > 1e-6:
-            failures.append(f"{name} does not spend its budget: {e.sum():.3f} vs {n1}")
+        if s > 1 + 1e-9:
+            failures.append(f"{name} is not an e-value: sup E = {s:.4f}")
+        ev = e[rank - 1]
+        got = (ebh(ev, 0.05), ebh(ev, 0.10))
+        flag = ""
+        if name in EXPECT and got != EXPECT[name]:
+            flag = f"  MISMATCH, Table 1 says {EXPECT[name]}"
+            failures.append(f"{name} certifies {got}, Table 1 says {EXPECT[name]}")
+        print(f"  {name:18s} {float(e.max()):8.1f}   {got[0]:6d} / {got[1]:<6d}{flag}")
 
     # the budget alone does not imply validity off the monotone class
     S = [1, 2, 3, 4, 5, 6, 15]
@@ -94,10 +118,16 @@ def main() -> int:
     print(f"    sup E[e]              = {sup:.6f}  = {15}/{7}")
     if not (abs(budget - 1.0) < 1e-9 and abs(sup - 15 / 7) < 1e-9):
         failures.append("budget-is-not-validity demonstration")
-    q = worst_case_null(e, n1)
-    cdf = np.cumsum(q)
-    if not np.all(cdf <= np.arange(1, n1 + 1) / n1 + 1e-12):
-        failures.append("worst-case null violates the dominance constraint")
+    # worst_case_null only moves mass rightward, so dominance holds by construction and
+    # asserting it proves nothing. What is worth checking is that the law it returns actually
+    # attains the envelope bound -- i.e. that the bound is a supremum, not merely an upper
+    # bound, which is the claim the paper makes.
+    q_law = worst_case_null(e, n1)
+    attained = float(q_law @ e)
+    claimed = sup_expectation(e, n1)
+    print(f"    worst-case law attains {attained:.6f} against the bound {claimed:.6f}")
+    if abs(attained - claimed) > 1e-9:
+        failures.append(f"envelope bound {claimed:.6f} is not attained (best {attained:.6f})")
 
     # The envelope sum is asserted to BE the supremum of E[e(R)] over the null family
     # {P : P(R <= t) <= t/n for all t}. Comparing sup_expectation(a) with

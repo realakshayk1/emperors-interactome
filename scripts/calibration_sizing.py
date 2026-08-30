@@ -70,14 +70,23 @@ def main() -> int:
     by_need = required_ncal(1, H_m, 0.05, n_floor / m)
     print(f"  BY at q=0.05 with yield {n_floor}/{m}: needs n_cal+1 >= {by_need:,}"
           f"  ({by_need / n1:.1f}x what was shipped)")
-    # A round trip through required_ncal's own inverse proves nothing. The informative check
-    # is that the rule is minimised over t, as it must be, and that the minimum is the smallest
-    # calibration set at which ANY threshold becomes feasible.
+    # Minimising over t is what the rule demands; that the minimum is <= the t=1 value is a
+    # property of min and worth nothing. The claim the manuscript makes is that this minimum is
+    # the smallest calibration set at which ANY threshold is feasible, so test feasibility on
+    # either side of it -- that can fail.
     by_min = min((required_ncal(t, H_m, 0.05, int((rank <= t).sum()) / m), t)
                  for t in range(1, n1 + 1) if (rank <= t).sum())
     print(f"  BY minimised over t: needs n_cal+1 >= {by_min[0]:,} at t={by_min[1]}")
-    if by_min[0] > by_need:
-        fails.append(f"t=1 requirement {by_need} is below the minimum {by_min[0]}; rule mis-stated")
+
+    def by_feasible(cal_plus_one: int) -> list:
+        return [t for t in range(1, n1 + 1)
+                if (rank <= t).sum() >= math.ceil(m * H_m * t / (0.05 * cal_plus_one))]
+
+    below, at = by_feasible(by_min[0] - 1), by_feasible(by_min[0])
+    print(f"    feasible t at n_cal+1={by_min[0] - 1:,}: {below or 'none'};  "
+          f"at {by_min[0]:,}: {at or 'none'}")
+    if below or not at:
+        fails.append(f"{by_min[0]} is not the threshold at which BY becomes feasible")
 
     best = min(((required_ncal(t, 1.0, 0.05, int((rank <= t).sum()) / m), t)
                 for t in range(1, n1 + 1) if (rank <= t).sum()), key=lambda x: x[0])

@@ -6,8 +6,10 @@ stays clean. That happened here: collapsing a section left the shift figure unre
 left two appendix pointers aimed at appendices that no longer held the material.
 
 The kind check is a heuristic on the label prefix: fig: should be cited as "Figure~\\ref",
-tab: as "Table~\\ref", app: and sec: as "Section~\\ref" or "Appendix~\\ref", eq: as an
-equation. It catches the crossed pointer, which is invisible to LaTeX.
+tab: as "Table~\\ref", app: and sec: as "Section~\\ref" or "Appendix~\\ref". It catches a
+figure cited as a section, but NOT a pointer aimed at the wrong appendix -- that reference is
+kind-correct and only a reader can see it is aimed at the wrong place. The orphan arm is the
+one with real power here.
 """
 
 from __future__ import annotations
